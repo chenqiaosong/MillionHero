@@ -164,15 +164,22 @@ namespace MillionHerosHelper
             label_Message.Text = "正在识别题目信息";
             //调用API识别文字
             string recognizeResult = BaiDuOCR.Recognize(smallScreenShot);
-
+            recognizeResult += "\r\n\r\n";
 
             string[] recRes = Regex.Split(recognizeResult, "\r\n|\r|\n");
             //检查识别结果正确性
             CheckOCRResult(recRes);
             //显示识别结果
-            textBox_AnswerC.Text = recRes[recRes.Length - 2];
-            textBox_AnswerB.Text = recRes[recRes.Length - 3];
-            textBox_AnswerA.Text = recRes[recRes.Length - 4];
+
+            int notEmptyIndex = recRes.Length - 1;
+            while (String.IsNullOrEmpty(recRes[notEmptyIndex]))//忽略空行
+            {
+                notEmptyIndex--;
+            }
+
+            textBox_AnswerC.Text = recRes[notEmptyIndex--];
+            textBox_AnswerB.Text = recRes[notEmptyIndex--];
+            textBox_AnswerA.Text = recRes[notEmptyIndex--];
 
             string problem = recRes[0];
 
@@ -182,7 +189,7 @@ namespace MillionHerosHelper
                 problem = problem.Substring(dotP + 1, problem.Length - dotP - 1);
             }
 
-            for (int i = 1; i < recRes.Length - 4; i++)
+            for (int i = 1; i <= notEmptyIndex; i++)
             {
                 problem += recRes[i];
             }
@@ -214,7 +221,7 @@ namespace MillionHerosHelper
 
         private void CheckOCRResult(string[] arr)
         {
-            if (arr.Length > 7)
+            if (arr.Length > 9)
             {
                 throw new OCRException("识别到的文本过多");
             }
