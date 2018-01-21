@@ -164,7 +164,6 @@ namespace MillionHerosHelper
             label_Message.Text = "正在识别题目信息";
             //调用API识别文字
             string recognizeResult = BaiDuOCR.Recognize(smallScreenShot);
-            recognizeResult += "\r\n\r\n";
 
             string[] recRes = Regex.Split(recognizeResult, "\r\n|\r|\n");
             //检查识别结果正确性
