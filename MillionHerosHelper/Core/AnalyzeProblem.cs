@@ -17,7 +17,7 @@ namespace MillionHerosHelper
 
         public static AnalyzeResult Analyze(string problem, string[] answerArr)
         {
-            bool oppose = Regex.IsMatch(problem, "不是|不属于|不包括");//是否存在否定关键词
+            bool oppose = Regex.IsMatch(problem, "不是|不属于|不包括|不可以");//是否存在否定关键词
 
             //移除部分干扰搜索的关键字
             problem = RemoveUselessInfo(problem);
@@ -149,7 +149,7 @@ namespace MillionHerosHelper
                 }
             }
 
-            string[] dic = new string[] { "“", "”", "\"", "以下", "下列", "哪个", "哪项", "选项", "不是", "不属于", "不包括" };
+            string[] dic = new string[] { "“", "”", "\"", "以下", "下列", "哪个", "哪项", "选项", "不是", "不属于", "不包括", "不可以" };
             string res = str;
             foreach(string key in dic)
             {
