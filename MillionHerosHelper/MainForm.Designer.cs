@@ -48,12 +48,13 @@
             this.linkLabel_Author = new System.Windows.Forms.LinkLabel();
             this.linkLabel_SourceCode = new System.Windows.Forms.LinkLabel();
             this.label_Version = new System.Windows.Forms.Label();
+            this.checkBox_InPutProblem = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label_RankA
             // 
             this.label_RankA.AutoSize = true;
-            this.label_RankA.Location = new System.Drawing.Point(115, 154);
+            this.label_RankA.Location = new System.Drawing.Point(122, 199);
             this.label_RankA.Name = "label_RankA";
             this.label_RankA.Size = new System.Drawing.Size(0, 15);
             this.label_RankA.TabIndex = 10;
@@ -61,7 +62,7 @@
             // label_RankB
             // 
             this.label_RankB.AutoSize = true;
-            this.label_RankB.Location = new System.Drawing.Point(115, 220);
+            this.label_RankB.Location = new System.Drawing.Point(122, 265);
             this.label_RankB.Name = "label_RankB";
             this.label_RankB.Size = new System.Drawing.Size(0, 15);
             this.label_RankB.TabIndex = 11;
@@ -69,7 +70,7 @@
             // label_RankC
             // 
             this.label_RankC.AutoSize = true;
-            this.label_RankC.Location = new System.Drawing.Point(115, 292);
+            this.label_RankC.Location = new System.Drawing.Point(122, 337);
             this.label_RankC.Name = "label_RankC";
             this.label_RankC.Size = new System.Drawing.Size(0, 15);
             this.label_RankC.TabIndex = 12;
@@ -97,7 +98,7 @@
             // label_Problem
             // 
             this.label_Problem.AutoSize = true;
-            this.label_Problem.Location = new System.Drawing.Point(23, 90);
+            this.label_Problem.Location = new System.Drawing.Point(30, 135);
             this.label_Problem.Name = "label_Problem";
             this.label_Problem.Size = new System.Drawing.Size(45, 15);
             this.label_Problem.TabIndex = 15;
@@ -106,7 +107,7 @@
             // label_AnswerA
             // 
             this.label_AnswerA.AutoSize = true;
-            this.label_AnswerA.Location = new System.Drawing.Point(23, 187);
+            this.label_AnswerA.Location = new System.Drawing.Point(30, 232);
             this.label_AnswerA.Name = "label_AnswerA";
             this.label_AnswerA.Size = new System.Drawing.Size(53, 15);
             this.label_AnswerA.TabIndex = 16;
@@ -115,7 +116,7 @@
             // label_AnswerB
             // 
             this.label_AnswerB.AutoSize = true;
-            this.label_AnswerB.Location = new System.Drawing.Point(23, 278);
+            this.label_AnswerB.Location = new System.Drawing.Point(30, 323);
             this.label_AnswerB.Name = "label_AnswerB";
             this.label_AnswerB.Size = new System.Drawing.Size(53, 15);
             this.label_AnswerB.TabIndex = 17;
@@ -124,7 +125,7 @@
             // label_AnswerC
             // 
             this.label_AnswerC.AutoSize = true;
-            this.label_AnswerC.Location = new System.Drawing.Point(23, 379);
+            this.label_AnswerC.Location = new System.Drawing.Point(30, 424);
             this.label_AnswerC.Name = "label_AnswerC";
             this.label_AnswerC.Size = new System.Drawing.Size(45, 15);
             this.label_AnswerC.TabIndex = 18;
@@ -133,7 +134,7 @@
             // textBox_Problem
             // 
             this.textBox_Problem.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox_Problem.Location = new System.Drawing.Point(93, 87);
+            this.textBox_Problem.Location = new System.Drawing.Point(100, 132);
             this.textBox_Problem.Multiline = true;
             this.textBox_Problem.Name = "textBox_Problem";
             this.textBox_Problem.ReadOnly = true;
@@ -143,7 +144,7 @@
             // textBox_AnswerA
             // 
             this.textBox_AnswerA.Font = new System.Drawing.Font("宋体", 13F);
-            this.textBox_AnswerA.Location = new System.Drawing.Point(27, 221);
+            this.textBox_AnswerA.Location = new System.Drawing.Point(34, 266);
             this.textBox_AnswerA.Name = "textBox_AnswerA";
             this.textBox_AnswerA.ReadOnly = true;
             this.textBox_AnswerA.Size = new System.Drawing.Size(439, 32);
@@ -152,7 +153,7 @@
             // textBox_AnswerB
             // 
             this.textBox_AnswerB.Font = new System.Drawing.Font("宋体", 13F);
-            this.textBox_AnswerB.Location = new System.Drawing.Point(26, 320);
+            this.textBox_AnswerB.Location = new System.Drawing.Point(33, 365);
             this.textBox_AnswerB.Name = "textBox_AnswerB";
             this.textBox_AnswerB.ReadOnly = true;
             this.textBox_AnswerB.Size = new System.Drawing.Size(440, 32);
@@ -161,7 +162,7 @@
             // textBox_AnswerC
             // 
             this.textBox_AnswerC.Font = new System.Drawing.Font("宋体", 13F);
-            this.textBox_AnswerC.Location = new System.Drawing.Point(26, 416);
+            this.textBox_AnswerC.Location = new System.Drawing.Point(33, 461);
             this.textBox_AnswerC.Name = "textBox_AnswerC";
             this.textBox_AnswerC.ReadOnly = true;
             this.textBox_AnswerC.Size = new System.Drawing.Size(440, 32);
@@ -171,7 +172,7 @@
             // 
             this.label_Message.AutoSize = true;
             this.label_Message.Font = new System.Drawing.Font("宋体", 15F);
-            this.label_Message.Location = new System.Drawing.Point(21, 478);
+            this.label_Message.Location = new System.Drawing.Point(28, 523);
             this.label_Message.Name = "label_Message";
             this.label_Message.Size = new System.Drawing.Size(450, 25);
             this.label_Message.TabIndex = 23;
@@ -182,7 +183,7 @@
             this.label_AnalyzeA.AutoSize = true;
             this.label_AnalyzeA.Font = new System.Drawing.Font("宋体", 10F);
             this.label_AnalyzeA.ForeColor = System.Drawing.Color.DarkGreen;
-            this.label_AnalyzeA.Location = new System.Drawing.Point(315, 185);
+            this.label_AnalyzeA.Location = new System.Drawing.Point(322, 230);
             this.label_AnalyzeA.Name = "label_AnalyzeA";
             this.label_AnalyzeA.Size = new System.Drawing.Size(0, 17);
             this.label_AnalyzeA.TabIndex = 24;
@@ -192,7 +193,7 @@
             this.label_AnalyzeB.AutoSize = true;
             this.label_AnalyzeB.Font = new System.Drawing.Font("宋体", 10F);
             this.label_AnalyzeB.ForeColor = System.Drawing.Color.DarkGreen;
-            this.label_AnalyzeB.Location = new System.Drawing.Point(315, 276);
+            this.label_AnalyzeB.Location = new System.Drawing.Point(322, 321);
             this.label_AnalyzeB.Name = "label_AnalyzeB";
             this.label_AnalyzeB.Size = new System.Drawing.Size(0, 17);
             this.label_AnalyzeB.TabIndex = 25;
@@ -202,7 +203,7 @@
             this.label_AnalyzeC.AutoSize = true;
             this.label_AnalyzeC.Font = new System.Drawing.Font("宋体", 10F);
             this.label_AnalyzeC.ForeColor = System.Drawing.Color.DarkGreen;
-            this.label_AnalyzeC.Location = new System.Drawing.Point(315, 377);
+            this.label_AnalyzeC.Location = new System.Drawing.Point(322, 422);
             this.label_AnalyzeC.Name = "label_AnalyzeC";
             this.label_AnalyzeC.Size = new System.Drawing.Size(0, 17);
             this.label_AnalyzeC.TabIndex = 26;
@@ -238,11 +239,23 @@
             this.label_Version.TabIndex = 29;
             this.label_Version.Text = "v0.03";
             // 
+            // checkBox_InPutProblem
+            // 
+            this.checkBox_InPutProblem.AutoSize = true;
+            this.checkBox_InPutProblem.Location = new System.Drawing.Point(34, 90);
+            this.checkBox_InPutProblem.Name = "checkBox_InPutProblem";
+            this.checkBox_InPutProblem.Size = new System.Drawing.Size(164, 19);
+            this.checkBox_InPutProblem.TabIndex = 30;
+            this.checkBox_InPutProblem.Text = "手动输入自定义题目";
+            this.checkBox_InPutProblem.UseVisualStyleBackColor = true;
+            this.checkBox_InPutProblem.CheckedChanged += new System.EventHandler(this.checkBox_InPutProblem_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(512, 519);
+            this.ClientSize = new System.Drawing.Size(512, 563);
+            this.Controls.Add(this.checkBox_InPutProblem);
             this.Controls.Add(this.label_Version);
             this.Controls.Add(this.linkLabel_SourceCode);
             this.Controls.Add(this.linkLabel_Author);
@@ -297,6 +310,7 @@
         private System.Windows.Forms.LinkLabel linkLabel_Author;
         private System.Windows.Forms.LinkLabel linkLabel_SourceCode;
         private System.Windows.Forms.Label label_Version;
+        private System.Windows.Forms.CheckBox checkBox_InPutProblem;
     }
 }
 

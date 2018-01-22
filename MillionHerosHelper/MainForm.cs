@@ -192,65 +192,69 @@ namespace MillionHerosHelper
 
         private void SolveProblem()//答题
         {
-            label_Message.Text = "正在获取手机界面";
-            label_Message.ForeColor = Color.Orange;
-            //获取屏幕截图
-            string screenShotPath;
-            byte[] smallScreenShot;
-            try
+            if(!checkBox_InPutProblem.Checked)
             {
-                if (Config.UseEmulator)//是否为模拟器
+                label_Message.Text = "正在获取手机界面";
+                label_Message.ForeColor = Color.Orange;
+                //获取屏幕截图
+                string screenShotPath;
+                byte[] smallScreenShot;
+                try
                 {
-                    smallScreenShot = BitmapOperation.CutScreen(new Point(Config.CutX, Config.CutY), new Size(Config.CutWidth, Config.CutHeight));
+                    if (Config.UseEmulator)//是否为模拟器
+                    {
+                        smallScreenShot = BitmapOperation.CutScreen(new Point(Config.CutX, Config.CutY), new Size(Config.CutWidth, Config.CutHeight));
+                    }
+                    else
+                    {
+                        screenShotPath = ADB.GetScreenshotPath();
+                        smallScreenShot = BitmapOperation.CutImage(screenShotPath, new Point(Config.CutX, Config.CutY), new Size(Config.CutWidth, Config.CutHeight));
+                        System.IO.File.Delete(screenShotPath);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    screenShotPath = ADB.GetScreenshotPath();
-                    smallScreenShot = BitmapOperation.CutImage(screenShotPath, new Point(Config.CutX, Config.CutY), new Size(Config.CutWidth, Config.CutHeight));
-                    System.IO.File.Delete(screenShotPath);
+                    throw new ADBException("获取的屏幕截图无效!" + ex);
                 }
-            }
-            catch (Exception ex)
-            {
-                throw new ADBException("获取的屏幕截图无效!" + ex);
-            }
 
-            label_Message.Text = "正在识别题目信息";
-            //调用API识别文字
-            string recognizeResult = BaiDuOCR.Recognize(smallScreenShot);
+                label_Message.Text = "正在识别题目信息";
+                //调用API识别文字
+                string recognizeResult = BaiDuOCR.Recognize(smallScreenShot);
 
-            string[] recRes = Regex.Split(recognizeResult, "\r\n|\r|\n");
-            //检查识别结果正确性
-            CheckOCRResult(recRes);
-            //显示识别结果
+                string[] recRes = Regex.Split(recognizeResult, "\r\n|\r|\n");
+                //检查识别结果正确性
+                CheckOCRResult(recRes);
+                //显示识别结果
 
-            int notEmptyIndex = recRes.Length - 1;
-            while (String.IsNullOrEmpty(recRes[notEmptyIndex]))//忽略空行
-            {
-                notEmptyIndex--;
-            }
+                int notEmptyIndex = recRes.Length - 1;
+                while (String.IsNullOrEmpty(recRes[notEmptyIndex]))//忽略空行
+                {
+                    notEmptyIndex--;
+                }
 
-            textBox_AnswerC.Text = recRes[notEmptyIndex--];
-            textBox_AnswerB.Text = recRes[notEmptyIndex--];
-            textBox_AnswerA.Text = recRes[notEmptyIndex--];
+                textBox_AnswerC.Text = recRes[notEmptyIndex--];
+                textBox_AnswerB.Text = recRes[notEmptyIndex--];
+                textBox_AnswerA.Text = recRes[notEmptyIndex--];
 
-            string problem = recRes[0];
+                string problem = recRes[0];
 
-            int dotP = problem.IndexOf('.');
-            if (dotP != -1)
-            {
-                problem = problem.Substring(dotP + 1, problem.Length - dotP - 1);
-            }
+                int dotP = problem.IndexOf('.');
+                if (dotP != -1)
+                {
+                    problem = problem.Substring(dotP + 1, problem.Length - dotP - 1);
+                }
 
-            for (int i = 1; i <= notEmptyIndex; i++)
-            {
-                problem += recRes[i];
+                for (int i = 1; i <= notEmptyIndex; i++)
+                {
+                    problem += recRes[i];
+                }
+
+                textBox_Problem.Text = problem;
             }
 
-            textBox_Problem.Text = problem;
 
             //浏览器跳转到搜索页面
-            browserForm.Jump("http://www.baidu.com/s?wd=" + problem);
+            browserForm.Jump("http://www.baidu.com/s?wd=" + textBox_Problem.Text);
             browserForm.Show();
             browserForm.WindowState = FormWindowState.Normal;
 
@@ -286,6 +290,14 @@ namespace MillionHerosHelper
             {
                 throw new OCRException("没有识别到文本");
             }
+        }
+
+        private void checkBox_InPutProblem_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox_Problem.ReadOnly = !checkBox_InPutProblem.Checked;
+            textBox_AnswerA.ReadOnly = !checkBox_InPutProblem.Checked;
+            textBox_AnswerB.ReadOnly = !checkBox_InPutProblem.Checked;
+            textBox_AnswerC.ReadOnly = !checkBox_InPutProblem.Checked;
         }
     }
 }
