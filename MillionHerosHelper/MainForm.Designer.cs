@@ -171,10 +171,10 @@
             // label_Message
             // 
             this.label_Message.AutoSize = true;
-            this.label_Message.Font = new System.Drawing.Font("宋体", 15F);
-            this.label_Message.Location = new System.Drawing.Point(28, 523);
+            this.label_Message.Font = new System.Drawing.Font("宋体", 13F);
+            this.label_Message.Location = new System.Drawing.Point(12, 520);
             this.label_Message.Name = "label_Message";
-            this.label_Message.Size = new System.Drawing.Size(450, 25);
+            this.label_Message.Size = new System.Drawing.Size(395, 22);
             this.label_Message.TabIndex = 23;
             this.label_Message.Text = "答题之前记得点击配置向导进行配置哦!";
             // 
