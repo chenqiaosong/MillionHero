@@ -1,4 +1,5 @@
-# MillionHerosHelper-百万英雄辅助
+# MillionHerosHelper-超级答题助手
+通吃各答题平台<br>
 可能是最人性化的答题辅助软件<br>
 
 # 交流群419958463

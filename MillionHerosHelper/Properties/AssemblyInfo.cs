@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("百万英雄超级答题助手")]
+[assembly: AssemblyTitle("超级答题助手")]
 [assembly: AssemblyDescription("开源的百万英雄答题辅助软件")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Rainng")]
-[assembly: AssemblyProduct("百万英雄超级答题助手")]
+[assembly: AssemblyProduct("超级答题助手")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
