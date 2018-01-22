@@ -105,6 +105,15 @@ namespace MillionHerosHelper
             memoryStream.Close();
         }
 
+        public void SetCutScreenArea(int x, int y, int width, int height)
+        {
+            textBox_X.Text = x.ToString();
+            textBox_Y.Text = y.ToString();
+            textBox_Height.Text = height.ToString();
+            textBox_Width.Text = width.ToString();
+            this.Show();
+        }
+
         private void button_SaveConfig_Click(object sender, EventArgs e)
         {
             int x = 0, y = 0, width = 2, height = 2;
@@ -136,6 +145,42 @@ namespace MillionHerosHelper
         private void linkLabel_Apply_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://cloud.baidu.com/product/ocr/general");
+        }
+
+        private void button_GetArea_Click(object sender, EventArgs e)
+        {
+            Image screenShot;
+            try
+            {
+                if (checkBox_PCScreen.Checked)
+                {
+                    byte[] temp = BitmapOperation.CutScreen(new Point(0, 0), Screen.AllScreens[0].Bounds.Size);
+                    screenShot = Image.FromStream(new MemoryStream(temp));
+                }
+                else
+                {
+                    if (!ADB.CheckConnect())
+                    {
+                        label_ConnectStatus.Text = "未连接";
+                        label_ConnectStatus.ForeColor = Color.Red;
+                        MessageBox.Show("连接手机失败,请按照步骤1配置!", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    byte[] temp = ADB.GetScreenshot();
+                    screenShot = Image.FromStream(new MemoryStream(temp));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("图像信息错误，请检查是否连接成功\r\n\r\n详细信息:\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            SelectScreenAreaForm selectScreenAreaForm = new SelectScreenAreaForm(screenShot);
+            selectScreenAreaForm.SetArea += new SelectScreenAreaForm.SetAreaHandel(SetCutScreenArea);
+            selectScreenAreaForm.Show();
+            selectScreenAreaForm.Focus();
+            this.Hide();
         }
     }
 }
