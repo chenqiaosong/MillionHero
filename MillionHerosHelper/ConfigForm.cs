@@ -24,7 +24,7 @@ namespace MillionHerosHelper
             textBox_Y.Text = Config.CutY.ToString();
             textBox_Height.Text = Config.CutHeight.ToString();
             textBox_Width.Text = Config.CutWidth.ToString();
-            checkBox_Emulator.Checked = Config.UseEmulator;
+            checkBox_PCScreen.Checked = Config.UseEmulator;
 
             textBox_API_KEY.Text = Config.OCR_API_KEY;
             textBox_SECRET_KEY.Text = Config.OCR_SECRET_KEY;
@@ -75,7 +75,7 @@ namespace MillionHerosHelper
             byte[] screenShot;
             try
             {
-                if (checkBox_Emulator.Checked)
+                if (checkBox_PCScreen.Checked)
                 {
                     screenShot = BitmapOperation.CutScreen(new Point(x, y), new Size(width, height));
                 }
@@ -125,7 +125,7 @@ namespace MillionHerosHelper
             Config.CutY = y;
             Config.CutHeight = height;
             Config.CutWidth = width;
-            Config.UseEmulator = checkBox_Emulator.Checked;
+            Config.UseEmulator = checkBox_PCScreen.Checked;
             Config.OCR_API_KEY = textBox_API_KEY.Text;
             Config.OCR_SECRET_KEY = textBox_SECRET_KEY.Text;
             BaiDuOCR.InitBaiDuOCR(textBox_API_KEY.Text, textBox_SECRET_KEY.Text);

@@ -50,7 +50,8 @@
             this.label_API_KEY = new System.Windows.Forms.Label();
             this.label_SECRET_KEY = new System.Windows.Forms.Label();
             this.textBox_SECRET_KEY = new System.Windows.Forms.TextBox();
-            this.checkBox_Emulator = new System.Windows.Forms.CheckBox();
+            this.checkBox_PCScreen = new System.Windows.Forms.CheckBox();
+            this.label_PC = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ScreenShot)).BeginInit();
             this.SuspendLayout();
             // 
@@ -253,22 +254,32 @@
             this.textBox_SECRET_KEY.Size = new System.Drawing.Size(305, 25);
             this.textBox_SECRET_KEY.TabIndex = 21;
             // 
-            // checkBox_Emulator
+            // checkBox_PCScreen
             // 
-            this.checkBox_Emulator.AutoSize = true;
-            this.checkBox_Emulator.Location = new System.Drawing.Point(326, 121);
-            this.checkBox_Emulator.Name = "checkBox_Emulator";
-            this.checkBox_Emulator.Size = new System.Drawing.Size(134, 19);
-            this.checkBox_Emulator.TabIndex = 22;
-            this.checkBox_Emulator.Text = "使用安卓模拟器";
-            this.checkBox_Emulator.UseVisualStyleBackColor = true;
+            this.checkBox_PCScreen.AutoSize = true;
+            this.checkBox_PCScreen.Location = new System.Drawing.Point(326, 121);
+            this.checkBox_PCScreen.Name = "checkBox_PCScreen";
+            this.checkBox_PCScreen.Size = new System.Drawing.Size(134, 19);
+            this.checkBox_PCScreen.TabIndex = 22;
+            this.checkBox_PCScreen.Text = "从电脑获取画面";
+            this.checkBox_PCScreen.UseVisualStyleBackColor = true;
+            // 
+            // label_PC
+            // 
+            this.label_PC.AutoSize = true;
+            this.label_PC.Location = new System.Drawing.Point(83, 49);
+            this.label_PC.Name = "label_PC";
+            this.label_PC.Size = new System.Drawing.Size(157, 15);
+            this.label_PC.TabIndex = 23;
+            this.label_PC.Text = "若为电脑，则无需连接";
             // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(472, 606);
-            this.Controls.Add(this.checkBox_Emulator);
+            this.Controls.Add(this.label_PC);
+            this.Controls.Add(this.checkBox_PCScreen);
             this.Controls.Add(this.textBox_SECRET_KEY);
             this.Controls.Add(this.label_SECRET_KEY);
             this.Controls.Add(this.label_API_KEY);
@@ -326,6 +337,7 @@
         private System.Windows.Forms.Label label_API_KEY;
         private System.Windows.Forms.Label label_SECRET_KEY;
         private System.Windows.Forms.TextBox textBox_SECRET_KEY;
-        private System.Windows.Forms.CheckBox checkBox_Emulator;
+        private System.Windows.Forms.CheckBox checkBox_PCScreen;
+        private System.Windows.Forms.Label label_PC;
     }
 }
