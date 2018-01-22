@@ -27,18 +27,23 @@ namespace MillionHerosHelper
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            //便于并发请求同时进行
             ServicePointManager.MaxServicePoints = 512;
             ServicePointManager.DefaultConnectionLimit = 512;
             System.Net.ServicePointManager.DefaultConnectionLimit = 64;
+
+            //禁用跨线程UI操作检查
             Control.CheckForIllegalCrossThreadCalls = false;
 
             Config.LoadConfig();
 
             BaiDuOCR.InitBaiDuOCR(Config.OCR_API_KEY, Config.OCR_SECRET_KEY);
+
             browserForm = new BrowserForm();
-            
             browserForm.Show();
             MainForm_Move(null, null);
+
+            HotKey.RegisterHotKey(Handle, 100, HotKey.KeyModifiers.None, Keys.F7);
         }
 
         private void button_Config_Click(object sender, EventArgs e)
@@ -64,7 +69,7 @@ namespace MillionHerosHelper
             solveProblemThread.Start();
 
             int timeUsed = 0;
-            System.Timers.Timer monitor = new System.Timers.Timer(100);
+            System.Timers.Timer monitor = new System.Timers.Timer(100);//答题时间监视
             monitor.Elapsed += (object _sender, System.Timers.ElapsedEventArgs _args) =>
             {
                 if (solveProblemThread == null)
@@ -78,7 +83,7 @@ namespace MillionHerosHelper
                     FinishSolveProblem();
                     label_Message.Text = "题目分析超时";
                     label_Message.ForeColor = Color.Red;
-                    MessageBox.Show("答题过程超过10秒,自动终止.\r\n请确保您的网络环境良好!", "执行超时", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("答题过程超过22秒,自动终止.\r\n请确保您的网络环境良好!", "执行超时", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -136,7 +141,56 @@ namespace MillionHerosHelper
             }
         }
 
-        private void SolveProblem()
+
+        private void FinishSolveProblem()
+        {
+            button_Config.Enabled = true;
+            button_Start.Enabled = true;
+            solveProblemThread = null;
+        }
+
+        private void MainForm_Move(object sender, EventArgs e)
+        {
+            if (browserForm != null && !browserForm.IsDisposed) 
+            {
+                browserForm.Location = new Point(this.Location.X + this.Width + 10, browserForm.Location.Y);
+            }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Config.SaveConfig();
+            HotKey.UnregisterHotKey(Handle, 100);
+        }
+
+        private void linkLabel_Author_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/Azure99");
+        }
+
+        private void linkLabel_SourceCode_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/Azure99/MillionHerosHelper");
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_HOTKEY = 0x0312;
+            if (m.Msg == WM_HOTKEY)
+            {
+                if (m.WParam.ToInt32() == 100) 
+                {
+                    if(button_Start.Enabled)
+                    {
+                        button_Start_Click(null, null);
+                    }
+                }
+            }
+
+            base.WndProc(ref m);
+        }
+
+        private void SolveProblem()//答题
         {
             label_Message.Text = "正在获取手机界面";
             label_Message.ForeColor = Color.Orange;
@@ -145,7 +199,7 @@ namespace MillionHerosHelper
             byte[] smallScreenShot;
             try
             {
-                if(Config.UseEmulator)//是否为模拟器
+                if (Config.UseEmulator)//是否为模拟器
                 {
                     smallScreenShot = BitmapOperation.CutScreen(new Point(Config.CutX, Config.CutY), new Size(Config.CutWidth, Config.CutHeight));
                 }
@@ -156,7 +210,7 @@ namespace MillionHerosHelper
                     System.IO.File.Delete(screenShotPath);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new ADBException("获取的屏幕截图无效!" + ex);
             }
@@ -194,7 +248,7 @@ namespace MillionHerosHelper
             }
 
             textBox_Problem.Text = problem;
-            
+
             //浏览器跳转到搜索页面
             browserForm.Jump("http://www.baidu.com/s?wd=" + problem);
             browserForm.Show();
@@ -205,7 +259,7 @@ namespace MillionHerosHelper
             AnalyzeResult aRes = AnalyzeProblem.Analyze(textBox_Problem.Text, new string[] { textBox_AnswerA.Text, textBox_AnswerB.Text, textBox_AnswerC.Text });
             char[] ans = new char[3] { 'A', 'B', 'C' };
             label_Message.Text = "最有可能选择:" + ans[aRes.Index] + "项!";
-            if(aRes.Oppose)
+            if (aRes.Oppose)
             {
                 label_Message.Text += "(包含否定词)";
             }
@@ -232,35 +286,6 @@ namespace MillionHerosHelper
             {
                 throw new OCRException("没有识别到文本");
             }
-        }
-        private void FinishSolveProblem()
-        {
-            button_Config.Enabled = true;
-            button_Start.Enabled = true;
-            solveProblemThread = null;
-        }
-
-        private void MainForm_Move(object sender, EventArgs e)
-        {
-            if (browserForm != null && !browserForm.IsDisposed) 
-            {
-                browserForm.Location = new Point(this.Location.X + this.Width + 10, browserForm.Location.Y);
-            }
-        }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Config.SaveConfig();
-        }
-
-        private void linkLabel_Author_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("https://github.com/Azure99");
-        }
-
-        private void linkLabel_SourceCode_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("https://github.com/Azure99/MillionHerosHelper");
         }
     }
 }

@@ -71,6 +71,7 @@
     <Compile Include="Core\SearchEngine.cs" />
     <Compile Include="Definition.cs" />
     <Compile Include="Helper\INIOperation.cs" />
+    <Compile Include="Helper\HotKey.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

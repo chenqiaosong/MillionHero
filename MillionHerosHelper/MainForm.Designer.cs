@@ -86,11 +86,11 @@
             // 
             // button_Start
             // 
-            this.button_Start.Location = new System.Drawing.Point(183, 12);
+            this.button_Start.Location = new System.Drawing.Point(168, 12);
             this.button_Start.Name = "button_Start";
-            this.button_Start.Size = new System.Drawing.Size(124, 56);
+            this.button_Start.Size = new System.Drawing.Size(160, 60);
             this.button_Start.TabIndex = 14;
-            this.button_Start.Text = "开始答题";
+            this.button_Start.Text = "开始答题(快捷键F7)";
             this.button_Start.UseVisualStyleBackColor = true;
             this.button_Start.Click += new System.EventHandler(this.button_Start_Click);
             // 
@@ -236,7 +236,7 @@
             this.label_Version.Name = "label_Version";
             this.label_Version.Size = new System.Drawing.Size(47, 15);
             this.label_Version.TabIndex = 29;
-            this.label_Version.Text = "v0.02";
+            this.label_Version.Text = "v0.03";
             // 
             // MainForm
             // 
