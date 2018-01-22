@@ -130,6 +130,7 @@ namespace MillionHerosHelper
             Config.OCR_SECRET_KEY = textBox_SECRET_KEY.Text;
             BaiDuOCR.InitBaiDuOCR(textBox_API_KEY.Text, textBox_SECRET_KEY.Text);
             Config.SaveConfig();
+            MessageBox.Show("保存成功", "信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void linkLabel_Apply_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

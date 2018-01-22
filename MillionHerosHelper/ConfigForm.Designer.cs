@@ -291,6 +291,8 @@
             this.Controls.Add(this.label_ConnectStatus);
             this.Controls.Add(this.label_Step1);
             this.Controls.Add(this.button_CheckConnect);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "ConfigForm";
             this.Text = "配置引导";
             this.Load += new System.EventHandler(this.ConfigForm_Load);
