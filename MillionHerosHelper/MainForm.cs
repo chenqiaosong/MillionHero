@@ -260,15 +260,27 @@ namespace MillionHerosHelper
 
             label_Message.Text = "正在分析题目";
             //分析问题
-            AnalyzeResult aRes = AnalyzeProblem.Analyze(textBox_Problem.Text, new string[] { textBox_AnswerA.Text, textBox_AnswerB.Text, textBox_AnswerC.Text });
+            string[] answerArr = new string[] { textBox_AnswerA.Text, textBox_AnswerB.Text, textBox_AnswerC.Text };
+            AnalyzeResult aRes = AnalyzeProblem.Analyze(textBox_Problem.Text, answerArr);
             char[] ans = new char[3] { 'A', 'B', 'C' };
-            label_Message.Text = "最有可能选择:" + ans[aRes.Index] + "项!";
+            label_Message.Text = "最有可能选择:" + ans[aRes.Index] + "项!" + answerArr[aRes.Index];
             if (aRes.Oppose)
             {
                 label_Message.Text += "(包含否定词)";
             }
 
             label_Message.ForeColor = Color.Green;
+            label_AnalyzeA.ForeColor = Color.DarkGreen;
+            label_AnalyzeB.ForeColor = Color.DarkGreen;
+            label_AnalyzeC.ForeColor = Color.DarkGreen;
+
+
+            switch(aRes.Index)
+            {
+                case 0: label_AnalyzeA.ForeColor = Color.Red;break;
+                case 1: label_AnalyzeB.ForeColor = Color.Red; break;
+                case 2: label_AnalyzeC.ForeColor = Color.Red; break;
+            }
 
             //显示概率
             label_AnalyzeA.Text = "概率:" + aRes.Probability[0].ToString() + "%";
