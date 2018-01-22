@@ -55,6 +55,8 @@
             this.button_GetArea = new System.Windows.Forms.Button();
             this.label_ScreenShot = new System.Windows.Forms.Label();
             this.label_ScreenShotArgs = new System.Windows.Forms.Label();
+            this.label_Tip = new System.Windows.Forms.Label();
+            this.label_Tip2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ScreenShot)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,7 +104,7 @@
             // label_Setp2
             // 
             this.label_Setp2.AutoSize = true;
-            this.label_Setp2.Location = new System.Drawing.Point(30, 122);
+            this.label_Setp2.Location = new System.Drawing.Point(24, 119);
             this.label_Setp2.Name = "label_Setp2";
             this.label_Setp2.Size = new System.Drawing.Size(286, 15);
             this.label_Setp2.TabIndex = 4;
@@ -110,7 +112,7 @@
             // 
             // pictureBox_ScreenShot
             // 
-            this.pictureBox_ScreenShot.Location = new System.Drawing.Point(32, 221);
+            this.pictureBox_ScreenShot.Location = new System.Drawing.Point(29, 270);
             this.pictureBox_ScreenShot.Name = "pictureBox_ScreenShot";
             this.pictureBox_ScreenShot.Size = new System.Drawing.Size(280, 260);
             this.pictureBox_ScreenShot.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -119,7 +121,7 @@
             // 
             // button_GetScreenShort
             // 
-            this.button_GetScreenShort.Location = new System.Drawing.Point(340, 447);
+            this.button_GetScreenShort.Location = new System.Drawing.Point(337, 496);
             this.button_GetScreenShort.Name = "button_GetScreenShort";
             this.button_GetScreenShort.Size = new System.Drawing.Size(107, 34);
             this.button_GetScreenShort.TabIndex = 6;
@@ -130,7 +132,7 @@
             // label_X
             // 
             this.label_X.AutoSize = true;
-            this.label_X.Location = new System.Drawing.Point(354, 214);
+            this.label_X.Location = new System.Drawing.Point(351, 263);
             this.label_X.Name = "label_X";
             this.label_X.Size = new System.Drawing.Size(75, 15);
             this.label_X.TabIndex = 7;
@@ -139,7 +141,7 @@
             // label_Y
             // 
             this.label_Y.AutoSize = true;
-            this.label_Y.Location = new System.Drawing.Point(354, 276);
+            this.label_Y.Location = new System.Drawing.Point(351, 325);
             this.label_Y.Name = "label_Y";
             this.label_Y.Size = new System.Drawing.Size(75, 15);
             this.label_Y.TabIndex = 8;
@@ -147,7 +149,7 @@
             // 
             // textBox_X
             // 
-            this.textBox_X.Location = new System.Drawing.Point(343, 242);
+            this.textBox_X.Location = new System.Drawing.Point(340, 291);
             this.textBox_X.Name = "textBox_X";
             this.textBox_X.Size = new System.Drawing.Size(100, 25);
             this.textBox_X.TabIndex = 9;
@@ -155,7 +157,7 @@
             // 
             // textBox_Y
             // 
-            this.textBox_Y.Location = new System.Drawing.Point(343, 299);
+            this.textBox_Y.Location = new System.Drawing.Point(340, 348);
             this.textBox_Y.Name = "textBox_Y";
             this.textBox_Y.Size = new System.Drawing.Size(100, 25);
             this.textBox_Y.TabIndex = 10;
@@ -164,7 +166,7 @@
             // label_Height
             // 
             this.label_Height.AutoSize = true;
-            this.label_Height.Location = new System.Drawing.Point(374, 332);
+            this.label_Height.Location = new System.Drawing.Point(371, 381);
             this.label_Height.Name = "label_Height";
             this.label_Height.Size = new System.Drawing.Size(37, 15);
             this.label_Height.TabIndex = 11;
@@ -173,7 +175,7 @@
             // label_Width
             // 
             this.label_Width.AutoSize = true;
-            this.label_Width.Location = new System.Drawing.Point(374, 391);
+            this.label_Width.Location = new System.Drawing.Point(371, 440);
             this.label_Width.Name = "label_Width";
             this.label_Width.Size = new System.Drawing.Size(37, 15);
             this.label_Width.TabIndex = 12;
@@ -181,7 +183,7 @@
             // 
             // textBox_Height
             // 
-            this.textBox_Height.Location = new System.Drawing.Point(343, 355);
+            this.textBox_Height.Location = new System.Drawing.Point(340, 404);
             this.textBox_Height.Name = "textBox_Height";
             this.textBox_Height.Size = new System.Drawing.Size(100, 25);
             this.textBox_Height.TabIndex = 13;
@@ -189,7 +191,7 @@
             // 
             // textBox_Width
             // 
-            this.textBox_Width.Location = new System.Drawing.Point(343, 412);
+            this.textBox_Width.Location = new System.Drawing.Point(340, 461);
             this.textBox_Width.Name = "textBox_Width";
             this.textBox_Width.Size = new System.Drawing.Size(100, 25);
             this.textBox_Width.TabIndex = 14;
@@ -197,7 +199,7 @@
             // 
             // button_SaveConfig
             // 
-            this.button_SaveConfig.Location = new System.Drawing.Point(160, 626);
+            this.button_SaveConfig.Location = new System.Drawing.Point(160, 656);
             this.button_SaveConfig.Name = "button_SaveConfig";
             this.button_SaveConfig.Size = new System.Drawing.Size(120, 35);
             this.button_SaveConfig.TabIndex = 15;
@@ -208,7 +210,7 @@
             // label_OCR
             // 
             this.label_OCR.AutoSize = true;
-            this.label_OCR.Location = new System.Drawing.Point(29, 509);
+            this.label_OCR.Location = new System.Drawing.Point(29, 549);
             this.label_OCR.Name = "label_OCR";
             this.label_OCR.Size = new System.Drawing.Size(139, 15);
             this.label_OCR.TabIndex = 16;
@@ -217,7 +219,7 @@
             // linkLabel_Apply
             // 
             this.linkLabel_Apply.AutoSize = true;
-            this.linkLabel_Apply.Location = new System.Drawing.Point(357, 509);
+            this.linkLabel_Apply.Location = new System.Drawing.Point(357, 549);
             this.linkLabel_Apply.Name = "linkLabel_Apply";
             this.linkLabel_Apply.Size = new System.Drawing.Size(67, 15);
             this.linkLabel_Apply.TabIndex = 17;
@@ -227,7 +229,7 @@
             // 
             // textBox_API_KEY
             // 
-            this.textBox_API_KEY.Location = new System.Drawing.Point(135, 539);
+            this.textBox_API_KEY.Location = new System.Drawing.Point(135, 579);
             this.textBox_API_KEY.Name = "textBox_API_KEY";
             this.textBox_API_KEY.Size = new System.Drawing.Size(305, 25);
             this.textBox_API_KEY.TabIndex = 18;
@@ -235,7 +237,7 @@
             // label_API_KEY
             // 
             this.label_API_KEY.AutoSize = true;
-            this.label_API_KEY.Location = new System.Drawing.Point(29, 544);
+            this.label_API_KEY.Location = new System.Drawing.Point(29, 584);
             this.label_API_KEY.Name = "label_API_KEY";
             this.label_API_KEY.Size = new System.Drawing.Size(71, 15);
             this.label_API_KEY.TabIndex = 19;
@@ -244,7 +246,7 @@
             // label_SECRET_KEY
             // 
             this.label_SECRET_KEY.AutoSize = true;
-            this.label_SECRET_KEY.Location = new System.Drawing.Point(26, 587);
+            this.label_SECRET_KEY.Location = new System.Drawing.Point(26, 627);
             this.label_SECRET_KEY.Name = "label_SECRET_KEY";
             this.label_SECRET_KEY.Size = new System.Drawing.Size(95, 15);
             this.label_SECRET_KEY.TabIndex = 20;
@@ -252,7 +254,7 @@
             // 
             // textBox_SECRET_KEY
             // 
-            this.textBox_SECRET_KEY.Location = new System.Drawing.Point(135, 580);
+            this.textBox_SECRET_KEY.Location = new System.Drawing.Point(135, 620);
             this.textBox_SECRET_KEY.Name = "textBox_SECRET_KEY";
             this.textBox_SECRET_KEY.Size = new System.Drawing.Size(305, 25);
             this.textBox_SECRET_KEY.TabIndex = 21;
@@ -260,7 +262,7 @@
             // checkBox_PCScreen
             // 
             this.checkBox_PCScreen.AutoSize = true;
-            this.checkBox_PCScreen.Location = new System.Drawing.Point(326, 121);
+            this.checkBox_PCScreen.Location = new System.Drawing.Point(320, 118);
             this.checkBox_PCScreen.Name = "checkBox_PCScreen";
             this.checkBox_PCScreen.Size = new System.Drawing.Size(134, 19);
             this.checkBox_PCScreen.TabIndex = 22;
@@ -278,7 +280,7 @@
             // 
             // button_GetArea
             // 
-            this.button_GetArea.Location = new System.Drawing.Point(125, 154);
+            this.button_GetArea.Location = new System.Drawing.Point(122, 203);
             this.button_GetArea.Name = "button_GetArea";
             this.button_GetArea.Size = new System.Drawing.Size(215, 54);
             this.button_GetArea.TabIndex = 24;
@@ -289,7 +291,7 @@
             // label_ScreenShot
             // 
             this.label_ScreenShot.AutoSize = true;
-            this.label_ScreenShot.Location = new System.Drawing.Point(33, 193);
+            this.label_ScreenShot.Location = new System.Drawing.Point(30, 242);
             this.label_ScreenShot.Name = "label_ScreenShot";
             this.label_ScreenShot.Size = new System.Drawing.Size(67, 15);
             this.label_ScreenShot.TabIndex = 25;
@@ -298,17 +300,38 @@
             // label_ScreenShotArgs
             // 
             this.label_ScreenShotArgs.AutoSize = true;
-            this.label_ScreenShotArgs.Location = new System.Drawing.Point(357, 193);
+            this.label_ScreenShotArgs.Location = new System.Drawing.Point(354, 242);
             this.label_ScreenShotArgs.Name = "label_ScreenShotArgs";
             this.label_ScreenShotArgs.Size = new System.Drawing.Size(67, 15);
             this.label_ScreenShotArgs.TabIndex = 26;
             this.label_ScreenShotArgs.Text = "截图参数";
             // 
+            // label_Tip
+            // 
+            this.label_Tip.AutoSize = true;
+            this.label_Tip.ForeColor = System.Drawing.Color.Red;
+            this.label_Tip.Location = new System.Drawing.Point(77, 176);
+            this.label_Tip.Name = "label_Tip";
+            this.label_Tip.Size = new System.Drawing.Size(323, 15);
+            this.label_Tip.TabIndex = 27;
+            this.label_Tip.Text = "注意:不能有题目以外的任何内容!否则识别错误";
+            // 
+            // label_Tip2
+            // 
+            this.label_Tip2.AutoSize = true;
+            this.label_Tip2.Location = new System.Drawing.Point(12, 151);
+            this.label_Tip2.Name = "label_Tip2";
+            this.label_Tip2.Size = new System.Drawing.Size(458, 15);
+            this.label_Tip2.TabIndex = 28;
+            this.label_Tip2.Text = "设备打开答题界面,然后选取题目部分,选完点测试截图查看是否正常";
+            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(472, 673);
+            this.ClientSize = new System.Drawing.Size(472, 703);
+            this.Controls.Add(this.label_Tip2);
+            this.Controls.Add(this.label_Tip);
             this.Controls.Add(this.label_ScreenShotArgs);
             this.Controls.Add(this.label_ScreenShot);
             this.Controls.Add(this.button_GetArea);
@@ -376,5 +399,7 @@
         private System.Windows.Forms.Button button_GetArea;
         private System.Windows.Forms.Label label_ScreenShot;
         private System.Windows.Forms.Label label_ScreenShotArgs;
+        private System.Windows.Forms.Label label_Tip;
+        private System.Windows.Forms.Label label_Tip2;
     }
 }
