@@ -232,9 +232,9 @@ namespace MillionHerosHelper
                     notEmptyIndex--;
                 }
 
-                textBox_AnswerC.Text = recRes[notEmptyIndex--];
-                textBox_AnswerB.Text = recRes[notEmptyIndex--];
-                textBox_AnswerA.Text = recRes[notEmptyIndex--];
+                textBox_AnswerC.Text = AnalyzeProblem.RemoveABC(recRes[notEmptyIndex--]);
+                textBox_AnswerB.Text = AnalyzeProblem.RemoveABC(recRes[notEmptyIndex--]);
+                textBox_AnswerA.Text = AnalyzeProblem.RemoveABC(recRes[notEmptyIndex--]);
 
                 string problem = recRes[0];
 
@@ -254,7 +254,7 @@ namespace MillionHerosHelper
 
             //浏览器跳转到搜索页面
 
-            if(Config.RemoveUselessInfo)//移除无用信息
+            if (Config.RemoveUselessInfo)//移除无用信息
             {
                 browserForm.Jump("http://www.baidu.com/s?wd=" + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text));
             }

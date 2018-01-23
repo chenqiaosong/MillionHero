@@ -182,5 +182,20 @@ namespace MillionHerosHelper
             Debug.WriteLine(res);
             return res;
         }
+
+        public static string RemoveABC(string str)
+        {
+            string[] dic = new string[] { "A.", "B.", "C.", "A", "B", "C"};
+            string res = str;
+            foreach (string key in dic)
+            {
+                if(res.StartsWith(key))
+                {
+                    int len = key.Length;
+                    res = res.Substring(len, res.Length - len);
+                }
+            }
+            return res;
+        }
     }
 }
