@@ -77,11 +77,24 @@ namespace MillionHerosHelper
             double[] cntRank = CalculateRank.CalculateCountRank(problem, answerArr, pmiRank, problemData);
             double[] sumRank = new double[answerArr.Length];
 
+            double pmiAddCnt = 0;
+            for (int i = 0; i < answerArr.Length; i++)
+            {
+                pmiAddCnt += pmiRank[i] + cntRank[i];
+            }
+
+            int trueAnswerIndex = SearchTureAnswer(problemData, answerArr);
+            if (trueAnswerIndex != -1)
+            {
+                Debug.WriteLine("测试:" + trueAnswerIndex + "|" + pmiAddCnt);
+                sumRank[trueAnswerIndex] = pmiAddCnt;
+            }
+
             int maxIndex = 0;
             int minIndex = 0;
             for (int i = 0; i < answerArr.Length; i++)
             {
-                sumRank[i] = pmiRank[i] + cntRank[i];
+                sumRank[i] += pmiRank[i] + cntRank[i];
                 if (sumRank[i] > sumRank[maxIndex])
                 {
                     maxIndex = i;
@@ -117,7 +130,6 @@ namespace MillionHerosHelper
             ar.SumRank = sumRank;
             ar.Probability = probability;
             ar.Oppose = oppose;
-            Debug.WriteLine("绝对正确:" + SearchTureAnswer(problemData, answerArr));
             return ar;
         }
 
@@ -220,24 +232,28 @@ namespace MillionHerosHelper
                     if (p != -1)
                     {
                         int startP = data.IndexOf("<span>", p);
-                        int endP = data.IndexOf("</span>", startP);
-                        if (startP != -1 && endP != -1)
+                        if (startP != -1)
                         {
-                            string ans = data.Substring(startP + "<span>".Length, endP - (startP + "<span>".Length));
-                            int existCnt = 0;//正确答案存在个数
-                            int index = 0;//正确答案下标
-                            for (int i = 0; i < answerArr.Length; i++)
+                            int endP = data.IndexOf("</span>", startP);
+                            if (endP != -1)
                             {
-                                if (ans.Contains(answerArr[i]))
+                                string ans = data.Substring(startP + "<span>".Length, endP - (startP + "<span>".Length));
+                                ans = ans.Replace(" ", "");
+                                int existCnt = 0;//正确答案存在个数
+                                int index = 0;//正确答案下标
+                                for (int i = 0; i < answerArr.Length; i++)
                                 {
-                                    existCnt++;
-                                    index = i;
+                                    if (ans.Contains(answerArr[i]))
+                                    {
+                                        existCnt++;
+                                        index = i;
+                                    }
                                 }
-                            }
 
-                            if (existCnt == 1) //存在个数，只有一个才能确保是正确选项
-                            {
-                                return index;
+                                if (existCnt == 1) //存在个数，只有一个才能确保是正确选项
+                                {
+                                    return index;
+                                }
                             }
                         }
                     }
@@ -255,47 +271,10 @@ namespace MillionHerosHelper
                     const string endStr = "</a></span>";
 
                     int startP = data.IndexOf(startStr, p);
-                    int endP = data.IndexOf(endStr, startP);
-                    if (startP != -1 && endP != -1)
+                    if (startP != -1) 
                     {
-                        string ans = data.Substring(startP + startStr.Length, endP - (startP + endStr.Length));
-                        int existCnt = 0;//正确答案存在个数
-                        int index = 0;//正确答案下标
-                        for (int i = 0; i < answerArr.Length; i++)
-                        {
-                            if (ans.Contains(answerArr[i]))
-                            {
-                                existCnt++;
-                                index = i;
-                            }
-                        }
-
-                        if (existCnt == 1) //存在个数，只有一个才能确保是正确选项
-                        {
-                            return index;
-                        }
-                    }
-                }
-            }
-            #endregion
-
-
-            #region 百度知识图谱
-
-            p = data.IndexOf("<script type=\"text / javascript\" data-compress=\"off\">");
-            if (p != -1)
-            {
-                p = data.IndexOf("setup({", p);
-                if (p != -1) 
-                {
-                    if (CountItemsBeforeP(data, p) < 2)//确保词条在前两项
-                    {
-                        const string startStr = "fbtext: '";
-                        const string endStr = "',";
-
-                        int startP = data.IndexOf(startStr, p);
                         int endP = data.IndexOf(endStr, startP);
-                        if (startP != -1 && endP != -1)
+                        if (endP != -1)
                         {
                             string ans = data.Substring(startP + startStr.Length, endP - (startP + endStr.Length));
                             int existCnt = 0;//正确答案存在个数
@@ -312,6 +291,49 @@ namespace MillionHerosHelper
                             if (existCnt == 1) //存在个数，只有一个才能确保是正确选项
                             {
                                 return index;
+                            }
+                        }
+                    }
+                }
+            }
+            #endregion
+
+
+            #region 百度知识图谱
+
+            p = data.IndexOf("data-compress=\"off\">");
+            if (p != -1)
+            {
+                p = data.IndexOf("setup({", p);
+                if (p != -1) 
+                {
+                    if (CountItemsBeforeP(data, p) < 2)//确保词条在前两项
+                    {
+                        const string startStr = "fbtext: '";
+                        const string endStr = "',";
+
+                        int startP = data.IndexOf(startStr, p);
+                        if (startP != -1)
+                        {
+                            int endP = data.IndexOf(endStr, startP);
+                            if (endP != -1)
+                            {
+                                string ans = data.Substring(startP + startStr.Length, endP - (startP + endStr.Length));
+                                int existCnt = 0;//正确答案存在个数
+                                int index = 0;//正确答案下标
+                                for (int i = 0; i < answerArr.Length; i++)
+                                {
+                                    if (ans.Contains(answerArr[i]))
+                                    {
+                                        existCnt++;
+                                        index = i;
+                                    }
+                                }
+
+                                if (existCnt == 1) //存在个数，只有一个才能确保是正确选项
+                                {
+                                    return index;
+                                }
                             }
                         }
                     }
