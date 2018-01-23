@@ -245,6 +245,115 @@ namespace MillionHerosHelper
             }
             #endregion
 
+            #region 百度汉语
+            p = data.IndexOf("<div class=\"op_exactqa_detail_s_answer\">");
+            if (p != -1)
+            {
+                if (CountItemsBeforeP(data, p) < 2)//确保词条在前两项
+                {
+                    const string startStr = "target=\"_blank\">";
+                    const string endStr = "</a></span>";
+
+                    int startP = data.IndexOf(startStr, p);
+                    int endP = data.IndexOf(endStr, startP);
+                    if (startP != -1 && endP != -1)
+                    {
+                        string ans = data.Substring(startP + startStr.Length, endP - (startP + endStr.Length));
+                        int existCnt = 0;//正确答案存在个数
+                        int index = 0;//正确答案下标
+                        for (int i = 0; i < answerArr.Length; i++)
+                        {
+                            if (ans.Contains(answerArr[i]))
+                            {
+                                existCnt++;
+                                index = i;
+                            }
+                        }
+
+                        if (existCnt == 1) //存在个数，只有一个才能确保是正确选项
+                        {
+                            return index;
+                        }
+                    }
+                }
+            }
+            #endregion
+
+
+            #region 百度知识图谱
+
+            p = data.IndexOf("<script type=\"text / javascript\" data-compress=\"off\">");
+            if (p != -1)
+            {
+                p = data.IndexOf("setup({", p);
+                if (p != -1) 
+                {
+                    if (CountItemsBeforeP(data, p) < 2)//确保词条在前两项
+                    {
+                        const string startStr = "fbtext: '";
+                        const string endStr = "',";
+
+                        int startP = data.IndexOf(startStr, p);
+                        int endP = data.IndexOf(endStr, startP);
+                        if (startP != -1 && endP != -1)
+                        {
+                            string ans = data.Substring(startP + startStr.Length, endP - (startP + endStr.Length));
+                            int existCnt = 0;//正确答案存在个数
+                            int index = 0;//正确答案下标
+                            for (int i = 0; i < answerArr.Length; i++)
+                            {
+                                if (ans.Contains(answerArr[i]))
+                                {
+                                    existCnt++;
+                                    index = i;
+                                }
+                            }
+
+                            if (existCnt == 1) //存在个数，只有一个才能确保是正确选项
+                            {
+                                return index;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #endregion
+
+            #region 百度百科
+            p = data.IndexOf("mu=\"https://baike.baidu.com/item/");
+            if (p != -1)
+            {
+                if (CountItemsBeforeP(data, p) < 3)//确保词条在前三项
+                {
+                    const string startStr = "百度百科</a>";
+                    const string endStr = "baike.baidu.com";
+
+                    int startP = data.IndexOf(startStr, p);
+                    int endP = data.IndexOf(endStr, startP);
+                    if (startP != -1 && endP != -1)
+                    {
+                        string ans = data.Substring(startP + startStr.Length, endP - (startP + endStr.Length));
+                        int existCnt = 0;//正确答案存在个数
+                        int index = 0;//正确答案下标
+                        for (int i = 0; i < answerArr.Length; i++)
+                        {
+                            if (ans.Contains(answerArr[i]))
+                            {
+                                existCnt++;
+                                index = i;
+                            }
+                        }
+
+                        if (existCnt == 1) //存在个数，只有一个才能确保是正确选项
+                        {
+                            return index;
+                        }
+                    }
+                }
+            }
+            #endregion
+
             return -1;
         }
 
