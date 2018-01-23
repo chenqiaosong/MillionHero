@@ -2,7 +2,7 @@
 通吃各答题平台<br>
 可能是最人性化的答题辅助软件<br>
 
-![image](https://github.com/Azure99/MillionHero/blob/master/pictures/run.gif)
+![image](https://raw.githubusercontent.com/Azure99/MillionHero/master/pictures/run.gif)
 
 # 交流群419958463
 
