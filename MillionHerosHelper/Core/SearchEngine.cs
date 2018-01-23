@@ -19,9 +19,7 @@ namespace MillionHerosHelper
             const string strStart = "百度为您找到相关结果约";
             const string strEnd = "个";
             int[] next = Algorithm.InitKMPNext(strStart);
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            string data = GetSearchStringCompatible("http://www.baidu.com/s?wd=" + System.Web.HttpUtility.UrlEncode(keyword));
+            string data = GetSearchStringCompatible("http://www.baidu.com/s?wd=" + UrlEncode(keyword));
             //Debug.WriteLine(data);
 
             int p = data.IndexOf(strStart);
@@ -37,10 +35,6 @@ namespace MillionHerosHelper
 
             Int32.TryParse(countStr, out int count);
 
-            sw.Stop();
-            Debug.WriteLine("耗时:" + sw.ElapsedMilliseconds);
-            sw = null;
-
             return count;
         }
 
@@ -48,8 +42,9 @@ namespace MillionHerosHelper
         {
             const string strStart = "百度为您找到相关结果约";
             const string strEnd = "个";
-            string data = GetSearchStringCompatible("http://www.baidu.com/s?wd=" + System.Web.HttpUtility.UrlEncode(keyword));
+            string data = GetSearchStringCompatible("http://www.baidu.com/s?wd=" +UrlEncode(keyword));
             sourceData = data;
+
             int p = data.IndexOf(strStart);
             if (p == -1)
                 return 1000000;
@@ -102,6 +97,17 @@ namespace MillionHerosHelper
             loResponseStream.Close();
             webresponse.Close();
             return response;
+        }
+
+        public static string UrlEncode(string str)
+        {
+            StringBuilder sb = new StringBuilder();
+            byte[] byStr = System.Text.Encoding.Default.GetBytes(str);
+            for (int i = 0; i < byStr.Length; i++)
+            {
+                sb.Append(@"%" + Convert.ToString(byStr[i], 16));
+            }
+            return (sb.ToString());
         }
     }
 }

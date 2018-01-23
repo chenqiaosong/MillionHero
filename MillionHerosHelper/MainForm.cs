@@ -260,7 +260,7 @@ namespace MillionHerosHelper
             }
             else
             {
-                browserForm.Jump("http://www.baidu.com/s?wd=" + textBox_Problem.Text);
+                browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text));
             }
             
             browserForm.Show();
