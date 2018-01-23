@@ -21,7 +21,7 @@ namespace MillionHerosHelper
             int[] next = Algorithm.InitKMPNext(strStart);
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            string data = GetSearchString("http://www.baidu.com/s?wd=" + System.Web.HttpUtility.UrlEncode(keyword));
+            string data = GetSearchStringCompatible("http://www.baidu.com/s?wd=" + System.Web.HttpUtility.UrlEncode(keyword));
             //Debug.WriteLine(data);
 
             int p = data.IndexOf(strStart);
@@ -48,7 +48,7 @@ namespace MillionHerosHelper
         {
             const string strStart = "百度为您找到相关结果约";
             const string strEnd = "个";
-            string data = GetSearchString("http://www.baidu.com/s?wd=" + System.Web.HttpUtility.UrlEncode(keyword));
+            string data = GetSearchStringCompatible("http://www.baidu.com/s?wd=" + System.Web.HttpUtility.UrlEncode(keyword));
             sourceData = data;
             int p = data.IndexOf(strStart);
             if (p == -1)
@@ -77,6 +77,31 @@ namespace MillionHerosHelper
                 wc.Dispose();
                 return str;
             }
+        }
+
+        private static string GetSearchStringCompatible(string url)
+        {
+            var uri = new Uri(url);
+            HttpWebRequest webrequest = (HttpWebRequest)WebRequest.Create(uri);
+            webrequest.Proxy = null;
+
+            webrequest.Accept = "text/html";
+            webrequest.Headers.Add("Accept-Language", "zh-CN,zh;q=0.9");
+            webrequest.Headers.Add("Cache-Control", "max-age=0");
+            webrequest.KeepAlive = true;
+            webrequest.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36";
+
+            HttpWebResponse webresponse = (HttpWebResponse)webrequest.GetResponse();
+
+            Stream receiveStream = webresponse.GetResponseStream();
+            Encoding enc = System.Text.Encoding.UTF8;
+            StreamReader loResponseStream = new StreamReader(receiveStream, enc);
+
+            string response = loResponseStream.ReadToEnd();
+
+            loResponseStream.Close();
+            webresponse.Close();
+            return response;
         }
     }
 }

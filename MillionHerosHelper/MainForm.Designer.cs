@@ -50,6 +50,7 @@
             this.label_Version = new System.Windows.Forms.Label();
             this.checkBox_InPutProblem = new System.Windows.Forms.CheckBox();
             this.linkLabel_DLNewVer = new System.Windows.Forms.LinkLabel();
+            this.label_Info = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label_RankA
@@ -262,11 +263,22 @@
             this.linkLabel_DLNewVer.Text = "下载最新版本";
             this.linkLabel_DLNewVer.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_DLNewVer_LinkClicked);
             // 
+            // label_Info
+            // 
+            this.label_Info.AutoSize = true;
+            this.label_Info.ForeColor = System.Drawing.Color.Red;
+            this.label_Info.Location = new System.Drawing.Point(217, 91);
+            this.label_Info.Name = "label_Info";
+            this.label_Info.Size = new System.Drawing.Size(127, 15);
+            this.label_Info.TabIndex = 32;
+            this.label_Info.Text = "答案推荐仅供参考";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(512, 563);
+            this.Controls.Add(this.label_Info);
             this.Controls.Add(this.linkLabel_DLNewVer);
             this.Controls.Add(this.checkBox_InPutProblem);
             this.Controls.Add(this.label_Version);
@@ -325,6 +337,7 @@
         private System.Windows.Forms.Label label_Version;
         private System.Windows.Forms.CheckBox checkBox_InPutProblem;
         private System.Windows.Forms.LinkLabel linkLabel_DLNewVer;
+        private System.Windows.Forms.Label label_Info;
     }
 }
 
