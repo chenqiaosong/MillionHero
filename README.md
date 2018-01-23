@@ -2,6 +2,8 @@
 通吃各答题平台<br>
 可能是最人性化的答题辅助软件<br>
 
+![image](https://github.com/Azure99/MillionHero/blob/master/pictures/run.gif)
+
 # 交流群419958463
 
 #  <font color=#FF0000 size=72>关于API错误</font>
