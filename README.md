@@ -1,7 +1,7 @@
 # MillionHerosHelper-超级答题助手
 通吃各答题平台<br>
 可能是最人性化的答题辅助软件<br>
-
+一秒自动搜索，三秒极速推荐答案(仅供参考)<br>
 ![image](https://raw.githubusercontent.com/Azure99/MillionHero/master/pictures/run.gif)
 
 # 交流群419958463
