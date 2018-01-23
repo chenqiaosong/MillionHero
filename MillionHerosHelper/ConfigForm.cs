@@ -25,6 +25,7 @@ namespace MillionHerosHelper
             textBox_Height.Text = Config.CutHeight.ToString();
             textBox_Width.Text = Config.CutWidth.ToString();
             checkBox_PCScreen.Checked = Config.UseEmulator;
+            checkBox_RemoveUselessInfo.Checked = Config.RemoveUselessInfo;
 
             textBox_API_KEY.Text = Config.OCR_API_KEY;
             textBox_SECRET_KEY.Text = Config.OCR_SECRET_KEY;
@@ -135,6 +136,7 @@ namespace MillionHerosHelper
             Config.CutHeight = height;
             Config.CutWidth = width;
             Config.UseEmulator = checkBox_PCScreen.Checked;
+            Config.RemoveUselessInfo = checkBox_RemoveUselessInfo.Checked;
             Config.OCR_API_KEY = textBox_API_KEY.Text;
             Config.OCR_SECRET_KEY = textBox_SECRET_KEY.Text;
             BaiDuOCR.InitBaiDuOCR(textBox_API_KEY.Text, textBox_SECRET_KEY.Text);

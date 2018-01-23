@@ -252,9 +252,17 @@ namespace MillionHerosHelper
                 textBox_Problem.Text = problem;
             }
 
-
             //浏览器跳转到搜索页面
-            browserForm.Jump("http://www.baidu.com/s?wd=" + textBox_Problem.Text);
+
+            if(Config.RemoveUselessInfo)//移除无用信息
+            {
+                browserForm.Jump("http://www.baidu.com/s?wd=" + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text));
+            }
+            else
+            {
+                browserForm.Jump("http://www.baidu.com/s?wd=" + textBox_Problem.Text);
+            }
+            
             browserForm.Show();
             browserForm.WindowState = FormWindowState.Normal;
 
@@ -310,6 +318,11 @@ namespace MillionHerosHelper
             textBox_AnswerA.ReadOnly = !checkBox_InPutProblem.Checked;
             textBox_AnswerB.ReadOnly = !checkBox_InPutProblem.Checked;
             textBox_AnswerC.ReadOnly = !checkBox_InPutProblem.Checked;
+        }
+
+        private void linkLabel_DLNewVer_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/Azure99/MillionHero/releases");
         }
     }
 }

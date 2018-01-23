@@ -20,7 +20,7 @@ namespace MillionHerosHelper
             bool oppose = Regex.IsMatch(problem, "不是|不属于|不包括|不可以|不包含|不需要|错误|没有");//是否存在否定关键词
 
             //移除部分干扰搜索的关键字
-            problem = RemoveUselessInfo(problem);
+            problem = RemoveUselessInfoAndPrivative(problem);
 
             #region 多线程获取信息
             Thread[] workThread = new Thread[1 + answerArr.Length * 2];//工作线程
@@ -137,7 +137,7 @@ namespace MillionHerosHelper
         /// <summary>
         /// 算法修正,移除无用信息
         /// </summary>
-        public static string RemoveUselessInfo(string str)
+        public static string RemoveUselessInfoAndPrivative(string str)
         {
 
             if (str.Length >= 38)
@@ -152,6 +152,29 @@ namespace MillionHerosHelper
             string[] dic = new string[] { "“", "”", "\"", "以下", "下列", "哪个", "哪项", "选项", "不是", "不属于", "不包括", "不可以", "不包含", "不需要", "错误", "没有" };
             string res = str;
             foreach(string key in dic)
+            {
+                res = res.Replace(key, "");
+            }
+            res = res.Replace("？", "?");
+            Debug.WriteLine(res);
+            return res;
+        }
+
+        public static string RemoveUselessInfo(string str)
+        {
+
+            if (str.Length >= 38)
+            {
+                if (str.Contains("请问"))
+                {
+                    int p = str.IndexOf("请问");
+                    str = str.Substring(p, str.Length - p);
+                }
+            }
+
+            string[] dic = new string[] { "“", "”", "\"", "以下", "下列", "哪个", "哪项", "选项" };
+            string res = str;
+            foreach (string key in dic)
             {
                 res = res.Replace(key, "");
             }

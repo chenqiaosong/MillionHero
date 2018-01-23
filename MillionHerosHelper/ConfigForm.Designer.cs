@@ -57,6 +57,7 @@
             this.label_ScreenShotArgs = new System.Windows.Forms.Label();
             this.label_Tip = new System.Windows.Forms.Label();
             this.label_Tip2 = new System.Windows.Forms.Label();
+            this.checkBox_RemoveUselessInfo = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ScreenShot)).BeginInit();
             this.SuspendLayout();
             // 
@@ -199,7 +200,7 @@
             // 
             // button_SaveConfig
             // 
-            this.button_SaveConfig.Location = new System.Drawing.Point(160, 656);
+            this.button_SaveConfig.Location = new System.Drawing.Point(320, 657);
             this.button_SaveConfig.Name = "button_SaveConfig";
             this.button_SaveConfig.Size = new System.Drawing.Size(120, 35);
             this.button_SaveConfig.TabIndex = 15;
@@ -325,11 +326,22 @@
             this.label_Tip2.TabIndex = 28;
             this.label_Tip2.Text = "设备打开答题界面,然后选取题目部分,选完点测试截图查看是否正常";
             // 
+            // checkBox_RemoveUselessInfo
+            // 
+            this.checkBox_RemoveUselessInfo.AutoSize = true;
+            this.checkBox_RemoveUselessInfo.Location = new System.Drawing.Point(27, 666);
+            this.checkBox_RemoveUselessInfo.Name = "checkBox_RemoveUselessInfo";
+            this.checkBox_RemoveUselessInfo.Size = new System.Drawing.Size(164, 19);
+            this.checkBox_RemoveUselessInfo.TabIndex = 29;
+            this.checkBox_RemoveUselessInfo.Text = "搜索时移除无用词汇";
+            this.checkBox_RemoveUselessInfo.UseVisualStyleBackColor = true;
+            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(472, 703);
+            this.Controls.Add(this.checkBox_RemoveUselessInfo);
             this.Controls.Add(this.label_Tip2);
             this.Controls.Add(this.label_Tip);
             this.Controls.Add(this.label_ScreenShotArgs);
@@ -401,5 +413,6 @@
         private System.Windows.Forms.Label label_ScreenShotArgs;
         private System.Windows.Forms.Label label_Tip;
         private System.Windows.Forms.Label label_Tip2;
+        private System.Windows.Forms.CheckBox checkBox_RemoveUselessInfo;
     }
 }

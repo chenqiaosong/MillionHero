@@ -49,6 +49,7 @@
             this.linkLabel_SourceCode = new System.Windows.Forms.LinkLabel();
             this.label_Version = new System.Windows.Forms.Label();
             this.checkBox_InPutProblem = new System.Windows.Forms.CheckBox();
+            this.linkLabel_DLNewVer = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // label_RankA
@@ -237,7 +238,7 @@
             this.label_Version.Name = "label_Version";
             this.label_Version.Size = new System.Drawing.Size(47, 15);
             this.label_Version.TabIndex = 29;
-            this.label_Version.Text = "v0.04";
+            this.label_Version.Text = "v0.05";
             // 
             // checkBox_InPutProblem
             // 
@@ -250,11 +251,23 @@
             this.checkBox_InPutProblem.UseVisualStyleBackColor = true;
             this.checkBox_InPutProblem.CheckedChanged += new System.EventHandler(this.checkBox_InPutProblem_CheckedChanged);
             // 
+            // linkLabel_DLNewVer
+            // 
+            this.linkLabel_DLNewVer.AutoSize = true;
+            this.linkLabel_DLNewVer.Location = new System.Drawing.Point(386, 78);
+            this.linkLabel_DLNewVer.Name = "linkLabel_DLNewVer";
+            this.linkLabel_DLNewVer.Size = new System.Drawing.Size(97, 15);
+            this.linkLabel_DLNewVer.TabIndex = 31;
+            this.linkLabel_DLNewVer.TabStop = true;
+            this.linkLabel_DLNewVer.Text = "下载最新版本";
+            this.linkLabel_DLNewVer.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_DLNewVer_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(512, 563);
+            this.Controls.Add(this.linkLabel_DLNewVer);
             this.Controls.Add(this.checkBox_InPutProblem);
             this.Controls.Add(this.label_Version);
             this.Controls.Add(this.linkLabel_SourceCode);
@@ -311,6 +324,7 @@
         private System.Windows.Forms.LinkLabel linkLabel_SourceCode;
         private System.Windows.Forms.Label label_Version;
         private System.Windows.Forms.CheckBox checkBox_InPutProblem;
+        private System.Windows.Forms.LinkLabel linkLabel_DLNewVer;
     }
 }
 
