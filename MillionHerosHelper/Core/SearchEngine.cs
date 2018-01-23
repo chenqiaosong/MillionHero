@@ -29,11 +29,16 @@ namespace MillionHerosHelper
             int p2 = data.IndexOf(strEnd, p);
             if (p2 == -1)
                 return 0;
-
+            
             string countStr = data.Substring(p + strStart.Length, p2 - p - strStart.Length);
             countStr = countStr.Replace(",", "");
-
+            
             Int32.TryParse(countStr, out int count);
+
+            if (count == 0)
+            {
+                count = 1;
+            }
 
             return count;
         }
@@ -56,6 +61,11 @@ namespace MillionHerosHelper
             countStr = countStr.Replace(",", "");
 
             Int32.TryParse(countStr, out int count);
+
+            if (count == 0)
+            {
+                count = 1;
+            }
 
             return count;
         }
@@ -99,15 +109,23 @@ namespace MillionHerosHelper
             return response;
         }
 
+        /// <summary>
+        /// 临时用的编码，仅编码字符
+        /// </summary>
+        /// <param name="str">待编码url</param>
+        /// <returns>结果</returns>
         public static string UrlEncode(string str)
         {
-            StringBuilder sb = new StringBuilder();
-            byte[] byStr = System.Text.Encoding.Default.GetBytes(str);
-            for (int i = 0; i < byStr.Length; i++)
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("+", "%2B");
+            dic.Add("#", "%23");
+            dic.Add("&", "%26");
+            foreach(string key in dic.Keys)
             {
-                sb.Append(@"%" + Convert.ToString(byStr[i], 16));
+                str = str.Replace(key, dic[key]);
             }
-            return (sb.ToString());
+
+            return str;
         }
     }
 }
