@@ -51,6 +51,9 @@
             this.checkBox_InPutProblem = new System.Windows.Forms.CheckBox();
             this.linkLabel_DLNewVer = new System.Windows.Forms.LinkLabel();
             this.label_Info = new System.Windows.Forms.Label();
+            this.button_SearchA = new System.Windows.Forms.Button();
+            this.button__SearchB = new System.Windows.Forms.Button();
+            this.button__SearchC = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label_RankA
@@ -239,7 +242,7 @@
             this.label_Version.Name = "label_Version";
             this.label_Version.Size = new System.Drawing.Size(47, 15);
             this.label_Version.TabIndex = 29;
-            this.label_Version.Text = "v0.05";
+            this.label_Version.Text = "v0.06";
             // 
             // checkBox_InPutProblem
             // 
@@ -273,11 +276,44 @@
             this.label_Info.TabIndex = 32;
             this.label_Info.Text = "答案推荐仅供参考";
             // 
+            // button_SearchA
+            // 
+            this.button_SearchA.Location = new System.Drawing.Point(100, 228);
+            this.button_SearchA.Name = "button_SearchA";
+            this.button_SearchA.Size = new System.Drawing.Size(75, 23);
+            this.button_SearchA.TabIndex = 33;
+            this.button_SearchA.Text = "搜索";
+            this.button_SearchA.UseVisualStyleBackColor = true;
+            this.button_SearchA.Click += new System.EventHandler(this.button_SearchA_Click);
+            // 
+            // button__SearchB
+            // 
+            this.button__SearchB.Location = new System.Drawing.Point(100, 319);
+            this.button__SearchB.Name = "button__SearchB";
+            this.button__SearchB.Size = new System.Drawing.Size(75, 23);
+            this.button__SearchB.TabIndex = 34;
+            this.button__SearchB.Text = "搜索";
+            this.button__SearchB.UseVisualStyleBackColor = true;
+            this.button__SearchB.Click += new System.EventHandler(this.button__SearchB_Click);
+            // 
+            // button__SearchC
+            // 
+            this.button__SearchC.Location = new System.Drawing.Point(100, 420);
+            this.button__SearchC.Name = "button__SearchC";
+            this.button__SearchC.Size = new System.Drawing.Size(75, 23);
+            this.button__SearchC.TabIndex = 35;
+            this.button__SearchC.Text = "搜索";
+            this.button__SearchC.UseVisualStyleBackColor = true;
+            this.button__SearchC.Click += new System.EventHandler(this.button__SearchC_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(512, 563);
+            this.Controls.Add(this.button__SearchC);
+            this.Controls.Add(this.button__SearchB);
+            this.Controls.Add(this.button_SearchA);
             this.Controls.Add(this.label_Info);
             this.Controls.Add(this.linkLabel_DLNewVer);
             this.Controls.Add(this.checkBox_InPutProblem);
@@ -338,6 +374,9 @@
         private System.Windows.Forms.CheckBox checkBox_InPutProblem;
         private System.Windows.Forms.LinkLabel linkLabel_DLNewVer;
         private System.Windows.Forms.Label label_Info;
+        private System.Windows.Forms.Button button_SearchA;
+        private System.Windows.Forms.Button button__SearchB;
+        private System.Windows.Forms.Button button__SearchC;
     }
 }
 

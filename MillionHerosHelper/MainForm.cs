@@ -281,13 +281,21 @@ namespace MillionHerosHelper
             label_AnalyzeA.ForeColor = Color.DarkGreen;
             label_AnalyzeB.ForeColor = Color.DarkGreen;
             label_AnalyzeC.ForeColor = Color.DarkGreen;
+            textBox_AnswerA.ForeColor = Color.Black;
+            textBox_AnswerB.ForeColor = Color.Black;
+            textBox_AnswerC.ForeColor = Color.Black;
 
-
-            switch(aRes.Index)
+            switch (aRes.Index)
             {
-                case 0: label_AnalyzeA.ForeColor = Color.Red;break;
-                case 1: label_AnalyzeB.ForeColor = Color.Red; break;
-                case 2: label_AnalyzeC.ForeColor = Color.Red; break;
+                case 0: label_AnalyzeA.ForeColor = Color.Red;
+                        textBox_AnswerA.ForeColor = Color.Red;
+                        break;
+                case 1: label_AnalyzeB.ForeColor = Color.Red; 
+                        textBox_AnswerB.ForeColor = Color.Red;
+                        break;
+                case 2: label_AnalyzeC.ForeColor = Color.Red; 
+                        textBox_AnswerC.ForeColor = Color.Red;
+                        break;
             }
 
             //显示概率
@@ -323,6 +331,42 @@ namespace MillionHerosHelper
         private void linkLabel_DLNewVer_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://github.com/Azure99/MillionHero/releases");
+        }
+
+        private void button_SearchA_Click(object sender, EventArgs e)
+        {
+            if (Config.RemoveUselessInfo)//移除无用信息
+            {
+                browserForm.Jump("http://www.baidu.com/s?wd=" + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerA.Text));
+            }
+            else
+            {
+                browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerA.Text));
+            }
+        }
+
+        private void button__SearchB_Click(object sender, EventArgs e)
+        {
+            if (Config.RemoveUselessInfo)//移除无用信息
+            {
+                browserForm.Jump("http://www.baidu.com/s?wd=" + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerB.Text));
+            }
+            else
+            {
+                browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerB.Text));
+            }
+        }
+
+        private void button__SearchC_Click(object sender, EventArgs e)
+        {
+            if (Config.RemoveUselessInfo)//移除无用信息
+            {
+                browserForm.Jump("http://www.baidu.com/s?wd=" + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerC.Text));
+            }
+            else
+            {
+                browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerC.Text));
+            }
         }
     }
 }
