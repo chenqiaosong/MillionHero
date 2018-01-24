@@ -43,6 +43,7 @@ namespace MillionHerosHelper
             browserForm.Show();
             MainForm_Move(null, null);
 
+            //注册热键
             HotKey.RegisterHotKey(Handle, 100, HotKey.KeyModifiers.None, Keys.F7);
         }
 
@@ -60,6 +61,96 @@ namespace MillionHerosHelper
                 configForm.Focus();
             }
         }
+
+        private void MainForm_Move(object sender, EventArgs e)
+        {
+            if (browserForm != null && !browserForm.IsDisposed) 
+            {
+                browserForm.Location = new Point(this.Location.X + this.Width + 10, browserForm.Location.Y);
+            }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Config.SaveConfig();
+            HotKey.UnregisterHotKey(Handle, 100);
+        }
+
+        private void linkLabel_Author_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/Azure99");
+        }
+
+        private void linkLabel_SourceCode_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/Azure99/MillionHerosHelper");
+        }
+        private void checkBox_InPutProblem_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox_Problem.ReadOnly = !checkBox_InPutProblem.Checked;
+            textBox_AnswerA.ReadOnly = !checkBox_InPutProblem.Checked;
+            textBox_AnswerB.ReadOnly = !checkBox_InPutProblem.Checked;
+            textBox_AnswerC.ReadOnly = !checkBox_InPutProblem.Checked;
+        }
+
+        private void linkLabel_DLNewVer_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/Azure99/MillionHero/releases");
+        }
+
+        private void button_SearchA_Click(object sender, EventArgs e)
+        {
+            if (Config.RemoveUselessInfo)//移除无用信息
+            {
+                browserForm.Jump("http://www.baidu.com/s?wd=" + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerA.Text));
+            }
+            else
+            {
+                browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerA.Text));
+            }
+        }
+
+        private void button__SearchB_Click(object sender, EventArgs e)
+        {
+            if (Config.RemoveUselessInfo)//移除无用信息
+            {
+                browserForm.Jump("http://www.baidu.com/s?wd=" + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerB.Text));
+            }
+            else
+            {
+                browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerB.Text));
+            }
+        }
+
+        private void button__SearchC_Click(object sender, EventArgs e)
+        {
+            if (Config.RemoveUselessInfo)//移除无用信息
+            {
+                browserForm.Jump("http://www.baidu.com/s?wd=" + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerC.Text));
+            }
+            else
+            {
+                browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerC.Text));
+            }
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_HOTKEY = 0x0312;
+            if (m.Msg == WM_HOTKEY)
+            {
+                if (m.WParam.ToInt32() == 100) 
+                {
+                    if(button_Start.Enabled)
+                    {
+                        button_Start_Click(null, null);
+                    }
+                }
+            }
+
+            base.WndProc(ref m);
+        }
+
 
         private void button_Start_Click(object sender, EventArgs e)
         {
@@ -93,43 +184,44 @@ namespace MillionHerosHelper
             monitor.Start();
         }
 
+        #region 答题部分
         private void BeginSolveProblem()
         {
             try
             {
                 SolveProblem();
             }
-            catch(ADBException ex)
+            catch (ADBException ex)
             {
                 label_Message.Text = "手机连接出错";
                 label_Message.ForeColor = Color.Red;
                 MessageBox.Show("请确保已连接手机并配置正确" + "\r\n\r\n详情:\r\n" + ex.ToString(), "ADB手机连接错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch(OCRException ex)
+            catch (OCRException ex)
             {
                 label_Message.Text = "题目识别出错";
                 label_Message.ForeColor = Color.Red;
                 MessageBox.Show("请确保手机在题目界面" + "\r\n\r\n详情:\r\n" + ex.ToString(), "文本识别错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch(APIException ex)
+            catch (APIException ex)
             {
                 label_Message.Text = "网络连接出错";
                 label_Message.ForeColor = Color.Red;
                 MessageBox.Show("请确保网络连接正常以及API可用" + "\r\n\r\n详情:\r\n" + ex.ToString(), "API错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch(IndexOutOfRangeException ex)
+            catch (IndexOutOfRangeException ex)
             {
                 label_Message.Text = "题目识别出错";
                 label_Message.ForeColor = Color.Red;
                 MessageBox.Show("请确保手机在题目界面" + "\r\n\r\n详情:\r\n" + ex.ToString(), "解析错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch(WebException ex)
+            catch (WebException ex)
             {
                 label_Message.Text = "网络连接出错";
                 label_Message.ForeColor = Color.Red;
                 MessageBox.Show("请确保网络环境良好" + "\r\n\r\n详情:\r\n" + ex.ToString(), "网络错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 label_Message.Text = "未知错误";
                 label_Message.ForeColor = Color.Red;
@@ -140,56 +232,12 @@ namespace MillionHerosHelper
                 FinishSolveProblem();
             }
         }
-
-
         private void FinishSolveProblem()
         {
             button_Config.Enabled = true;
             button_Start.Enabled = true;
             solveProblemThread = null;
         }
-
-        private void MainForm_Move(object sender, EventArgs e)
-        {
-            if (browserForm != null && !browserForm.IsDisposed) 
-            {
-                browserForm.Location = new Point(this.Location.X + this.Width + 10, browserForm.Location.Y);
-            }
-        }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Config.SaveConfig();
-            HotKey.UnregisterHotKey(Handle, 100);
-        }
-
-        private void linkLabel_Author_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("https://github.com/Azure99");
-        }
-
-        private void linkLabel_SourceCode_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("https://github.com/Azure99/MillionHerosHelper");
-        }
-
-        protected override void WndProc(ref Message m)
-        {
-            const int WM_HOTKEY = 0x0312;
-            if (m.Msg == WM_HOTKEY)
-            {
-                if (m.WParam.ToInt32() == 100) 
-                {
-                    if(button_Start.Enabled)
-                    {
-                        button_Start_Click(null, null);
-                    }
-                }
-            }
-
-            base.WndProc(ref m);
-        }
-
         private void SolveProblem()//答题
         {
             if(!checkBox_InPutProblem.Checked)
@@ -304,9 +352,13 @@ namespace MillionHerosHelper
             label_AnalyzeC.Text = "概率:" + aRes.Probability[2].ToString() + "%";
         }
 
+        /// <summary>
+        /// 检查OCR结果是否合法
+        /// </summary>
+        /// <param name="arr"></param>
         private void CheckOCRResult(string[] arr)
         {
-            if (arr.Length > 9)
+            if (arr.Length > 10)
             {
                 throw new OCRException("识别到的文本过多");
             }
@@ -319,54 +371,6 @@ namespace MillionHerosHelper
                 throw new OCRException("没有识别到文本");
             }
         }
-
-        private void checkBox_InPutProblem_CheckedChanged(object sender, EventArgs e)
-        {
-            textBox_Problem.ReadOnly = !checkBox_InPutProblem.Checked;
-            textBox_AnswerA.ReadOnly = !checkBox_InPutProblem.Checked;
-            textBox_AnswerB.ReadOnly = !checkBox_InPutProblem.Checked;
-            textBox_AnswerC.ReadOnly = !checkBox_InPutProblem.Checked;
-        }
-
-        private void linkLabel_DLNewVer_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("https://github.com/Azure99/MillionHero/releases");
-        }
-
-        private void button_SearchA_Click(object sender, EventArgs e)
-        {
-            if (Config.RemoveUselessInfo)//移除无用信息
-            {
-                browserForm.Jump("http://www.baidu.com/s?wd=" + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerA.Text));
-            }
-            else
-            {
-                browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerA.Text));
-            }
-        }
-
-        private void button__SearchB_Click(object sender, EventArgs e)
-        {
-            if (Config.RemoveUselessInfo)//移除无用信息
-            {
-                browserForm.Jump("http://www.baidu.com/s?wd=" + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerB.Text));
-            }
-            else
-            {
-                browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerB.Text));
-            }
-        }
-
-        private void button__SearchC_Click(object sender, EventArgs e)
-        {
-            if (Config.RemoveUselessInfo)//移除无用信息
-            {
-                browserForm.Jump("http://www.baidu.com/s?wd=" + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerC.Text));
-            }
-            else
-            {
-                browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerC.Text));
-            }
-        }
+        #endregion
     }
 }
