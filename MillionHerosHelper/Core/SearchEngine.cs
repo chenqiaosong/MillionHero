@@ -49,7 +49,7 @@ namespace MillionHerosHelper
             const string strEnd = "个";
             string data = GetSearchStringCompatible("http://www.baidu.com/s?wd=" +UrlEncode(keyword));
             sourceData = data;
-
+            File.WriteAllText("D:\\百度知道", data);
             int p = data.IndexOf(strStart);
             if (p == -1)
                 return 1000000;

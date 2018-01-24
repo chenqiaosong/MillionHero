@@ -84,10 +84,17 @@ namespace MillionHerosHelper
             }
 
             int trueAnswerIndex = SearchTureAnswer(problemData, answerArr);
+            Debug.WriteLine("权威答案:" + trueAnswerIndex);
+
             if (trueAnswerIndex != -1)
             {
-                Debug.WriteLine("测试:" + trueAnswerIndex + "|" + pmiAddCnt);
                 sumRank[trueAnswerIndex] = pmiAddCnt;
+            }
+
+            if (SearchInBaiduZhiDao(problemData, answerArr, out int baiDuZhiDaoAnswerIndex, out int zdRatio))
+            {
+                sumRank[baiDuZhiDaoAnswerIndex] += (double)pmiAddCnt * zdRatio / 100;
+                Debug.WriteLine("百度知道答案:" + baiDuZhiDaoAnswerIndex + " Ratio:" + zdRatio);
             }
 
             int maxIndex = 0;
@@ -375,6 +382,47 @@ namespace MillionHerosHelper
             #endregion
 
             return -1;
+        }
+
+        public static bool SearchInBaiduZhiDao(string data, string[] answerArr,out int index, out int ratio)
+        {
+            const string startStr = "百度知道</a></h3><";
+            const string endStr = "https://zhidao.baidu.com/que";
+            int startP = data.IndexOf(startStr);
+            for (int i = 0; i < 3 && startP != -1; i++)
+            {
+                int endP = data.IndexOf("https://zhidao.baidu.com/que", startP);
+                if (endP != -1)
+                {
+                    int beforeIt = CountItemsBeforeP(data, startP);
+                    if (beforeIt >= 3)
+                    {
+                        break;
+                    }
+
+                    string ans = data.Substring(startP + startStr.Length, endP - (startP + endStr.Length));
+                    int existCnt = 0;//正确答案存在个数
+                    int ind = 0;//正确答案下标
+                    for (int i2 = 0; i2 < answerArr.Length; i2++)
+                    {
+                        if (ans.Contains(answerArr[i2]))
+                        {
+                            existCnt++;
+                            ind = i2;
+                        }
+                    }
+
+                    if (existCnt == 1) //存在个数，只有一个才能确保是正确选项
+                    {
+                        index = ind;
+                        ratio = 70 - 15 * (beforeIt - 1);
+                        return true;
+                    }
+                }
+            }
+            index = -1;
+            ratio = 0;
+            return false;
         }
 
         /// <summary>

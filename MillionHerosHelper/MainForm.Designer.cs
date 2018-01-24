@@ -139,6 +139,7 @@
             // textBox_Problem
             // 
             this.textBox_Problem.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox_Problem.ImeMode = System.Windows.Forms.ImeMode.On;
             this.textBox_Problem.Location = new System.Drawing.Point(100, 132);
             this.textBox_Problem.Multiline = true;
             this.textBox_Problem.Name = "textBox_Problem";
@@ -149,6 +150,7 @@
             // textBox_AnswerA
             // 
             this.textBox_AnswerA.Font = new System.Drawing.Font("宋体", 13F);
+            this.textBox_AnswerA.ImeMode = System.Windows.Forms.ImeMode.On;
             this.textBox_AnswerA.Location = new System.Drawing.Point(34, 266);
             this.textBox_AnswerA.Name = "textBox_AnswerA";
             this.textBox_AnswerA.ReadOnly = true;
@@ -158,6 +160,7 @@
             // textBox_AnswerB
             // 
             this.textBox_AnswerB.Font = new System.Drawing.Font("宋体", 13F);
+            this.textBox_AnswerB.ImeMode = System.Windows.Forms.ImeMode.On;
             this.textBox_AnswerB.Location = new System.Drawing.Point(33, 365);
             this.textBox_AnswerB.Name = "textBox_AnswerB";
             this.textBox_AnswerB.ReadOnly = true;
@@ -167,6 +170,7 @@
             // textBox_AnswerC
             // 
             this.textBox_AnswerC.Font = new System.Drawing.Font("宋体", 13F);
+            this.textBox_AnswerC.ImeMode = System.Windows.Forms.ImeMode.On;
             this.textBox_AnswerC.Location = new System.Drawing.Point(33, 461);
             this.textBox_AnswerC.Name = "textBox_AnswerC";
             this.textBox_AnswerC.ReadOnly = true;
