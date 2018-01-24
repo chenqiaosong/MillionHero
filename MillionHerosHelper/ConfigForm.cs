@@ -184,5 +184,47 @@ namespace MillionHerosHelper
             textBox_Width.Text = width.ToString();
             this.Show();
         }
+
+        private void button_SaveCut_Click(object sender, EventArgs e)
+        {
+            string data = textBox_X.Text + "|" + textBox_Y.Text + "|" + textBox_Height.Text + "|" + textBox_Width.Text;
+            if(saveFileDialog_Main.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    File.WriteAllText(saveFileDialog_Main.FileName, data);
+                }
+                catch
+                {
+                    MessageBox.Show("保存失败", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void button_LoadCut_Click(object sender, EventArgs e)
+        {
+            if(openFileDialog_Main.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string data = File.ReadAllText(openFileDialog_Main.FileName, Encoding.Default);
+                    string[] args = data.Split('|');
+                    if (args.Length != 4)
+                    {
+                        MessageBox.Show("数据错误", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    textBox_X.Text = args[0];
+                    textBox_Y.Text = args[1];
+                    textBox_Height.Text = args[2];
+                    textBox_Width.Text = args[3];
+                }
+                catch
+                {
+                    MessageBox.Show("读取失败", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }
