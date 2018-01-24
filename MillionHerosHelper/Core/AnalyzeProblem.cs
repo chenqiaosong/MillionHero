@@ -22,7 +22,7 @@ namespace MillionHerosHelper
         public static AnalyzeResult Analyze(string problem, string[] answerArr)
         {
             //是否存在否定关键词
-            bool oppose = Regex.IsMatch(problem, "不是|不属于|不包括|不可以|不包含|不需要|错误|没有|不会");
+            bool oppose = Regex.IsMatch(problem, "不是|不属于|不包括|不可以|不包含|不需要|错误|没有|不会|不可能");
 
             //移除部分干扰搜索的关键字
             problem = RemoveUselessInfoAndPrivative(problem);
@@ -182,7 +182,8 @@ namespace MillionHerosHelper
             dic.Add("错误", "正确");
             dic.Add("没有", "有");
             dic.Add("不会", "会");
-            foreach(string key in dic.Keys)
+            dic.Add("不可能", "可能");
+            foreach (string key in dic.Keys)
             {
                 str = str.Replace(key, dic[key]);
             }
