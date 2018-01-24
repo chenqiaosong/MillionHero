@@ -18,6 +18,7 @@ namespace MillionHerosHelper
 
         private ConfigForm configForm;
         private BrowserForm browserForm;
+        private DaShangForm daShangForm;
         private Thread solveProblemThread;
         
         public MainForm()
@@ -59,6 +60,21 @@ namespace MillionHerosHelper
             {
                 configForm.WindowState = FormWindowState.Normal;
                 configForm.Focus();
+            }
+        }
+
+        private void button_Pay_Click(object sender, EventArgs e)
+        {
+            if (daShangForm == null || daShangForm.IsDisposed)
+            {
+                daShangForm = new DaShangForm();
+                daShangForm.Show();
+                daShangForm.Focus();
+            }
+            else
+            {
+                daShangForm.WindowState = FormWindowState.Normal;
+                daShangForm.Focus();
             }
         }
 
@@ -372,5 +388,7 @@ namespace MillionHerosHelper
             }
         }
         #endregion
+
+
     }
 }

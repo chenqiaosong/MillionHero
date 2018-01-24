@@ -54,6 +54,7 @@
             this.button_SearchA = new System.Windows.Forms.Button();
             this.button__SearchB = new System.Windows.Forms.Button();
             this.button__SearchC = new System.Windows.Forms.Button();
+            this.button_Pay = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label_RankA
@@ -220,7 +221,7 @@
             // linkLabel_Author
             // 
             this.linkLabel_Author.AutoSize = true;
-            this.linkLabel_Author.Location = new System.Drawing.Point(384, 12);
+            this.linkLabel_Author.Location = new System.Drawing.Point(386, 9);
             this.linkLabel_Author.Name = "linkLabel_Author";
             this.linkLabel_Author.Size = new System.Drawing.Size(87, 15);
             this.linkLabel_Author.TabIndex = 27;
@@ -231,7 +232,7 @@
             // linkLabel_SourceCode
             // 
             this.linkLabel_SourceCode.AutoSize = true;
-            this.linkLabel_SourceCode.Location = new System.Drawing.Point(413, 43);
+            this.linkLabel_SourceCode.Location = new System.Drawing.Point(413, 36);
             this.linkLabel_SourceCode.Name = "linkLabel_SourceCode";
             this.linkLabel_SourceCode.Size = new System.Drawing.Size(87, 15);
             this.linkLabel_SourceCode.TabIndex = 28;
@@ -242,7 +243,7 @@
             // label_Version
             // 
             this.label_Version.AutoSize = true;
-            this.label_Version.Location = new System.Drawing.Point(360, 43);
+            this.label_Version.Location = new System.Drawing.Point(360, 36);
             this.label_Version.Name = "label_Version";
             this.label_Version.Size = new System.Drawing.Size(47, 15);
             this.label_Version.TabIndex = 29;
@@ -262,7 +263,7 @@
             // linkLabel_DLNewVer
             // 
             this.linkLabel_DLNewVer.AutoSize = true;
-            this.linkLabel_DLNewVer.Location = new System.Drawing.Point(386, 78);
+            this.linkLabel_DLNewVer.Location = new System.Drawing.Point(386, 62);
             this.linkLabel_DLNewVer.Name = "linkLabel_DLNewVer";
             this.linkLabel_DLNewVer.Size = new System.Drawing.Size(97, 15);
             this.linkLabel_DLNewVer.TabIndex = 31;
@@ -310,11 +311,22 @@
             this.button__SearchC.UseVisualStyleBackColor = true;
             this.button__SearchC.Click += new System.EventHandler(this.button__SearchC_Click);
             // 
+            // button_Pay
+            // 
+            this.button_Pay.Location = new System.Drawing.Point(395, 85);
+            this.button_Pay.Name = "button_Pay";
+            this.button_Pay.Size = new System.Drawing.Size(80, 30);
+            this.button_Pay.TabIndex = 36;
+            this.button_Pay.Text = "打赏作者";
+            this.button_Pay.UseVisualStyleBackColor = true;
+            this.button_Pay.Click += new System.EventHandler(this.button_Pay_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(512, 563);
+            this.Controls.Add(this.button_Pay);
             this.Controls.Add(this.button__SearchC);
             this.Controls.Add(this.button__SearchB);
             this.Controls.Add(this.button_SearchA);
@@ -381,6 +393,7 @@
         private System.Windows.Forms.Button button_SearchA;
         private System.Windows.Forms.Button button__SearchB;
         private System.Windows.Forms.Button button__SearchC;
+        private System.Windows.Forms.Button button_Pay;
     }
 }
 

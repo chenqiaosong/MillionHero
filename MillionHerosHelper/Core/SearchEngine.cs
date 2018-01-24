@@ -6,6 +6,7 @@ using System.Net;
 using System.Diagnostics;
 using System.IO;
 using System.Web;
+using System.Runtime.InteropServices;
 
 namespace MillionHerosHelper
 {
@@ -18,7 +19,9 @@ namespace MillionHerosHelper
         {
             const string strStart = "百度为您找到相关结果约";
             const string strEnd = "个";
-            string data = GetSearchStringCompatible("http://www.baidu.com/s?wd=" + UrlEncode(keyword));
+
+            IntPtr intptr = HttpRequest("http://www.baidu.com/s?wd=" + UrlEncode(keyword));
+            string data = Marshal.PtrToStringAnsi(intptr);
 
             int p = data.IndexOf(strStart);
 
@@ -45,7 +48,8 @@ namespace MillionHerosHelper
         {
             const string strStart = "百度为您找到相关结果约";
             const string strEnd = "个";
-            string data = GetSearchStringCompatible("http://www.baidu.com/s?wd=" +UrlEncode(keyword));
+            IntPtr intptr = HttpRequest("http://www.baidu.com/s?wd=" + UrlEncode(keyword));
+            string data = Marshal.PtrToStringAnsi(intptr);
             sourceData = data;
 
             int p = data.IndexOf(strStart);
@@ -125,5 +129,8 @@ namespace MillionHerosHelper
 
             return str;
         }
+
+        [DllImport("./E_HttpRequest.dll")]
+        private static extern IntPtr HttpRequest(string url);
     }
 }
