@@ -86,15 +86,18 @@ namespace MillionHerosHelper
             int trueAnswerIndex = SearchTureAnswer(problemData, answerArr);
             Debug.WriteLine("权威答案:" + trueAnswerIndex);
 
-            if (trueAnswerIndex != -1)
+            if (trueAnswerIndex != -1)//匹配到权威答案
             {
                 sumRank[trueAnswerIndex] = pmiAddCnt;
             }
-
-            if (SearchInBaiduZhiDao(problemData, answerArr, out int baiDuZhiDaoAnswerIndex, out int zdRatio))
+            else//检索百度知道
             {
-                sumRank[baiDuZhiDaoAnswerIndex] += (double)pmiAddCnt * zdRatio / 100;
-                Debug.WriteLine("百度知道答案:" + baiDuZhiDaoAnswerIndex + " Ratio:" + zdRatio);
+                if (SearchInBaiduZhiDao(problemData, answerArr, out int baiDuZhiDaoAnswerIndex, out int zdRatio))
+                {
+                    sumRank[baiDuZhiDaoAnswerIndex] += (double)pmiAddCnt * zdRatio / 100;
+                    Debug.WriteLine(sumRank[baiDuZhiDaoAnswerIndex]);
+                    Debug.WriteLine("百度知道答案:" + baiDuZhiDaoAnswerIndex + " Ratio:" + zdRatio);
+                }
             }
 
             int maxIndex = 0;
@@ -257,6 +260,7 @@ namespace MillionHerosHelper
 
                                 if (existCnt == 1) //存在个数，只有一个才能确保是正确选项
                                 {
+                                    Debug.WriteLine("匹配到:百度计算器");
                                     return index;
                                 }
                             }
@@ -295,6 +299,7 @@ namespace MillionHerosHelper
 
                             if (existCnt == 1) //存在个数，只有一个才能确保是正确选项
                             {
+                                Debug.WriteLine("匹配到:百度汉语");
                                 return index;
                             }
                         }
@@ -337,6 +342,7 @@ namespace MillionHerosHelper
 
                                 if (existCnt == 1) //存在个数，只有一个才能确保是正确选项
                                 {
+                                    Debug.WriteLine("匹配到:百度知识图谱");
                                     return index;
                                 }
                             }
@@ -374,7 +380,45 @@ namespace MillionHerosHelper
 
                         if (existCnt == 1) //存在个数，只有一个才能确保是正确选项
                         {
+                            Debug.WriteLine("匹配到:百度百科");
                             return index;
+                        }
+                    }
+                }
+            }
+            #endregion
+
+            #region 百度知道最佳答案
+            p = data.IndexOf("<div class=\"op_best_answer_content\">");
+            if (p != -1)
+            {
+                if (CountItemsBeforeP(data, p) < 2)//确保词条在前两项
+                {
+                    const string startStr = "<div class=\"op_best_answer_content\">";
+                    const string endStr = "<div class=\"op_best_answer_source c-clearfix\">";
+                    int startP = p;
+                    if (startP != -1)
+                    {
+                        int endP = data.IndexOf(endStr, startP);
+                        if (endP != -1)
+                        {
+                            string ans = data.Substring(startP + startStr.Length, endP - (startP + endStr.Length));
+                            int existCnt = 0;//正确答案存在个数
+                            int index = 0;//正确答案下标
+                            for (int i = 0; i < answerArr.Length; i++)
+                            {
+                                if (ans.Contains(answerArr[i]))
+                                {
+                                    existCnt++;
+                                    index = i;
+                                }
+                            }
+
+                            if (existCnt == 1) //存在个数，只有一个才能确保是正确选项
+                            {
+                                Debug.WriteLine("匹配到:百度知道最佳答案");
+                                return index;
+                            }
                         }
                     }
                 }
@@ -414,6 +458,7 @@ namespace MillionHerosHelper
 
                     if (existCnt == 1) //存在个数，只有一个才能确保是正确选项
                     {
+                        Debug.WriteLine("匹配到:百度知道概率");
                         index = ind;
                         ratio = 70 - 15 * (beforeIt - 1);
                         return true;

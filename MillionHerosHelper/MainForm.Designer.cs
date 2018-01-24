@@ -246,7 +246,7 @@
             this.label_Version.Name = "label_Version";
             this.label_Version.Size = new System.Drawing.Size(47, 15);
             this.label_Version.TabIndex = 29;
-            this.label_Version.Text = "v0.07";
+            this.label_Version.Text = "v0.08";
             // 
             // checkBox_InPutProblem
             // 
@@ -276,9 +276,9 @@
             this.label_Info.ForeColor = System.Drawing.Color.Red;
             this.label_Info.Location = new System.Drawing.Point(217, 91);
             this.label_Info.Name = "label_Info";
-            this.label_Info.Size = new System.Drawing.Size(127, 15);
+            this.label_Info.Size = new System.Drawing.Size(157, 15);
             this.label_Info.TabIndex = 32;
-            this.label_Info.Text = "答案推荐仅供参考";
+            this.label_Info.Text = "答案推荐算法仅供参考";
             // 
             // button_SearchA
             // 
