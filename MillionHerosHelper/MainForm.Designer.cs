@@ -242,7 +242,7 @@
             this.label_Version.Name = "label_Version";
             this.label_Version.Size = new System.Drawing.Size(47, 15);
             this.label_Version.TabIndex = 29;
-            this.label_Version.Text = "v0.06";
+            this.label_Version.Text = "v0.07";
             // 
             // checkBox_InPutProblem
             // 

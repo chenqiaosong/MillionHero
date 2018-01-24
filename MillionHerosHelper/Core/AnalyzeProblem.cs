@@ -184,7 +184,7 @@ namespace MillionHerosHelper
                 }
             }
 
-            string[] dic = new string[] { "“", "”", "\"", "以下", "下列", "哪个", "哪项", "选项" };
+            string[] dic = new string[] { "“", "”", "\"", "以下", "下列", "哪项", "选项" };
             string res = str;
             foreach (string key in dic)
             {
