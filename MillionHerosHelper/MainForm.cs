@@ -320,7 +320,7 @@ namespace MillionHerosHelper
 
             if (Config.RemoveUselessInfo)//移除无用信息
             {
-                browserForm.Jump("http://www.baidu.com/s?wd=" + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text));
+                browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text)));
             }
             else
             {

@@ -245,9 +245,9 @@
             this.label_Version.AutoSize = true;
             this.label_Version.Location = new System.Drawing.Point(360, 36);
             this.label_Version.Name = "label_Version";
-            this.label_Version.Size = new System.Drawing.Size(47, 15);
+            this.label_Version.Size = new System.Drawing.Size(39, 15);
             this.label_Version.TabIndex = 29;
-            this.label_Version.Text = "v0.09";
+            this.label_Version.Text = "v1.1";
             // 
             // checkBox_InPutProblem
             // 
