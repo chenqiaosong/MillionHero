@@ -14,10 +14,15 @@ namespace MillionHerosHelper
         private static int problemCnt;
         private static int[] answerCnt;
         private static int[] problemAndAnswerCnt;
-
+        /// <summary>
+        /// 答案推荐算法
+        /// </summary>
+        /// <param name="problem">题目</param>
+        /// <param name="answerArr">选项</param>
         public static AnalyzeResult Analyze(string problem, string[] answerArr)
         {
-            bool oppose = Regex.IsMatch(problem, "不是|不属于|不包括|不可以|不包含|不需要|错误|没有|不会");//是否存在否定关键词
+            //是否存在否定关键词
+            bool oppose = Regex.IsMatch(problem, "不是|不属于|不包括|不可以|不包含|不需要|错误|没有|不会");
 
             //移除部分干扰搜索的关键字
             problem = RemoveUselessInfoAndPrivative(problem);
@@ -72,18 +77,19 @@ namespace MillionHerosHelper
             }
             #endregion
 
-            //计算权值
-            double[] pmiRank = CalculateRank.CalculatePMIRank(problemCnt, answerCnt, problemAndAnswerCnt);
-            double[] cntRank = CalculateRank.CalculateCountRank(problem, answerArr, pmiRank, problemData);
+            #region 计算权值
+
+            double[] pmiRank = CalculateRank.CalculatePMIRank(problemCnt, answerCnt, problemAndAnswerCnt);//PMI算法得到的权值
+            double[] cntRank = CalculateRank.CalculateCountRank(problem, answerArr, pmiRank, problemData);///计算算法得到的权值
             double[] sumRank = new double[answerArr.Length];
 
-            double pmiAddCnt = 0;
+            double pmiAddCnt = 0;//权值和
             for (int i = 0; i < answerArr.Length; i++)
             {
                 pmiAddCnt += pmiRank[i] + cntRank[i];
             }
 
-            int trueAnswerIndex = SearchTureAnswer(problemData, answerArr);
+            int trueAnswerIndex = SearchTureAnswer(problemData, answerArr);//检索绝对正确的答案
             Debug.WriteLine("权威答案:" + trueAnswerIndex);
 
             if (trueAnswerIndex != -1)//匹配到权威答案
@@ -99,7 +105,7 @@ namespace MillionHerosHelper
                     Debug.WriteLine("百度知道答案:" + baiDuZhiDaoAnswerIndex + " Ratio:" + zdRatio);
                 }
             }
-
+            #endregion
             int maxIndex = 0;
             int minIndex = 0;
             for (int i = 0; i < answerArr.Length; i++)
@@ -116,24 +122,26 @@ namespace MillionHerosHelper
                 }
             }
 
-            double probabilitySum = 0;
+            #region 计算概率
+            double probabilitySum = 0;//权值和
 
             for (int i = 0; i < cntRank.Length; i++) 
             {
                 probabilitySum += sumRank[i];
             }
-            //计算概率
+
             int[] probability = new int[answerArr.Length];
             for (int i = 0; i < answerArr.Length; i++)
             {
                 probability[i] = (int)(sumRank[i] / probabilitySum * 100);
             }
+            #endregion
 
-            AnalyzeResult ar;
+            AnalyzeResult ar;//分析结果
             ar.CntRank = cntRank;
             ar.PMIRank = pmiRank;
             ar.Index = maxIndex;
-            if (oppose) 
+            if (oppose) //存在否定词则取最小
             {
                 ar.Index = minIndex;
             }
@@ -143,14 +151,14 @@ namespace MillionHerosHelper
             return ar;
         }
 
-        private static void WorkThread(object arg)
+        private static void WorkThread(object arg)//获取数据的工作线程
         {
             WorkArgs args = (WorkArgs)arg;
-            if(args.Type == TaskType.GetProblemData)
+            if(args.Type == TaskType.GetProblemData)//获取题目在文本库中出现概率
             {
                 problemCnt = SearchEngine.StatisticsKeyword(args.Text, out problemData);
             }
-            else
+            else//获取选项在文本库中出现概率
             {
                 int[] arr = (args.Type == TaskType.AnswerCnt) ? answerCnt : problemAndAnswerCnt;
                 arr[args.Index] = SearchEngine.StatisticsKeyword(args.Text);
@@ -158,7 +166,7 @@ namespace MillionHerosHelper
         }
 
         /// <summary>
-        /// 算法修正,移除无用信息
+        /// 算法修正,移除无用信息并将否定换为肯定
         /// </summary>
         public static string RemoveUselessInfoAndPrivative(string str)
         {
@@ -182,6 +190,9 @@ namespace MillionHerosHelper
             return str;
         }
 
+        /// <summary>
+        /// 移除干扰选择的选项
+        /// </summary>
         public static string RemoveUselessInfo(string str)
         {
 
@@ -204,6 +215,9 @@ namespace MillionHerosHelper
             return res;
         }
 
+        /// <summary>
+        /// 移除选项开头的ABC
+        /// </summary>
         public static string RemoveABC(string str)
         {
             string[] dic = new string[] { "A.", "B.", "C.", "A", "B", "C"};
@@ -219,6 +233,9 @@ namespace MillionHerosHelper
             return res;
         }
 
+        #region 精确分析百度数据
+        //看不懂请自行抓取百度页面分析
+        
         /// <summary>
         /// 依赖百度百科、图谱、计算器等, 寻找是否存在确定的答案
         /// </summary>
@@ -274,7 +291,7 @@ namespace MillionHerosHelper
             p = data.IndexOf("<div class=\"op_exactqa_detail_s_answer\">");
             if (p != -1)
             {
-                if (CountItemsBeforeP(data, p) < 2)//确保词条在前两项
+                if (CountItemsBeforeP(data, p) < 2)
                 {
                     const string startStr = "target=\"_blank\">";
                     const string endStr = "</a></span>";
@@ -286,8 +303,8 @@ namespace MillionHerosHelper
                         if (endP != -1)
                         {
                             string ans = data.Substring(startP + startStr.Length, endP - (startP + endStr.Length));
-                            int existCnt = 0;//正确答案存在个数
-                            int index = 0;//正确答案下标
+                            int existCnt = 0;
+                            int index = 0;
                             for (int i = 0; i < answerArr.Length; i++)
                             {
                                 if (ans.Contains(answerArr[i]))
@@ -297,7 +314,7 @@ namespace MillionHerosHelper
                                 }
                             }
 
-                            if (existCnt == 1) //存在个数，只有一个才能确保是正确选项
+                            if (existCnt == 1) 
                             {
                                 Debug.WriteLine("匹配到:百度汉语");
                                 return index;
@@ -317,7 +334,7 @@ namespace MillionHerosHelper
                 p = data.IndexOf("setup({", p);
                 if (p != -1) 
                 {
-                    if (CountItemsBeforeP(data, p) < 2)//确保词条在前两项
+                    if (CountItemsBeforeP(data, p) < 2)
                     {
                         const string startStr = "fbtext: '";
                         const string endStr = "',";
@@ -329,8 +346,8 @@ namespace MillionHerosHelper
                             if (endP != -1)
                             {
                                 string ans = data.Substring(startP + startStr.Length, endP - (startP + endStr.Length));
-                                int existCnt = 0;//正确答案存在个数
-                                int index = 0;//正确答案下标
+                                int existCnt = 0;
+                                int index = 0;
                                 for (int i = 0; i < answerArr.Length; i++)
                                 {
                                     if (ans.Contains(answerArr[i]))
@@ -340,7 +357,7 @@ namespace MillionHerosHelper
                                     }
                                 }
 
-                                if (existCnt == 1) //存在个数，只有一个才能确保是正确选项
+                                if (existCnt == 1) 
                                 {
                                     Debug.WriteLine("匹配到:百度知识图谱");
                                     return index;
@@ -357,7 +374,7 @@ namespace MillionHerosHelper
             p = data.IndexOf("mu=\"https://baike.baidu.com/item/");
             if (p != -1)
             {
-                if (CountItemsBeforeP(data, p) < 3)//确保词条在前三项
+                if (CountItemsBeforeP(data, p) < 3)
                 {
                     const string startStr = "百度百科</a>";
                     const string endStr = "baike.baidu.com";
@@ -367,8 +384,8 @@ namespace MillionHerosHelper
                     if (startP != -1 && endP != -1)
                     {
                         string ans = data.Substring(startP + startStr.Length, endP - (startP + endStr.Length));
-                        int existCnt = 0;//正确答案存在个数
-                        int index = 0;//正确答案下标
+                        int existCnt = 0;
+                        int index = 0;
                         for (int i = 0; i < answerArr.Length; i++)
                         {
                             if (ans.Contains(answerArr[i]))
@@ -378,7 +395,7 @@ namespace MillionHerosHelper
                             }
                         }
 
-                        if (existCnt == 1) //存在个数，只有一个才能确保是正确选项
+                        if (existCnt == 1)
                         {
                             Debug.WriteLine("匹配到:百度百科");
                             return index;
@@ -392,7 +409,7 @@ namespace MillionHerosHelper
             p = data.IndexOf("<div class=\"op_best_answer_content\">");
             if (p != -1)
             {
-                if (CountItemsBeforeP(data, p) < 2)//确保词条在前两项
+                if (CountItemsBeforeP(data, p) < 2)
                 {
                     const string startStr = "<div class=\"op_best_answer_content\">";
                     const string endStr = "<div class=\"op_best_answer_source c-clearfix\">";
@@ -403,8 +420,8 @@ namespace MillionHerosHelper
                         if (endP != -1)
                         {
                             string ans = data.Substring(startP + startStr.Length, endP - (startP + endStr.Length));
-                            int existCnt = 0;//正确答案存在个数
-                            int index = 0;//正确答案下标
+                            int existCnt = 0;
+                            int index = 0;
                             for (int i = 0; i < answerArr.Length; i++)
                             {
                                 if (ans.Contains(answerArr[i]))
@@ -414,7 +431,7 @@ namespace MillionHerosHelper
                                 }
                             }
 
-                            if (existCnt == 1) //存在个数，只有一个才能确保是正确选项
+                            if (existCnt == 1)
                             {
                                 Debug.WriteLine("匹配到:百度知道最佳答案");
                                 return index;
@@ -487,5 +504,6 @@ namespace MillionHerosHelper
             }
             return cnt;
         }
+        #endregion
     }
 }

@@ -18,17 +18,15 @@ namespace MillionHerosHelper
         {
             const string strStart = "百度为您找到相关结果约";
             const string strEnd = "个";
-            int[] next = Algorithm.InitKMPNext(strStart);
             string data = GetSearchStringCompatible("http://www.baidu.com/s?wd=" + UrlEncode(keyword));
-            //Debug.WriteLine(data);
 
             int p = data.IndexOf(strStart);
 
             if (p == -1)
-                return 0;
+                return 1;
             int p2 = data.IndexOf(strEnd, p);
             if (p2 == -1)
-                return 0;
+                return 1;
             
             string countStr = data.Substring(p + strStart.Length, p2 - p - strStart.Length);
             countStr = countStr.Replace(",", "");
@@ -49,13 +47,13 @@ namespace MillionHerosHelper
             const string strEnd = "个";
             string data = GetSearchStringCompatible("http://www.baidu.com/s?wd=" +UrlEncode(keyword));
             sourceData = data;
-            //File.WriteAllText("D:\\百度知道", data);
+
             int p = data.IndexOf(strStart);
             if (p == -1)
-                return 1000000;
+                return 1;
             int p2 = data.IndexOf(strEnd, p);
             if (p2 == -1)
-                return 1000000;
+                return 1;
 
             string countStr = data.Substring(p + strStart.Length, p2 - p - strStart.Length);
             countStr = countStr.Replace(",", "");
@@ -110,7 +108,7 @@ namespace MillionHerosHelper
         }
 
         /// <summary>
-        /// 临时用的编码，仅编码字符
+        /// 临时用的编码，仅编码有歧义的字符
         /// </summary>
         /// <param name="str">待编码url</param>
         /// <returns>结果</returns>

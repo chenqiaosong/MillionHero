@@ -66,13 +66,13 @@ namespace MillionHerosHelper
 
                 int p = problemData.IndexOf(answer[i]);
                 int cnt = 0;
-                while (p != -1)
+                while (p != -1)//统计出现次数
                 {
                     sum++;
                     cnt++;
                     p = problemData.IndexOf(answer[i], p + answer[i].Length);
                 }
-                if (cnt == 0)
+                if (cnt == 0)//防止除0
                 {
                     cnt++;
                     sum++;
@@ -84,9 +84,7 @@ namespace MillionHerosHelper
             for (int i = 0; i < answer.Length; i++)
             {
                 countRank[i] = pmiSum * ((double)answerCnt[i] / sum);
-                System.Diagnostics.Debug.Write("debug:" + answer[i] + ":" + answerCnt[i].ToString() + "  ");
             }
-            System.Diagnostics.Debug.WriteLine("");
             return countRank;
         }
     }

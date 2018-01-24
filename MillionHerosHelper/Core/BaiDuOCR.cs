@@ -29,16 +29,17 @@ namespace MillionHerosHelper
 
                 JToken[] arr = res["words_result"].ToArray();
                 StringBuilder sb = new StringBuilder();
+                //合并结果
                 foreach (JToken item in arr)
                 {
                     sb.AppendLine(item["words"].ToString());
                 }
-                System.Diagnostics.Debug.WriteLine(sb.ToString());
+
                 return sb.ToString();
             }
             catch(ArgumentNullException)
             {
-                throw new APIException("OCR文本识别错误,可能是网络连接异常或API调用次数达到上限");
+                throw new APIException("OCR文本识别错误,可能是API调用次数达到上限");
             }
         }
 

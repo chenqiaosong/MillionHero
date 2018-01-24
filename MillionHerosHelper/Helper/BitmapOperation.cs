@@ -27,7 +27,6 @@ namespace MillionHerosHelper
             }
             
 
-            //将新位图写到内存流中
             MemoryStream memoryStream = new MemoryStream();
             newBitmap.Save(memoryStream, bitmap.RawFormat);
             byte[] res = new byte[memoryStream.Length];
@@ -46,7 +45,7 @@ namespace MillionHerosHelper
             Rectangle rectangle = new Rectangle(location, size);
             Bitmap newBitmap = bitmap.Clone(rectangle, bitmap.PixelFormat);
 
-            //将新位图写到内存流中
+
             MemoryStream memoryStream = new MemoryStream();
             newBitmap.Save(memoryStream, bitmap.RawFormat);
             byte[] res = new byte[memoryStream.Length];

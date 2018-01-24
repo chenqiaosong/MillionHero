@@ -106,15 +106,6 @@ namespace MillionHerosHelper
             memoryStream.Close();
         }
 
-        public void SetCutScreenArea(int x, int y, int width, int height)
-        {
-            textBox_X.Text = x.ToString();
-            textBox_Y.Text = y.ToString();
-            textBox_Height.Text = height.ToString();
-            textBox_Width.Text = width.ToString();
-            this.Show();
-        }
-
         private void button_SaveConfig_Click(object sender, EventArgs e)
         {
             int x = 0, y = 0, width = 2, height = 2;
@@ -183,6 +174,15 @@ namespace MillionHerosHelper
             selectScreenAreaForm.Show();
             selectScreenAreaForm.Focus();
             this.Hide();
+        }
+
+        public void SetCutScreenArea(int x, int y, int width, int height)
+        {
+            textBox_X.Text = x.ToString();
+            textBox_Y.Text = y.ToString();
+            textBox_Height.Text = height.ToString();
+            textBox_Width.Text = width.ToString();
+            this.Show();
         }
     }
 }
