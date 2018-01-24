@@ -17,7 +17,7 @@ namespace MillionHerosHelper
 
         public static AnalyzeResult Analyze(string problem, string[] answerArr)
         {
-            bool oppose = Regex.IsMatch(problem, "不是|不属于|不包括|不可以|不包含|不需要|错误|没有");//是否存在否定关键词
+            bool oppose = Regex.IsMatch(problem, "不是|不属于|不包括|不可以|不包含|不需要|错误|没有|不会");//是否存在否定关键词
 
             //移除部分干扰搜索的关键字
             problem = RemoveUselessInfoAndPrivative(problem);
@@ -152,25 +152,24 @@ namespace MillionHerosHelper
         /// </summary>
         public static string RemoveUselessInfoAndPrivative(string str)
         {
-
-            if (str.Length >= 38)
+            str = RemoveUselessInfo(str);
+            //"不是", "不属于", "不包括", "不可以", "不包含", "不需要", "错误", "没有", "不会" 
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("不是", "是");
+            dic.Add("不属于", "属于");
+            dic.Add("不包括", "包括");
+            dic.Add("不可以", "可以");
+            dic.Add("不包含", "包含");
+            dic.Add("不需要", "需要");
+            dic.Add("错误", "正确");
+            dic.Add("没有", "有");
+            dic.Add("不会", "会");
+            foreach(string key in dic.Keys)
             {
-                if (str.Contains("请问"))
-                {
-                    int p = str.IndexOf("请问");
-                    str = str.Substring(p, str.Length - p);
-                }
+                str = str.Replace(key, dic[key]);
             }
-
-            string[] dic = new string[] { "“", "”", "\"", "以下", "下列", "哪个", "哪项", "选项", "不是", "不属于", "不包括", "不可以", "不包含", "不需要", "错误", "没有" };
-            string res = str;
-            foreach(string key in dic)
-            {
-                res = res.Replace(key, "");
-            }
-            res = res.Replace("？", "?");
-            Debug.WriteLine(res);
-            return res;
+            Debug.WriteLine(str);
+            return str;
         }
 
         public static string RemoveUselessInfo(string str)
@@ -192,7 +191,6 @@ namespace MillionHerosHelper
                 res = res.Replace(key, "");
             }
             res = res.Replace("？", "?");
-            Debug.WriteLine(res);
             return res;
         }
 

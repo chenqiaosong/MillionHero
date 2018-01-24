@@ -33,6 +33,7 @@ namespace MillionHerosHelper
                 {
                     sb.AppendLine(item["words"].ToString());
                 }
+                System.Diagnostics.Debug.WriteLine(sb.ToString());
                 return sb.ToString();
             }
             catch(ArgumentNullException)
