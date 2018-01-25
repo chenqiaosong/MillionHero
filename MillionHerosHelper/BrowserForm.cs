@@ -35,6 +35,15 @@ namespace MillionHerosHelper
 
         public string Highlighting(string data, string[] answers)
         {
+            foreach(string answer in answers)
+            {
+                if(Regex.IsMatch(answer, "^[0-9]*$"))
+                {
+                    return data;
+                }
+            }
+
+
             string[] color = new string[] { "yellow", "limegreen", "lightblue" };
             char[] chars = new char[] { 'A', 'B', 'C' };
             for (int i = 0; i < answers.Length; i++) 
