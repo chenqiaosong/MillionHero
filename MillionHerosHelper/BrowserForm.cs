@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace MillionHerosHelper
 {
@@ -24,6 +25,26 @@ namespace MillionHerosHelper
         public void Jump(string url)
         {
             webBrowser_Main.Url = new Uri(url);
+        }
+
+        public void JumpAndHighlighting(string problem, string[] answer)
+        {
+            SearchEngine.StatisticsKeyword(problem, out string data);
+;           webBrowser_Main.DocumentText = Highlighting(data, answer);
+        }
+
+        public string Highlighting(string data, string[] answers)
+        {
+            string[] color = new string[] { "yellow", "limegreen", "lightblue" };
+            char[] chars = new char[] { 'A', 'B', 'C' };
+            for (int i = 0; i < answers.Length; i++) 
+            {
+                data = Regex.Replace(data, Regex.Escape(answers[i]),
+                    "<span style=\"background: "+color[i]+"; \">" +chars[i] + answers[i] + chars[i] + "</span>",
+                    RegexOptions.IgnoreCase);
+            }
+
+            return data;
         }
 
         private void BrowserForm_FormClosing(object sender, FormClosingEventArgs e)

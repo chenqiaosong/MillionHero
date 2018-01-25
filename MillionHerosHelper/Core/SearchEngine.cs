@@ -20,7 +20,7 @@ namespace MillionHerosHelper
             const string strStart = "百度为您找到相关结果约";
             const string strEnd = "个";
 
-            string data = GetSearchString("http://www.baidu.com/s?wd=" + UrlEncode(keyword));
+            string data = GetSearchPageData("http://www.baidu.com/s?wd=" + UrlEncode(keyword));
 
             int p = data.IndexOf(strStart);
 
@@ -47,7 +47,7 @@ namespace MillionHerosHelper
         {
             const string strStart = "百度为您找到相关结果约";
             const string strEnd = "个";
-            string data = GetSearchString("http://www.baidu.com/s?wd=" + UrlEncode(keyword));
+            string data = GetSearchPageData("http://www.baidu.com/s?wd=" + UrlEncode(keyword));
 
             sourceData = data;
 
@@ -71,7 +71,7 @@ namespace MillionHerosHelper
             return count;
         }
 
-        private static string GetSearchString(string url)
+        public static string GetSearchPageData(string url)
         {
             string result;
             var uri = new Uri(url);

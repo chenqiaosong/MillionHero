@@ -320,11 +320,15 @@ namespace MillionHerosHelper
 
             if (Config.RemoveUselessInfo)//移除无用信息
             {
-                browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text)));
+                //browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text)));
+                browserForm.JumpAndHighlighting(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text), 
+                    new string[] { textBox_AnswerA.Text, textBox_AnswerB.Text, textBox_AnswerC.Text });
             }
             else
             {
-                browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text));
+                //browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text));
+                browserForm.JumpAndHighlighting(textBox_Problem.Text, 
+                    new string[] { textBox_AnswerA.Text, textBox_AnswerB.Text, textBox_AnswerC.Text });
             }
             
             browserForm.Show();
