@@ -5,6 +5,7 @@ using System.Text;
 using System.Net;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Web;
 
 namespace MillionHerosHelper
@@ -19,7 +20,7 @@ namespace MillionHerosHelper
             const string strStart = "百度为您找到相关结果约";
             const string strEnd = "个";
 
-            string data = GetSearchStringCompatible("http://www.baidu.com/s?wd=" + UrlEncode(keyword));
+            string data = GetSearchString("http://www.baidu.com/s?wd=" + UrlEncode(keyword));
 
             int p = data.IndexOf(strStart);
 
@@ -46,7 +47,8 @@ namespace MillionHerosHelper
         {
             const string strStart = "百度为您找到相关结果约";
             const string strEnd = "个";
-            string data = GetSearchStringCompatible("http://www.baidu.com/s?wd=" + UrlEncode(keyword));
+            string data = GetSearchString("http://www.baidu.com/s?wd=" + UrlEncode(keyword));
+
             sourceData = data;
 
             int p = data.IndexOf(strStart);
@@ -69,43 +71,68 @@ namespace MillionHerosHelper
             return count;
         }
 
-
         private static string GetSearchString(string url)
         {
-            using (WebClient wc = new WebClient())
-            {
-                wc.Proxy = null;
-                wc.Credentials = CredentialCache.DefaultCredentials;
-                wc.Encoding = Encoding.UTF8;
-                string str = wc.DownloadString(url);
-                wc.Dispose();
-                return str;
-            }
-        }
-
-        private static string GetSearchStringCompatible(string url)
-        {
+            string result;
             var uri = new Uri(url);
-            HttpWebRequest webrequest = (HttpWebRequest)WebRequest.Create(uri);
-            webrequest.Proxy = null;
+            HttpWebRequest webrequest = null;
+            HttpWebResponse webresponse = null;
 
-            webrequest.Accept = "text/html";
-            webrequest.Headers.Add("Accept-Language", "zh-CN,zh;q=0.9");
-            webrequest.Headers.Add("Cache-Control", "max-age=0");
-            webrequest.KeepAlive = true;
-            webrequest.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36";
+            try
+            {
+                
+                webrequest = (HttpWebRequest)WebRequest.Create(uri);
 
-            HttpWebResponse webresponse = (HttpWebResponse)webrequest.GetResponse();
+                webrequest.Proxy = null;
 
-            Stream receiveStream = webresponse.GetResponseStream();
-            Encoding enc = System.Text.Encoding.UTF8;
-            StreamReader loResponseStream = new StreamReader(receiveStream, enc);
+                webrequest.KeepAlive = false;
+                webrequest.Timeout = 10000;
+                webrequest.AllowWriteStreamBuffering = false;
+                webrequest.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
 
-            string response = loResponseStream.ReadToEnd();
+                webresponse = (HttpWebResponse)webrequest.GetResponse();
+                if (webresponse.ContentEncoding.ToLower().Contains("gzip"))
+                {
+                    using (GZipStream gZipStream = new GZipStream(webresponse.GetResponseStream(), CompressionMode.Decompress))
+                    {
+                        using (StreamReader sr = new StreamReader(gZipStream))
+                        {
+                            result = sr.ReadToEnd();
+                        }
+                    }
+                }
+                else
+                {
+                    using (Stream stream = webresponse.GetResponseStream())
+                    {
+                        using (StreamReader sr = new StreamReader(stream, Encoding.UTF8))
+                        {
+                            result = sr.ReadToEnd();
+                        }
+                    }
 
-            loResponseStream.Close();
-            webresponse.Close();
-            return response;
+                }
+            }
+            catch
+            {
+                result = "";
+            }
+            finally
+            {
+                if (webresponse != null)
+                {
+                    webresponse.Close();
+                }
+                if (webrequest != null)
+                {
+                    webrequest.Abort();
+                }
+                webresponse = null;
+                webrequest = null;
+            }
+
+           
+            return result;
         }
 
         /// <summary>
