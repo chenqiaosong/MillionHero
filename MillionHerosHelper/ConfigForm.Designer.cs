@@ -332,9 +332,9 @@
             // 
             // button_SaveCut
             // 
-            this.button_SaveCut.Location = new System.Drawing.Point(265, 212);
+            this.button_SaveCut.Location = new System.Drawing.Point(248, 212);
             this.button_SaveCut.Name = "button_SaveCut";
-            this.button_SaveCut.Size = new System.Drawing.Size(80, 35);
+            this.button_SaveCut.Size = new System.Drawing.Size(100, 35);
             this.button_SaveCut.TabIndex = 30;
             this.button_SaveCut.Text = "保存参数";
             this.button_SaveCut.UseVisualStyleBackColor = true;
@@ -342,9 +342,9 @@
             // 
             // button_LoadCut
             // 
-            this.button_LoadCut.Location = new System.Drawing.Point(374, 212);
+            this.button_LoadCut.Location = new System.Drawing.Point(360, 212);
             this.button_LoadCut.Name = "button_LoadCut";
-            this.button_LoadCut.Size = new System.Drawing.Size(80, 35);
+            this.button_LoadCut.Size = new System.Drawing.Size(100, 35);
             this.button_LoadCut.TabIndex = 31;
             this.button_LoadCut.Text = "加载参数";
             this.button_LoadCut.UseVisualStyleBackColor = true;
