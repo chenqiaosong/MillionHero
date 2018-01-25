@@ -37,7 +37,7 @@ namespace MillionHerosHelper
         {
             foreach(string answer in answers)
             {
-                if(Regex.IsMatch(answer, "^[0-9]*$"))
+                if(Regex.IsMatch(answer, "^[0-9]*$") || Regex.IsMatch(answer, "<|>|:|：|\""))
                 {
                     return data;
                 }

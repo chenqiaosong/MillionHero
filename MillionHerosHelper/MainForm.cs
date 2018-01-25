@@ -29,9 +29,8 @@ namespace MillionHerosHelper
         private void MainForm_Load(object sender, EventArgs e)
         {
             //便于并发请求同时进行
-            ServicePointManager.MaxServicePoints = 512;
-            ServicePointManager.DefaultConnectionLimit = 512;
-            System.Net.ServicePointManager.DefaultConnectionLimit = 64;
+            ServicePointManager.MaxServicePoints = 128;
+            ServicePointManager.DefaultConnectionLimit = 128;
 
             //禁用跨线程UI操作检查
             Control.CheckForIllegalCrossThreadCalls = false;

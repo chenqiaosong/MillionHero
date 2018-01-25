@@ -247,7 +247,7 @@
             this.label_Version.Name = "label_Version";
             this.label_Version.Size = new System.Drawing.Size(39, 15);
             this.label_Version.TabIndex = 29;
-            this.label_Version.Text = "v1.1";
+            this.label_Version.Text = "v1.2";
             // 
             // checkBox_InPutProblem
             // 
@@ -313,9 +313,9 @@
             // 
             // button_Pay
             // 
-            this.button_Pay.Location = new System.Drawing.Point(395, 85);
+            this.button_Pay.Location = new System.Drawing.Point(389, 83);
             this.button_Pay.Name = "button_Pay";
-            this.button_Pay.Size = new System.Drawing.Size(80, 30);
+            this.button_Pay.Size = new System.Drawing.Size(105, 30);
             this.button_Pay.TabIndex = 36;
             this.button_Pay.Text = "打赏作者";
             this.button_Pay.UseVisualStyleBackColor = true;
