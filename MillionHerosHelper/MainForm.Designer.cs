@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label_RankA = new System.Windows.Forms.Label();
-            this.label_RankB = new System.Windows.Forms.Label();
-            this.label_RankC = new System.Windows.Forms.Label();
             this.button_Config = new System.Windows.Forms.Button();
             this.button_Start = new System.Windows.Forms.Button();
             this.label_Problem = new System.Windows.Forms.Label();
@@ -57,30 +54,6 @@
             this.button_Pay = new System.Windows.Forms.Button();
             this.linkLabel_Fresh = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
-            // 
-            // label_RankA
-            // 
-            this.label_RankA.AutoSize = true;
-            this.label_RankA.Location = new System.Drawing.Point(122, 199);
-            this.label_RankA.Name = "label_RankA";
-            this.label_RankA.Size = new System.Drawing.Size(0, 15);
-            this.label_RankA.TabIndex = 10;
-            // 
-            // label_RankB
-            // 
-            this.label_RankB.AutoSize = true;
-            this.label_RankB.Location = new System.Drawing.Point(122, 265);
-            this.label_RankB.Name = "label_RankB";
-            this.label_RankB.Size = new System.Drawing.Size(0, 15);
-            this.label_RankB.TabIndex = 11;
-            // 
-            // label_RankC
-            // 
-            this.label_RankC.AutoSize = true;
-            this.label_RankC.Location = new System.Drawing.Point(122, 337);
-            this.label_RankC.Name = "label_RankC";
-            this.label_RankC.Size = new System.Drawing.Size(0, 15);
-            this.label_RankC.TabIndex = 12;
             // 
             // button_Config
             // 
@@ -363,9 +336,6 @@
             this.Controls.Add(this.label_Problem);
             this.Controls.Add(this.button_Start);
             this.Controls.Add(this.button_Config);
-            this.Controls.Add(this.label_RankC);
-            this.Controls.Add(this.label_RankB);
-            this.Controls.Add(this.label_RankA);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainForm";
@@ -380,9 +350,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label_RankA;
-        private System.Windows.Forms.Label label_RankB;
-        private System.Windows.Forms.Label label_RankC;
         private System.Windows.Forms.Button button_Config;
         private System.Windows.Forms.Button button_Start;
         private System.Windows.Forms.Label label_Problem;

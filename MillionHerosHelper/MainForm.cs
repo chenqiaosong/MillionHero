@@ -176,6 +176,11 @@ namespace MillionHerosHelper
         {
             button_Config.Enabled = false;
             button_Start.Enabled = false;
+
+            label_AnalyzeA.Text = "";
+            label_AnalyzeB.Text = "";
+            label_AnalyzeC.Text = "";
+
             solveProblemThread = new Thread(new ThreadStart(BeginSolveProblem));
             solveProblemThread.Start();
 
