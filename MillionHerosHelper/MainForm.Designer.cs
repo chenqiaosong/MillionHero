@@ -55,6 +55,7 @@
             this.button__SearchB = new System.Windows.Forms.Button();
             this.button__SearchC = new System.Windows.Forms.Button();
             this.button_Pay = new System.Windows.Forms.Button();
+            this.linkLabel_Fresh = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // label_RankA
@@ -83,7 +84,7 @@
             // 
             // button_Config
             // 
-            this.button_Config.Location = new System.Drawing.Point(26, 23);
+            this.button_Config.Location = new System.Drawing.Point(33, 36);
             this.button_Config.Name = "button_Config";
             this.button_Config.Size = new System.Drawing.Size(89, 35);
             this.button_Config.TabIndex = 13;
@@ -247,7 +248,7 @@
             this.label_Version.Name = "label_Version";
             this.label_Version.Size = new System.Drawing.Size(39, 15);
             this.label_Version.TabIndex = 29;
-            this.label_Version.Text = "v1.2";
+            this.label_Version.Text = "v1.3";
             // 
             // checkBox_InPutProblem
             // 
@@ -321,11 +322,23 @@
             this.button_Pay.UseVisualStyleBackColor = true;
             this.button_Pay.Click += new System.EventHandler(this.button_Pay_Click);
             // 
+            // linkLabel_Fresh
+            // 
+            this.linkLabel_Fresh.AutoSize = true;
+            this.linkLabel_Fresh.Location = new System.Drawing.Point(41, 9);
+            this.linkLabel_Fresh.Name = "linkLabel_Fresh";
+            this.linkLabel_Fresh.Size = new System.Drawing.Size(67, 15);
+            this.linkLabel_Fresh.TabIndex = 37;
+            this.linkLabel_Fresh.TabStop = true;
+            this.linkLabel_Fresh.Text = "新手教程";
+            this.linkLabel_Fresh.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_Fresh_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(512, 563);
+            this.Controls.Add(this.linkLabel_Fresh);
             this.Controls.Add(this.button_Pay);
             this.Controls.Add(this.button__SearchC);
             this.Controls.Add(this.button__SearchB);
@@ -394,6 +407,7 @@
         private System.Windows.Forms.Button button__SearchB;
         private System.Windows.Forms.Button button__SearchC;
         private System.Windows.Forms.Button button_Pay;
+        private System.Windows.Forms.LinkLabel linkLabel_Fresh;
     }
 }
 
