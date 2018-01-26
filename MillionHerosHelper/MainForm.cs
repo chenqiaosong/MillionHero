@@ -255,7 +255,7 @@ namespace MillionHerosHelper
         }
         private void SolveProblem()//答题
         {
-            if(!checkBox_InPutProblem.Checked)
+            if (!checkBox_InPutProblem.Checked)
             {
                 label_Message.Text = "正在获取手机界面";
                 label_Message.ForeColor = Color.Orange;
@@ -279,7 +279,6 @@ namespace MillionHerosHelper
                 {
                     throw new ADBException("获取的屏幕截图无效!" + ex);
                 }
-
                 label_Message.Text = "正在识别题目信息";
                 //调用API识别文字
                 string recognizeResult = BaiDuOCR.Recognize(smallScreenShot);
@@ -288,7 +287,6 @@ namespace MillionHerosHelper
                 //检查识别结果正确性
                 CheckOCRResult(recRes);
                 //显示识别结果
-
                 int notEmptyIndex = recRes.Length - 1;
                 while (String.IsNullOrEmpty(recRes[notEmptyIndex]))//忽略空行
                 {
@@ -316,20 +314,19 @@ namespace MillionHerosHelper
             }
 
             //浏览器跳转到搜索页面
-
             if (Config.RemoveUselessInfo)//移除无用信息
             {
                 //browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text)));
-                browserForm.JumpAndHighlighting(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text), 
-                    new string[] { textBox_AnswerA.Text, textBox_AnswerB.Text, textBox_AnswerC.Text });
+                //browserForm.JumpAndHighlighting(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text), 
+                    //new string[] { textBox_AnswerA.Text, textBox_AnswerB.Text, textBox_AnswerC.Text });
             }
             else
             {
                 //browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text));
-                browserForm.JumpAndHighlighting(textBox_Problem.Text, 
-                    new string[] { textBox_AnswerA.Text, textBox_AnswerB.Text, textBox_AnswerC.Text });
+                //browserForm.JumpAndHighlighting(textBox_Problem.Text, 
+                    //new string[] { textBox_AnswerA.Text, textBox_AnswerB.Text, textBox_AnswerC.Text });
             }
-            
+
             browserForm.Show();
             browserForm.WindowState = FormWindowState.Normal;
 

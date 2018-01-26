@@ -11,6 +11,7 @@ namespace MillionHerosHelper
     static class AnalyzeProblem
     {
         private static string problemData;
+        private static string[] answers;
         private static int problemCnt;
         private static int[] answerCnt;
         private static int[] problemAndAnswerCnt;
@@ -23,7 +24,7 @@ namespace MillionHerosHelper
         {
             //是否存在否定关键词
             bool oppose = Regex.IsMatch(problem, "不是|不属于|不包括|不可以|不包含|不需要|错误|没有|不会|不可能|找不到");
-
+            answers = answerArr;
             //移除部分干扰搜索的关键字
             problem = RemoveUselessInfoAndPrivative(problem);
 
@@ -157,6 +158,7 @@ namespace MillionHerosHelper
             if(args.Type == TaskType.GetProblemData)//获取题目在文本库中出现概率
             {
                 problemCnt = SearchEngine.StatisticsKeyword(args.Text, out problemData);
+                BrowserForm.browserForm.HighlightAndShowPage(problemData, answers);//显示高亮搜索页面
             }
             else//获取选项在文本库中出现概率
             {

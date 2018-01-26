@@ -16,6 +16,7 @@ namespace MillionHerosHelper
         private string[] answers;
         private string[] color = new string[] { "yellow", "limegreen", "lightblue" };
         private char[] option = new char[] { 'A', 'B', 'C' };
+        public static BrowserForm browserForm;
 
         public BrowserForm()
         {
@@ -24,7 +25,7 @@ namespace MillionHerosHelper
 
         private void BrowserForm_Load(object sender, EventArgs e)
         {
-
+            browserForm = this;
         }
 
         public void Jump(string url)
@@ -32,11 +33,13 @@ namespace MillionHerosHelper
             webBrowser_Main.Url = new Uri(url);
         }
 
-        public void JumpAndHighlighting(string problem, string[] answer)
+        public void HighlightAndShowPage(string data, string[] answerArr)
         {
-            answers = answer;
-            SearchEngine.StatisticsKeyword(problem, out string data);
+            
+            answers = answerArr;
+            System.Diagnostics.Debug.WriteLine(answers.Length);
             webBrowser_Main.DocumentText = data;
+            
         }
 
         private void webBrowser_Main_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
@@ -44,7 +47,7 @@ namespace MillionHerosHelper
             HTMLDocument document = (HTMLDocument)webBrowser_Main.Document.DomDocument;
             IHTMLDOMNode bodyNode = (IHTMLDOMNode)webBrowser_Main.Document.Body.DomElement;
 
-            for(int i=0; i<3; i++)
+            for (int i = 0; i < answers.Length; i++)
             {
                 int.TryParse(answers[i], out int judge);
                 if (judge > 0 && judge <= 10)
