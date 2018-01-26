@@ -5,6 +5,7 @@
 ![image](https://raw.githubusercontent.com/Azure99/MillionHero/master/pictures/run.gif)
 
 # 交流群419958463
+鉴于人数太多，开启付费入群
 # [图文使用教程](https://github.com/Azure99/MillionHero/wiki/助手图文使用教程)<br><br>
 
 #  <font color=#FF0000 size=72>关于API错误</font>
