@@ -7,11 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using mshtml;
 
 namespace MillionHerosHelper
 {
     public partial class BrowserForm : Form
     {
+        private string[] answers;
+        private string[] color = new string[] { "yellow", "limegreen", "lightblue" };
+        private char[] option = new char[] { 'A', 'B', 'C' };
+
         public BrowserForm()
         {
             InitializeComponent();
@@ -29,34 +34,73 @@ namespace MillionHerosHelper
 
         public void JumpAndHighlighting(string problem, string[] answer)
         {
+            answers = answer;
             SearchEngine.StatisticsKeyword(problem, out string data);
-;           webBrowser_Main.DocumentText = Highlighting(data, answer);
+            webBrowser_Main.DocumentText = data;
         }
 
-        public string Highlighting(string data, string[] answers)
+        private void webBrowser_Main_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            foreach(string answer in answers)
+            HTMLDocument document = (HTMLDocument)webBrowser_Main.Document.DomDocument;
+            IHTMLDOMNode bodyNode = (IHTMLDOMNode)webBrowser_Main.Document.Body.DomElement;
+
+            for(int i=0; i<3; i++)
             {
-                if(Regex.IsMatch(answer, "^[0-9]*$") || Regex.IsMatch(answer, "<|>|:|：|\""))
+                int.TryParse(answers[i], out int judge);
+                if (judge > 0 && judge <= 10)
+                    continue;
+                HighLightingText(document, bodyNode, answers[i], i);
+            }
+        }
+
+        private void HighLightingText(HTMLDocument document, IHTMLDOMNode node, string keyword, int cnt)
+        {
+            // nodeType = 3：text节点 
+            if (node.nodeType == 3)
+            {
+                string nodeText = node.nodeValue.ToString();
+                // 如果找到了关键字 
+                if (nodeText.Contains(keyword))
                 {
-                    return data;
+                    IHTMLDOMNode parentNode = node.parentNode;
+                    // 将关键字作为分隔符，将文本分离，并逐个添加到原text节点的父节点 
+                    string[] result = nodeText.Split(new string[] { keyword }, StringSplitOptions.None);
+                    for (int i = 0; i < result.Length - 1; i++)
+                    {
+                        if (result[i] != "")
+                        {
+                            IHTMLDOMNode txtNode = document.createTextNode(option[cnt] + result[i] + option[cnt]);
+                            parentNode.insertBefore(txtNode, node);
+                        }
+                        IHTMLDOMNode orgNode = document.createTextNode(option[cnt] + keyword + option[cnt]);
+                        IHTMLDOMNode hilightedNode = (IHTMLDOMNode)document.createElement("SPAN");
+                        IHTMLStyle style = ((IHTMLElement)hilightedNode).style;
+                        style.color = "black";
+                        style.backgroundColor = color[cnt];
+                        hilightedNode.appendChild(orgNode);
+
+                        parentNode.insertBefore(hilightedNode, node);
+                    }
+                    if (result[result.Length - 1] != "")
+                    {
+                        IHTMLDOMNode postNode = document.createTextNode(option[cnt] + result[result.Length - 1] + option[cnt]);
+                        parentNode.insertBefore(postNode, node);
+                    }
+                    parentNode.removeChild(node);
+                } // End of nodeText.Contains(keyword) 
+            }
+            else
+            {
+                // 如果不是text节点，则递归搜索其子节点 
+                IHTMLDOMChildrenCollection childNodes = node.childNodes as IHTMLDOMChildrenCollection;
+                foreach (IHTMLDOMNode n in childNodes)
+                {
+                    HighLightingText(document, n, keyword, cnt);
                 }
             }
-
-
-            string[] color = new string[] { "yellow", "limegreen", "lightblue" };
-            char[] chars = new char[] { 'A', 'B', 'C' };
-            for (int i = 0; i < answers.Length; i++) 
-            {
-                data = Regex.Replace(data, Regex.Escape(answers[i]),
-                    "<span style=\"background: "+color[i]+"; \">" +chars[i] + answers[i] + chars[i] + "</span>",
-                    RegexOptions.IgnoreCase);
-            }
-
-            return data;
         }
 
-        private void BrowserForm_FormClosing(object sender, FormClosingEventArgs e)
+    private void BrowserForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
             this.Hide();

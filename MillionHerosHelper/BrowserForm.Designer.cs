@@ -40,6 +40,7 @@
             this.webBrowser_Main.ScriptErrorsSuppressed = true;
             this.webBrowser_Main.Size = new System.Drawing.Size(682, 753);
             this.webBrowser_Main.TabIndex = 0;
+            this.webBrowser_Main.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser_Main_DocumentCompleted);
             // 
             // BrowserForm
             // 
