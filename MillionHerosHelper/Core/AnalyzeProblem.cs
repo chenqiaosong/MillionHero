@@ -224,16 +224,10 @@ namespace MillionHerosHelper
         /// </summary>
         public static string RemoveABC(string str)
         {
-            string[] dic = new string[] { "A.", "B.", "C.", "A", "B", "C"};
-            string res = str;
-            foreach (string key in dic)
-            {
-                if(res.StartsWith(key))
-                {
-                    int len = key.Length;
-                    res = res.Substring(len, res.Length - len);
-                }
-            }
+            string res = str.Trim();
+            res = Regex.Replace(res, @"^(A|B|C|a|b|c)", "");
+            res = Regex.Replace(res, @"^(\.|:|：|，|,)", "");
+            res = res.Trim();
             return res;
         }
 
