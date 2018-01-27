@@ -158,7 +158,6 @@ namespace MillionHerosHelper
             if(args.Type == TaskType.GetProblemData)//获取题目在文本库中出现概率
             {
                 problemCnt = SearchEngine.StatisticsKeyword(args.Text, out problemData);
-                BrowserForm.browserForm.HighlightAndShowPage(problemData, answers);//显示高亮搜索页面
             }
             else//获取选项在文本库中出现概率
             {

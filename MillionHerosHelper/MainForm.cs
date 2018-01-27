@@ -323,6 +323,7 @@ namespace MillionHerosHelper
                 textBox_Problem.Text = problem;
             }
 
+            browserForm.HighlightAndShowPage("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text), new string[] { textBox_AnswerA.Text, textBox_AnswerB.Text, textBox_AnswerC.Text });
             browserForm.Show();
             browserForm.WindowState = FormWindowState.Normal;
 
@@ -383,7 +384,6 @@ namespace MillionHerosHelper
                 throw new OCRException("没有识别到文本");
             }
         }
-
         #endregion
 
     }

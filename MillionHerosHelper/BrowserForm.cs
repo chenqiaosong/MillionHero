@@ -33,13 +33,10 @@ namespace MillionHerosHelper
             webBrowser_Main.Url = new Uri(url);
         }
 
-        public void HighlightAndShowPage(string data, string[] answerArr)
+        public void HighlightAndShowPage(string url, string[] answerArr)
         {
-            
             answers = answerArr;
-            System.Diagnostics.Debug.WriteLine(answers.Length);
-            webBrowser_Main.DocumentText = data;
-            
+            webBrowser_Main.Url = new Uri(url);
         }
 
         private void webBrowser_Main_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
