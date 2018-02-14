@@ -174,6 +174,8 @@ namespace MillionHerosHelper
 
         private void button_Start_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(Config.HighlightMode.ToString());
+
             button_Config.Enabled = false;
             button_Start.Enabled = false;
 
@@ -323,7 +325,17 @@ namespace MillionHerosHelper
                 textBox_Problem.Text = problem;
             }
 
-            browserForm.HighlightAndShowPage("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text), new string[] { textBox_AnswerA.Text, textBox_AnswerB.Text, textBox_AnswerC.Text });
+            string url;
+            if (Config.RemoveUselessInfo) 
+            {
+                url = "http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text);
+            }
+            else
+            {
+                url = "http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text));
+            }
+
+            browserForm.HighlightAndShowPage(url, new string[] { textBox_AnswerA.Text, textBox_AnswerB.Text, textBox_AnswerC.Text });
             browserForm.Show();
             browserForm.WindowState = FormWindowState.Normal;
 

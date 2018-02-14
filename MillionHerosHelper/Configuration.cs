@@ -14,11 +14,9 @@ namespace MillionHerosHelper
         public static int CutY { get; set; }
         public static int CutWidth { get; set; }
         public static int CutHeight { get; set; }
-
         public static bool UseEmulator { get; set; }
-
         public static bool RemoveUselessInfo { get; set; }
-
+        public static HLMode HighlightMode { set; get; }
 
         public static void LoadConfig()
         {
@@ -31,6 +29,8 @@ namespace MillionHerosHelper
             string _CutHeight = INIOperation.ReadValue("config.ini", "CutScreenShot", "Heigh", "980");
             string _UseEmulator = INIOperation.ReadValue("config.ini", "CutScreenShot", "UseEmulator", Boolean.FalseString);
             string _RemoveUselessInfo = INIOperation.ReadValue("config.ini", "Other", "RemoveUselessInfo", Boolean.TrueString);
+
+            string _HighlightMode = INIOperation.ReadValue("config.ini", "Other", "HighLightMode", "1");
 
             Int32.TryParse(_CutX, out int temp);
             CutX = temp;
@@ -45,6 +45,9 @@ namespace MillionHerosHelper
             UseEmulator = _ue;
             Boolean.TryParse(_RemoveUselessInfo, out bool _rul);
             RemoveUselessInfo = _rul;
+            Int32.TryParse(_HighlightMode, out int _hlm);
+            HighlightMode = (HLMode)_hlm;
+
         }
 
         public static void SaveConfig()
@@ -58,6 +61,8 @@ namespace MillionHerosHelper
             INIOperation.WriteValue("config.ini", "CutScreenShot", "Heigh", CutHeight.ToString());
             INIOperation.WriteValue("config.ini", "CutScreenShot", "UseEmulator", UseEmulator.ToString());
             INIOperation.WriteValue("config.ini", "Other", "RemoveUselessInfo", RemoveUselessInfo.ToString());
+
+            INIOperation.WriteValue("config.ini", "Other", "HighLightMode", ((int)HighlightMode).ToString());
         }
     }
 }

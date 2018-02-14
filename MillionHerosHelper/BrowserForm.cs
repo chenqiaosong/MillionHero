@@ -16,6 +16,7 @@ namespace MillionHerosHelper
         private string[] answers;
         private string[] color = new string[] { "yellow", "limegreen", "lightblue" };
         private char[] option = new char[] { 'A', 'B', 'C' };
+        private bool highlighted = false;
         public static BrowserForm browserForm;
 
         public BrowserForm()
@@ -30,6 +31,7 @@ namespace MillionHerosHelper
 
         public void Jump(string url)
         {
+            answers = new string[0];
             webBrowser_Main.Url = new Uri(url);
         }
 
@@ -37,20 +39,54 @@ namespace MillionHerosHelper
         {
             answers = answerArr;
             webBrowser_Main.Url = new Uri(url);
+            highlighted = false;
         }
 
         private void webBrowser_Main_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            HTMLDocument document = (HTMLDocument)webBrowser_Main.Document.DomDocument;
-            IHTMLDOMNode bodyNode = (IHTMLDOMNode)webBrowser_Main.Document.Body.DomElement;
+            if (Config.HighlightMode == HLMode.Compatible)
+            {
+                HTMLDocument document = (HTMLDocument)webBrowser_Main.Document.DomDocument;
+                IHTMLDOMNode bodyNode = (IHTMLDOMNode)webBrowser_Main.Document.Body.DomElement;
+
+                for (int i = 0; i < answers.Length; i++)
+                {
+                    int.TryParse(answers[i], out int judge);
+                    if (judge > 0 && judge <= 10)
+                        continue;
+                    HighLightingText(document, bodyNode, answers[i], i);
+                }
+            }
+            else if(Config.HighlightMode == HLMode.Fast)
+            {
+                if (!highlighted)
+                {
+                    webBrowser_Main.DocumentText = HighLightingTextFast(webBrowser_Main.DocumentText);
+                    highlighted = true;
+                }
+                
+            }
+        }
+
+        private string HighLightingTextFast(string data)
+        {
+            foreach (string answer in answers)
+            {
+                if (Regex.IsMatch(answer, "^[0-9]*$") || Regex.IsMatch(answer, "<|>|:|：|\""))
+                {
+                    return data;
+                }
+            }
+
 
             for (int i = 0; i < answers.Length; i++)
             {
-                int.TryParse(answers[i], out int judge);
-                if (judge > 0 && judge <= 10)
-                    continue;
-                HighLightingText(document, bodyNode, answers[i], i);
+                data = Regex.Replace(data, Regex.Escape(answers[i]),
+                    "<span style=\"background: " + color[i] + "; \">" + option[i] + answers[i] + option[i] + "</span>",
+                    RegexOptions.IgnoreCase);
             }
+
+            return data;
         }
 
         private void HighLightingText(HTMLDocument document, IHTMLDOMNode node, string keyword, int cnt)
@@ -100,7 +136,7 @@ namespace MillionHerosHelper
             }
         }
 
-    private void BrowserForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void BrowserForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
             this.Hide();

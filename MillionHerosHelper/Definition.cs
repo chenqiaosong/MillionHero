@@ -5,6 +5,15 @@ using System.Text;
 
 namespace MillionHerosHelper
 {
+    /// <summary>
+    /// 高亮模式
+    /// </summary>
+    public enum HLMode
+    {
+        NoHighLighting,//不高亮
+        Fast,//快速模式
+        Compatible//兼容模式
+    }
 
     /// <summary>
     /// 分析结果

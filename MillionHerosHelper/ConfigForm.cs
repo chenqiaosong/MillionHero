@@ -30,6 +30,21 @@ namespace MillionHerosHelper
             textBox_API_KEY.Text = Config.OCR_API_KEY;
             textBox_SECRET_KEY.Text = Config.OCR_SECRET_KEY;
 
+            switch(Config.HighlightMode)
+            {
+                case HLMode.NoHighLighting:
+                    radioButton_NoHighLighting.Checked = true;
+                    break;
+                case HLMode.Fast:
+                    radioButton_Fast.Checked = true;
+                    break;
+                case HLMode.Compatible:
+                    radioButton_Compatible.Checked = true;
+                    break;
+                default:
+                    radioButton_Fast.Checked = true;
+                    break;
+            }
         }
 
         private void button_HowToConnect_Click(object sender, EventArgs e)
@@ -131,6 +146,20 @@ namespace MillionHerosHelper
             Config.OCR_API_KEY = textBox_API_KEY.Text;
             Config.OCR_SECRET_KEY = textBox_SECRET_KEY.Text;
             BaiDuOCR.InitBaiDuOCR(textBox_API_KEY.Text, textBox_SECRET_KEY.Text);
+
+            if (radioButton_NoHighLighting.Checked)
+            {
+                Config.HighlightMode = HLMode.NoHighLighting;
+            }
+            else if (radioButton_Compatible.Checked) 
+            {
+                Config.HighlightMode = HLMode.Compatible;
+            }
+            else
+            {
+                Config.HighlightMode = HLMode.Fast;
+            }
+
             Config.SaveConfig();
             MessageBox.Show("保存成功", "信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

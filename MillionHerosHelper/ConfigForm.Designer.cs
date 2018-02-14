@@ -61,12 +61,17 @@
             this.button_LoadCut = new System.Windows.Forms.Button();
             this.saveFileDialog_Main = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog_Main = new System.Windows.Forms.OpenFileDialog();
+            this.groupBox_HighLightMode = new System.Windows.Forms.GroupBox();
+            this.radioButton_Compatible = new System.Windows.Forms.RadioButton();
+            this.radioButton_Fast = new System.Windows.Forms.RadioButton();
+            this.radioButton_NoHighLighting = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ScreenShot)).BeginInit();
+            this.groupBox_HighLightMode.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_CheckConnect
             // 
-            this.button_CheckConnect.Location = new System.Drawing.Point(265, 69);
+            this.button_CheckConnect.Location = new System.Drawing.Point(153, 42);
             this.button_CheckConnect.Name = "button_CheckConnect";
             this.button_CheckConnect.Size = new System.Drawing.Size(135, 30);
             this.button_CheckConnect.TabIndex = 0;
@@ -89,7 +94,7 @@
             this.label_ConnectStatus.AutoSize = true;
             this.label_ConnectStatus.Font = new System.Drawing.Font("宋体", 11F);
             this.label_ConnectStatus.ForeColor = System.Drawing.Color.Orange;
-            this.label_ConnectStatus.Location = new System.Drawing.Point(100, 75);
+            this.label_ConnectStatus.Location = new System.Drawing.Point(32, 48);
             this.label_ConnectStatus.Name = "label_ConnectStatus";
             this.label_ConnectStatus.Size = new System.Drawing.Size(114, 19);
             this.label_ConnectStatus.TabIndex = 2;
@@ -108,7 +113,7 @@
             // label_Setp2
             // 
             this.label_Setp2.AutoSize = true;
-            this.label_Setp2.Location = new System.Drawing.Point(24, 119);
+            this.label_Setp2.Location = new System.Drawing.Point(23, 87);
             this.label_Setp2.Name = "label_Setp2";
             this.label_Setp2.Size = new System.Drawing.Size(286, 15);
             this.label_Setp2.TabIndex = 4;
@@ -116,7 +121,7 @@
             // 
             // pictureBox_ScreenShot
             // 
-            this.pictureBox_ScreenShot.Location = new System.Drawing.Point(27, 287);
+            this.pictureBox_ScreenShot.Location = new System.Drawing.Point(27, 265);
             this.pictureBox_ScreenShot.Name = "pictureBox_ScreenShot";
             this.pictureBox_ScreenShot.Size = new System.Drawing.Size(280, 260);
             this.pictureBox_ScreenShot.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -125,7 +130,7 @@
             // 
             // button_GetScreenShort
             // 
-            this.button_GetScreenShort.Location = new System.Drawing.Point(337, 513);
+            this.button_GetScreenShort.Location = new System.Drawing.Point(337, 491);
             this.button_GetScreenShort.Name = "button_GetScreenShort";
             this.button_GetScreenShort.Size = new System.Drawing.Size(107, 34);
             this.button_GetScreenShort.TabIndex = 6;
@@ -136,7 +141,7 @@
             // label_X
             // 
             this.label_X.AutoSize = true;
-            this.label_X.Location = new System.Drawing.Point(351, 285);
+            this.label_X.Location = new System.Drawing.Point(351, 263);
             this.label_X.Name = "label_X";
             this.label_X.Size = new System.Drawing.Size(75, 15);
             this.label_X.TabIndex = 7;
@@ -145,7 +150,7 @@
             // label_Y
             // 
             this.label_Y.AutoSize = true;
-            this.label_Y.Location = new System.Drawing.Point(351, 345);
+            this.label_Y.Location = new System.Drawing.Point(351, 323);
             this.label_Y.Name = "label_Y";
             this.label_Y.Size = new System.Drawing.Size(75, 15);
             this.label_Y.TabIndex = 8;
@@ -153,7 +158,7 @@
             // 
             // textBox_X
             // 
-            this.textBox_X.Location = new System.Drawing.Point(340, 311);
+            this.textBox_X.Location = new System.Drawing.Point(340, 289);
             this.textBox_X.Name = "textBox_X";
             this.textBox_X.Size = new System.Drawing.Size(100, 25);
             this.textBox_X.TabIndex = 9;
@@ -161,7 +166,7 @@
             // 
             // textBox_Y
             // 
-            this.textBox_Y.Location = new System.Drawing.Point(340, 368);
+            this.textBox_Y.Location = new System.Drawing.Point(340, 346);
             this.textBox_Y.Name = "textBox_Y";
             this.textBox_Y.Size = new System.Drawing.Size(100, 25);
             this.textBox_Y.TabIndex = 10;
@@ -170,7 +175,7 @@
             // label_Height
             // 
             this.label_Height.AutoSize = true;
-            this.label_Height.Location = new System.Drawing.Point(371, 400);
+            this.label_Height.Location = new System.Drawing.Point(371, 378);
             this.label_Height.Name = "label_Height";
             this.label_Height.Size = new System.Drawing.Size(37, 15);
             this.label_Height.TabIndex = 11;
@@ -179,7 +184,7 @@
             // label_Width
             // 
             this.label_Width.AutoSize = true;
-            this.label_Width.Location = new System.Drawing.Point(371, 458);
+            this.label_Width.Location = new System.Drawing.Point(371, 436);
             this.label_Width.Name = "label_Width";
             this.label_Width.Size = new System.Drawing.Size(37, 15);
             this.label_Width.TabIndex = 12;
@@ -187,7 +192,7 @@
             // 
             // textBox_Height
             // 
-            this.textBox_Height.Location = new System.Drawing.Point(340, 425);
+            this.textBox_Height.Location = new System.Drawing.Point(340, 403);
             this.textBox_Height.Name = "textBox_Height";
             this.textBox_Height.Size = new System.Drawing.Size(100, 25);
             this.textBox_Height.TabIndex = 13;
@@ -195,7 +200,7 @@
             // 
             // textBox_Width
             // 
-            this.textBox_Width.Location = new System.Drawing.Point(340, 481);
+            this.textBox_Width.Location = new System.Drawing.Point(340, 459);
             this.textBox_Width.Name = "textBox_Width";
             this.textBox_Width.Size = new System.Drawing.Size(100, 25);
             this.textBox_Width.TabIndex = 14;
@@ -203,7 +208,7 @@
             // 
             // button_SaveConfig
             // 
-            this.button_SaveConfig.Location = new System.Drawing.Point(320, 657);
+            this.button_SaveConfig.Location = new System.Drawing.Point(316, 674);
             this.button_SaveConfig.Name = "button_SaveConfig";
             this.button_SaveConfig.Size = new System.Drawing.Size(120, 35);
             this.button_SaveConfig.TabIndex = 15;
@@ -214,7 +219,7 @@
             // label_OCR
             // 
             this.label_OCR.AutoSize = true;
-            this.label_OCR.Location = new System.Drawing.Point(24, 559);
+            this.label_OCR.Location = new System.Drawing.Point(24, 544);
             this.label_OCR.Name = "label_OCR";
             this.label_OCR.Size = new System.Drawing.Size(139, 15);
             this.label_OCR.TabIndex = 16;
@@ -223,7 +228,7 @@
             // linkLabel_Apply
             // 
             this.linkLabel_Apply.AutoSize = true;
-            this.linkLabel_Apply.Location = new System.Drawing.Point(373, 559);
+            this.linkLabel_Apply.Location = new System.Drawing.Point(373, 544);
             this.linkLabel_Apply.Name = "linkLabel_Apply";
             this.linkLabel_Apply.Size = new System.Drawing.Size(67, 15);
             this.linkLabel_Apply.TabIndex = 17;
@@ -233,7 +238,7 @@
             // 
             // textBox_API_KEY
             // 
-            this.textBox_API_KEY.Location = new System.Drawing.Point(135, 589);
+            this.textBox_API_KEY.Location = new System.Drawing.Point(135, 574);
             this.textBox_API_KEY.Name = "textBox_API_KEY";
             this.textBox_API_KEY.Size = new System.Drawing.Size(305, 25);
             this.textBox_API_KEY.TabIndex = 18;
@@ -241,7 +246,7 @@
             // label_API_KEY
             // 
             this.label_API_KEY.AutoSize = true;
-            this.label_API_KEY.Location = new System.Drawing.Point(28, 592);
+            this.label_API_KEY.Location = new System.Drawing.Point(28, 577);
             this.label_API_KEY.Name = "label_API_KEY";
             this.label_API_KEY.Size = new System.Drawing.Size(71, 15);
             this.label_API_KEY.TabIndex = 19;
@@ -250,7 +255,7 @@
             // label_SECRET_KEY
             // 
             this.label_SECRET_KEY.AutoSize = true;
-            this.label_SECRET_KEY.Location = new System.Drawing.Point(26, 627);
+            this.label_SECRET_KEY.Location = new System.Drawing.Point(26, 612);
             this.label_SECRET_KEY.Name = "label_SECRET_KEY";
             this.label_SECRET_KEY.Size = new System.Drawing.Size(95, 15);
             this.label_SECRET_KEY.TabIndex = 20;
@@ -258,7 +263,7 @@
             // 
             // textBox_SECRET_KEY
             // 
-            this.textBox_SECRET_KEY.Location = new System.Drawing.Point(135, 620);
+            this.textBox_SECRET_KEY.Location = new System.Drawing.Point(135, 605);
             this.textBox_SECRET_KEY.Name = "textBox_SECRET_KEY";
             this.textBox_SECRET_KEY.Size = new System.Drawing.Size(305, 25);
             this.textBox_SECRET_KEY.TabIndex = 21;
@@ -266,7 +271,7 @@
             // checkBox_PCScreen
             // 
             this.checkBox_PCScreen.AutoSize = true;
-            this.checkBox_PCScreen.Location = new System.Drawing.Point(320, 118);
+            this.checkBox_PCScreen.Location = new System.Drawing.Point(315, 87);
             this.checkBox_PCScreen.Name = "checkBox_PCScreen";
             this.checkBox_PCScreen.Size = new System.Drawing.Size(134, 19);
             this.checkBox_PCScreen.TabIndex = 22;
@@ -276,7 +281,7 @@
             // label_PC
             // 
             this.label_PC.AutoSize = true;
-            this.label_PC.Location = new System.Drawing.Point(83, 49);
+            this.label_PC.Location = new System.Drawing.Point(303, 52);
             this.label_PC.Name = "label_PC";
             this.label_PC.Size = new System.Drawing.Size(157, 15);
             this.label_PC.TabIndex = 23;
@@ -284,7 +289,7 @@
             // 
             // button_GetArea
             // 
-            this.button_GetArea.Location = new System.Drawing.Point(27, 202);
+            this.button_GetArea.Location = new System.Drawing.Point(27, 180);
             this.button_GetArea.Name = "button_GetArea";
             this.button_GetArea.Size = new System.Drawing.Size(215, 54);
             this.button_GetArea.TabIndex = 24;
@@ -295,7 +300,7 @@
             // label_ScreenShot
             // 
             this.label_ScreenShot.AutoSize = true;
-            this.label_ScreenShot.Location = new System.Drawing.Point(33, 261);
+            this.label_ScreenShot.Location = new System.Drawing.Point(33, 239);
             this.label_ScreenShot.Name = "label_ScreenShot";
             this.label_ScreenShot.Size = new System.Drawing.Size(67, 15);
             this.label_ScreenShot.TabIndex = 25;
@@ -305,7 +310,7 @@
             // 
             this.label_Tip.AutoSize = true;
             this.label_Tip.ForeColor = System.Drawing.Color.Red;
-            this.label_Tip.Location = new System.Drawing.Point(77, 176);
+            this.label_Tip.Location = new System.Drawing.Point(76, 146);
             this.label_Tip.Name = "label_Tip";
             this.label_Tip.Size = new System.Drawing.Size(323, 15);
             this.label_Tip.TabIndex = 27;
@@ -314,7 +319,7 @@
             // label_Tip2
             // 
             this.label_Tip2.AutoSize = true;
-            this.label_Tip2.Location = new System.Drawing.Point(12, 151);
+            this.label_Tip2.Location = new System.Drawing.Point(11, 121);
             this.label_Tip2.Name = "label_Tip2";
             this.label_Tip2.Size = new System.Drawing.Size(458, 15);
             this.label_Tip2.TabIndex = 28;
@@ -323,7 +328,7 @@
             // checkBox_RemoveUselessInfo
             // 
             this.checkBox_RemoveUselessInfo.AutoSize = true;
-            this.checkBox_RemoveUselessInfo.Location = new System.Drawing.Point(27, 666);
+            this.checkBox_RemoveUselessInfo.Location = new System.Drawing.Point(296, 649);
             this.checkBox_RemoveUselessInfo.Name = "checkBox_RemoveUselessInfo";
             this.checkBox_RemoveUselessInfo.Size = new System.Drawing.Size(164, 19);
             this.checkBox_RemoveUselessInfo.TabIndex = 29;
@@ -332,7 +337,7 @@
             // 
             // button_SaveCut
             // 
-            this.button_SaveCut.Location = new System.Drawing.Point(248, 212);
+            this.button_SaveCut.Location = new System.Drawing.Point(248, 190);
             this.button_SaveCut.Name = "button_SaveCut";
             this.button_SaveCut.Size = new System.Drawing.Size(100, 35);
             this.button_SaveCut.TabIndex = 30;
@@ -342,7 +347,7 @@
             // 
             // button_LoadCut
             // 
-            this.button_LoadCut.Location = new System.Drawing.Point(360, 212);
+            this.button_LoadCut.Location = new System.Drawing.Point(360, 190);
             this.button_LoadCut.Name = "button_LoadCut";
             this.button_LoadCut.Size = new System.Drawing.Size(100, 35);
             this.button_LoadCut.TabIndex = 31;
@@ -358,11 +363,57 @@
             // 
             this.openFileDialog_Main.FileName = "截图参数.txt";
             // 
+            // groupBox_HighLightMode
+            // 
+            this.groupBox_HighLightMode.Controls.Add(this.radioButton_NoHighLighting);
+            this.groupBox_HighLightMode.Controls.Add(this.radioButton_Compatible);
+            this.groupBox_HighLightMode.Controls.Add(this.radioButton_Fast);
+            this.groupBox_HighLightMode.Location = new System.Drawing.Point(27, 648);
+            this.groupBox_HighLightMode.Name = "groupBox_HighLightMode";
+            this.groupBox_HighLightMode.Size = new System.Drawing.Size(253, 59);
+            this.groupBox_HighLightMode.TabIndex = 33;
+            this.groupBox_HighLightMode.TabStop = false;
+            this.groupBox_HighLightMode.Text = "4.选项高亮";
+            // 
+            // radioButton_Compatible
+            // 
+            this.radioButton_Compatible.AutoSize = true;
+            this.radioButton_Compatible.Location = new System.Drawing.Point(179, 26);
+            this.radioButton_Compatible.Name = "radioButton_Compatible";
+            this.radioButton_Compatible.Size = new System.Drawing.Size(58, 19);
+            this.radioButton_Compatible.TabIndex = 1;
+            this.radioButton_Compatible.Text = "兼容";
+            this.radioButton_Compatible.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_Fast
+            // 
+            this.radioButton_Fast.AutoSize = true;
+            this.radioButton_Fast.Checked = true;
+            this.radioButton_Fast.Location = new System.Drawing.Point(108, 26);
+            this.radioButton_Fast.Name = "radioButton_Fast";
+            this.radioButton_Fast.Size = new System.Drawing.Size(58, 19);
+            this.radioButton_Fast.TabIndex = 0;
+            this.radioButton_Fast.TabStop = true;
+            this.radioButton_Fast.Text = "快速";
+            this.radioButton_Fast.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_NoHighLighting
+            // 
+            this.radioButton_NoHighLighting.AutoSize = true;
+            this.radioButton_NoHighLighting.Location = new System.Drawing.Point(12, 26);
+            this.radioButton_NoHighLighting.Name = "radioButton_NoHighLighting";
+            this.radioButton_NoHighLighting.Size = new System.Drawing.Size(73, 19);
+            this.radioButton_NoHighLighting.TabIndex = 2;
+            this.radioButton_NoHighLighting.TabStop = true;
+            this.radioButton_NoHighLighting.Text = "不高亮";
+            this.radioButton_NoHighLighting.UseVisualStyleBackColor = true;
+            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(472, 703);
+            this.ClientSize = new System.Drawing.Size(472, 723);
+            this.Controls.Add(this.groupBox_HighLightMode);
             this.Controls.Add(this.button_LoadCut);
             this.Controls.Add(this.button_SaveCut);
             this.Controls.Add(this.checkBox_RemoveUselessInfo);
@@ -400,6 +451,8 @@
             this.Text = "配置引导";
             this.Load += new System.EventHandler(this.ConfigForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ScreenShot)).EndInit();
+            this.groupBox_HighLightMode.ResumeLayout(false);
+            this.groupBox_HighLightMode.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -440,5 +493,9 @@
         private System.Windows.Forms.Button button_LoadCut;
         private System.Windows.Forms.SaveFileDialog saveFileDialog_Main;
         private System.Windows.Forms.OpenFileDialog openFileDialog_Main;
+        private System.Windows.Forms.GroupBox groupBox_HighLightMode;
+        private System.Windows.Forms.RadioButton radioButton_Compatible;
+        private System.Windows.Forms.RadioButton radioButton_Fast;
+        private System.Windows.Forms.RadioButton radioButton_NoHighLighting;
     }
 }
