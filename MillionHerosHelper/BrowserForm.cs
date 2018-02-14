@@ -43,7 +43,7 @@ namespace MillionHerosHelper
             }
             else
             {
-                option = new char[] { '\0', '\0', '\0' };
+                option = new char[] { ' ', ' ', ' ' };
             }
 
             answers = answerArr;

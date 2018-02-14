@@ -66,6 +66,7 @@
             this.radioButton_Compatible = new System.Windows.Forms.RadioButton();
             this.radioButton_Fast = new System.Windows.Forms.RadioButton();
             this.checkBox_ShowABC = new System.Windows.Forms.CheckBox();
+            this.checkBox_UseSoGou = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ScreenShot)).BeginInit();
             this.groupBox_HighLightMode.SuspendLayout();
             this.SuspendLayout();
@@ -209,7 +210,7 @@
             // 
             // button_SaveConfig
             // 
-            this.button_SaveConfig.Location = new System.Drawing.Point(187, 713);
+            this.button_SaveConfig.Location = new System.Drawing.Point(329, 706);
             this.button_SaveConfig.Name = "button_SaveConfig";
             this.button_SaveConfig.Size = new System.Drawing.Size(120, 35);
             this.button_SaveConfig.TabIndex = 15;
@@ -419,11 +420,22 @@
             this.checkBox_ShowABC.Text = "高亮时附带ABC";
             this.checkBox_ShowABC.UseVisualStyleBackColor = true;
             // 
+            // checkBox_UseSoGou
+            // 
+            this.checkBox_UseSoGou.AutoSize = true;
+            this.checkBox_UseSoGou.Location = new System.Drawing.Point(26, 715);
+            this.checkBox_UseSoGou.Name = "checkBox_UseSoGou";
+            this.checkBox_UseSoGou.Size = new System.Drawing.Size(149, 19);
+            this.checkBox_UseSoGou.TabIndex = 35;
+            this.checkBox_UseSoGou.Text = "使用搜狗搜索引擎";
+            this.checkBox_UseSoGou.UseVisualStyleBackColor = true;
+            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(472, 753);
+            this.Controls.Add(this.checkBox_UseSoGou);
             this.Controls.Add(this.checkBox_ShowABC);
             this.Controls.Add(this.groupBox_HighLightMode);
             this.Controls.Add(this.button_LoadCut);
@@ -510,5 +522,6 @@
         private System.Windows.Forms.RadioButton radioButton_Fast;
         private System.Windows.Forms.RadioButton radioButton_NoHighLighting;
         private System.Windows.Forms.CheckBox checkBox_ShowABC;
+        private System.Windows.Forms.CheckBox checkBox_UseSoGou;
     }
 }

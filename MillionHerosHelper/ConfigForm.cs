@@ -27,6 +27,7 @@ namespace MillionHerosHelper
             checkBox_PCScreen.Checked = Config.UseEmulator;
             checkBox_RemoveUselessInfo.Checked = Config.RemoveUselessInfo;
             checkBox_ShowABC.Checked = Config.ShowABC;
+            checkBox_UseSoGou.Checked = Config.UseSoGou;
 
             textBox_API_KEY.Text = Config.OCR_API_KEY;
             textBox_SECRET_KEY.Text = Config.OCR_SECRET_KEY;
@@ -145,6 +146,7 @@ namespace MillionHerosHelper
             Config.UseEmulator = checkBox_PCScreen.Checked;
             Config.RemoveUselessInfo = checkBox_RemoveUselessInfo.Checked;
             Config.ShowABC = checkBox_ShowABC.Checked;
+            Config.UseSoGou = checkBox_UseSoGou.Checked;
             Config.OCR_API_KEY = textBox_API_KEY.Text;
             Config.OCR_SECRET_KEY = textBox_SECRET_KEY.Text;
             BaiDuOCR.InitBaiDuOCR(textBox_API_KEY.Text, textBox_SECRET_KEY.Text);

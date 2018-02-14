@@ -324,13 +324,23 @@ namespace MillionHerosHelper
             }
 
             string url;
-            if (Config.RemoveUselessInfo) 
+
+            if (!Config.UseSoGou)
             {
-                url = "http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text));
+                url = "http://www.baidu.com/s?wd=";
             }
             else
             {
-                url = "http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text);
+                url = "https://www.sogou.com/web?query=";
+            }
+
+            if (Config.RemoveUselessInfo) 
+            {
+                url += SearchEngine.UrlEncode(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text));
+            }
+            else
+            {
+                url += SearchEngine.UrlEncode(textBox_Problem.Text);
             }
             
             browserForm.HighlightAndShowPage(url, new string[] { textBox_AnswerA.Text, textBox_AnswerB.Text, textBox_AnswerC.Text });
