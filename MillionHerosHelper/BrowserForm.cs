@@ -37,6 +37,15 @@ namespace MillionHerosHelper
 
         public void HighlightAndShowPage(string url, string[] answerArr)
         {
+            if(Config.ShowABC)
+            {
+                option = new char[] { 'A', 'B', 'C' };
+            }
+            else
+            {
+                option = new char[] { '\0', '\0', '\0' };
+            }
+
             answers = answerArr;
             webBrowser_Main.Url = new Uri(url);
             highlighted = false;

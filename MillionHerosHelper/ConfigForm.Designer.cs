@@ -62,9 +62,10 @@
             this.saveFileDialog_Main = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog_Main = new System.Windows.Forms.OpenFileDialog();
             this.groupBox_HighLightMode = new System.Windows.Forms.GroupBox();
+            this.radioButton_NoHighLighting = new System.Windows.Forms.RadioButton();
             this.radioButton_Compatible = new System.Windows.Forms.RadioButton();
             this.radioButton_Fast = new System.Windows.Forms.RadioButton();
-            this.radioButton_NoHighLighting = new System.Windows.Forms.RadioButton();
+            this.checkBox_ShowABC = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ScreenShot)).BeginInit();
             this.groupBox_HighLightMode.SuspendLayout();
             this.SuspendLayout();
@@ -208,7 +209,7 @@
             // 
             // button_SaveConfig
             // 
-            this.button_SaveConfig.Location = new System.Drawing.Point(316, 674);
+            this.button_SaveConfig.Location = new System.Drawing.Point(187, 713);
             this.button_SaveConfig.Name = "button_SaveConfig";
             this.button_SaveConfig.Size = new System.Drawing.Size(120, 35);
             this.button_SaveConfig.TabIndex = 15;
@@ -375,6 +376,17 @@
             this.groupBox_HighLightMode.TabStop = false;
             this.groupBox_HighLightMode.Text = "4.选项高亮";
             // 
+            // radioButton_NoHighLighting
+            // 
+            this.radioButton_NoHighLighting.AutoSize = true;
+            this.radioButton_NoHighLighting.Location = new System.Drawing.Point(12, 26);
+            this.radioButton_NoHighLighting.Name = "radioButton_NoHighLighting";
+            this.radioButton_NoHighLighting.Size = new System.Drawing.Size(73, 19);
+            this.radioButton_NoHighLighting.TabIndex = 2;
+            this.radioButton_NoHighLighting.TabStop = true;
+            this.radioButton_NoHighLighting.Text = "不高亮";
+            this.radioButton_NoHighLighting.UseVisualStyleBackColor = true;
+            // 
             // radioButton_Compatible
             // 
             this.radioButton_Compatible.AutoSize = true;
@@ -397,22 +409,22 @@
             this.radioButton_Fast.Text = "快速";
             this.radioButton_Fast.UseVisualStyleBackColor = true;
             // 
-            // radioButton_NoHighLighting
+            // checkBox_ShowABC
             // 
-            this.radioButton_NoHighLighting.AutoSize = true;
-            this.radioButton_NoHighLighting.Location = new System.Drawing.Point(12, 26);
-            this.radioButton_NoHighLighting.Name = "radioButton_NoHighLighting";
-            this.radioButton_NoHighLighting.Size = new System.Drawing.Size(73, 19);
-            this.radioButton_NoHighLighting.TabIndex = 2;
-            this.radioButton_NoHighLighting.TabStop = true;
-            this.radioButton_NoHighLighting.Text = "不高亮";
-            this.radioButton_NoHighLighting.UseVisualStyleBackColor = true;
+            this.checkBox_ShowABC.AutoSize = true;
+            this.checkBox_ShowABC.Location = new System.Drawing.Point(296, 675);
+            this.checkBox_ShowABC.Name = "checkBox_ShowABC";
+            this.checkBox_ShowABC.Size = new System.Drawing.Size(128, 19);
+            this.checkBox_ShowABC.TabIndex = 34;
+            this.checkBox_ShowABC.Text = "高亮时附带ABC";
+            this.checkBox_ShowABC.UseVisualStyleBackColor = true;
             // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(472, 723);
+            this.ClientSize = new System.Drawing.Size(472, 753);
+            this.Controls.Add(this.checkBox_ShowABC);
             this.Controls.Add(this.groupBox_HighLightMode);
             this.Controls.Add(this.button_LoadCut);
             this.Controls.Add(this.button_SaveCut);
@@ -497,5 +509,6 @@
         private System.Windows.Forms.RadioButton radioButton_Compatible;
         private System.Windows.Forms.RadioButton radioButton_Fast;
         private System.Windows.Forms.RadioButton radioButton_NoHighLighting;
+        private System.Windows.Forms.CheckBox checkBox_ShowABC;
     }
 }
