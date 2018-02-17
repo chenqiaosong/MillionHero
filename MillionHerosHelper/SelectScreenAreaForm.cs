@@ -58,7 +58,6 @@ namespace MillionHerosHelper
         private void SelectScreenAreaForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             double radio = (double)screenshot.Width / pictureBox_Main.Width;
-            System.Diagnostics.Debug.WriteLine(radio);
             int x = (int)(startX * radio);
             int y = (int)(startY * radio);
             int width = (int)((endX - startX) * radio);

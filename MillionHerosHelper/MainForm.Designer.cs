@@ -49,8 +49,8 @@
             this.linkLabel_DLNewVer = new System.Windows.Forms.LinkLabel();
             this.label_Info = new System.Windows.Forms.Label();
             this.button_SearchA = new System.Windows.Forms.Button();
-            this.button__SearchB = new System.Windows.Forms.Button();
-            this.button__SearchC = new System.Windows.Forms.Button();
+            this.button_SearchB = new System.Windows.Forms.Button();
+            this.button_SearchC = new System.Windows.Forms.Button();
             this.button_Pay = new System.Windows.Forms.Button();
             this.linkLabel_Fresh = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
@@ -265,25 +265,25 @@
             this.button_SearchA.UseVisualStyleBackColor = true;
             this.button_SearchA.Click += new System.EventHandler(this.button_SearchA_Click);
             // 
-            // button__SearchB
+            // button_SearchB
             // 
-            this.button__SearchB.Location = new System.Drawing.Point(100, 319);
-            this.button__SearchB.Name = "button__SearchB";
-            this.button__SearchB.Size = new System.Drawing.Size(75, 23);
-            this.button__SearchB.TabIndex = 34;
-            this.button__SearchB.Text = "搜索";
-            this.button__SearchB.UseVisualStyleBackColor = true;
-            this.button__SearchB.Click += new System.EventHandler(this.button__SearchB_Click);
+            this.button_SearchB.Location = new System.Drawing.Point(100, 319);
+            this.button_SearchB.Name = "button_SearchB";
+            this.button_SearchB.Size = new System.Drawing.Size(75, 23);
+            this.button_SearchB.TabIndex = 34;
+            this.button_SearchB.Text = "搜索";
+            this.button_SearchB.UseVisualStyleBackColor = true;
+            this.button_SearchB.Click += new System.EventHandler(this.button_SearchB_Click);
             // 
-            // button__SearchC
+            // button_SearchC
             // 
-            this.button__SearchC.Location = new System.Drawing.Point(100, 420);
-            this.button__SearchC.Name = "button__SearchC";
-            this.button__SearchC.Size = new System.Drawing.Size(75, 23);
-            this.button__SearchC.TabIndex = 35;
-            this.button__SearchC.Text = "搜索";
-            this.button__SearchC.UseVisualStyleBackColor = true;
-            this.button__SearchC.Click += new System.EventHandler(this.button__SearchC_Click);
+            this.button_SearchC.Location = new System.Drawing.Point(100, 420);
+            this.button_SearchC.Name = "button_SearchC";
+            this.button_SearchC.Size = new System.Drawing.Size(75, 23);
+            this.button_SearchC.TabIndex = 35;
+            this.button_SearchC.Text = "搜索";
+            this.button_SearchC.UseVisualStyleBackColor = true;
+            this.button_SearchC.Click += new System.EventHandler(this.button_SearchC_Click);
             // 
             // button_Pay
             // 
@@ -313,8 +313,8 @@
             this.ClientSize = new System.Drawing.Size(512, 563);
             this.Controls.Add(this.linkLabel_Fresh);
             this.Controls.Add(this.button_Pay);
-            this.Controls.Add(this.button__SearchC);
-            this.Controls.Add(this.button__SearchB);
+            this.Controls.Add(this.button_SearchC);
+            this.Controls.Add(this.button_SearchB);
             this.Controls.Add(this.button_SearchA);
             this.Controls.Add(this.label_Info);
             this.Controls.Add(this.linkLabel_DLNewVer);
@@ -371,8 +371,8 @@
         private System.Windows.Forms.LinkLabel linkLabel_DLNewVer;
         private System.Windows.Forms.Label label_Info;
         private System.Windows.Forms.Button button_SearchA;
-        private System.Windows.Forms.Button button__SearchB;
-        private System.Windows.Forms.Button button__SearchC;
+        private System.Windows.Forms.Button button_SearchB;
+        private System.Windows.Forms.Button button_SearchC;
         private System.Windows.Forms.Button button_Pay;
         private System.Windows.Forms.LinkLabel linkLabel_Fresh;
     }

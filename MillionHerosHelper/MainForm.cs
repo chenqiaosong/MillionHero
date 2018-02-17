@@ -120,37 +120,71 @@ namespace MillionHerosHelper
 
         private void button_SearchA_Click(object sender, EventArgs e)
         {
-            if (Config.RemoveUselessInfo)//移除无用信息
+            string url;
+
+            if (!Config.UseSoGou)
             {
-                browserForm.Jump("http://www.baidu.com/s?wd=" + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerA.Text));
+                url = "http://www.baidu.com/s?wd=";
             }
             else
             {
-                browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerA.Text));
+                url = "https://www.sogou.com/web?query=";
+            }
+
+            if (Config.RemoveUselessInfo)//移除无用信息
+            {
+                browserForm.Jump(url + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerA.Text));
+            }
+            else
+            {
+                browserForm.Jump(url + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerA.Text));
             }
         }
 
-        private void button__SearchB_Click(object sender, EventArgs e)
+        private void button_SearchB_Click(object sender, EventArgs e)
         {
-            if (Config.RemoveUselessInfo)//移除无用信息
+            string url;
+
+            if (!Config.UseSoGou)
             {
-                browserForm.Jump("http://www.baidu.com/s?wd=" + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerB.Text));
+                url = "http://www.baidu.com/s?wd=";
             }
             else
             {
-                browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerB.Text));
+                url = "https://www.sogou.com/web?query=";
+            }
+
+            if (Config.RemoveUselessInfo)//移除无用信息
+            {
+                browserForm.Jump(url + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerB.Text));
+            }
+            else
+            {
+                browserForm.Jump(url + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerB.Text));
             }
         }
 
-        private void button__SearchC_Click(object sender, EventArgs e)
+        private void button_SearchC_Click(object sender, EventArgs e)
         {
-            if (Config.RemoveUselessInfo)//移除无用信息
+            string url;
+
+            if (!Config.UseSoGou)
             {
-                browserForm.Jump("http://www.baidu.com/s?wd=" + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerC.Text));
+                url = "http://www.baidu.com/s?wd=";
             }
             else
             {
-                browserForm.Jump("http://www.baidu.com/s?wd=" + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerC.Text));
+                url = "https://www.sogou.com/web?query=";
+            }
+
+
+            if (Config.RemoveUselessInfo)//移除无用信息
+            {
+                browserForm.Jump(url + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerC.Text));
+            }
+            else
+            {
+                browserForm.Jump(url + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerC.Text));
             }
         }
 
