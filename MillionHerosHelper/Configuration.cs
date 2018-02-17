@@ -35,7 +35,7 @@ namespace MillionHerosHelper
             string _ShowABC = INIOperation.ReadValue("config.ini", "Other", "ShowABC", Boolean.TrueString);
             string _UseSoGou = INIOperation.ReadValue("config.ini", "Other", "UseSoGou", Boolean.FalseString);
 
-            string _HighlightMode = INIOperation.ReadValue("config.ini", "Other", "HighLightMode", "1");
+            string _HighlightMode = INIOperation.ReadValue("config.ini", "Other", "HighLightMode", "2");
 
             Int32.TryParse(_CutX, out int temp);
             CutX = temp;
