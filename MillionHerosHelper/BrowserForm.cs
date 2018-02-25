@@ -14,8 +14,8 @@ namespace MillionHerosHelper
     public partial class BrowserForm : Form
     {
         private string[] answers;
-        private string[] color = new string[] { "yellow", "limegreen", "lightblue" };
-        private char[] option = new char[] { 'A', 'B', 'C' };
+        private string[] color = new string[] { "yellow", "limegreen", "lightblue" , "red"};
+        private char[] option = new char[] { 'A', 'B', 'C', 'D' };
         private bool highlighted = false;
         public static BrowserForm browserForm;
 
@@ -39,11 +39,11 @@ namespace MillionHerosHelper
         {
             if(Config.ShowABC)
             {
-                option = new char[] { 'A', 'B', 'C' };
+                option = new char[] { 'A', 'B', 'C', 'D' };
             }
             else
             {
-                option = new char[] { ' ', ' ', ' ' };
+                option = new char[] { ' ', ' ', ' ', ' ' };
             }
 
             answers = answerArr;

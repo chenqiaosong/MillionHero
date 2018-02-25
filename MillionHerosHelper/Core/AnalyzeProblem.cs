@@ -164,6 +164,7 @@ namespace MillionHerosHelper
                 int[] arr = (args.Type == TaskType.AnswerCnt) ? answerCnt : problemAndAnswerCnt;
                 arr[args.Index] = SearchEngine.StatisticsKeyword(args.Text);
             }
+            Debug.WriteLine(args.Index);
         }
 
         /// <summary>

@@ -53,6 +53,11 @@
             this.button_SearchC = new System.Windows.Forms.Button();
             this.button_Pay = new System.Windows.Forms.Button();
             this.linkLabel_Fresh = new System.Windows.Forms.LinkLabel();
+            this.button_SearchD = new System.Windows.Forms.Button();
+            this.textBox_AnswerD = new System.Windows.Forms.TextBox();
+            this.label_AnswerD = new System.Windows.Forms.Label();
+            this.checkBox_EnableD = new System.Windows.Forms.CheckBox();
+            this.label_AnalyzeD = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button_Config
@@ -156,7 +161,7 @@
             // 
             this.label_Message.AutoSize = true;
             this.label_Message.Font = new System.Drawing.Font("宋体", 13F);
-            this.label_Message.Location = new System.Drawing.Point(12, 520);
+            this.label_Message.Location = new System.Drawing.Point(12, 614);
             this.label_Message.Name = "label_Message";
             this.label_Message.Size = new System.Drawing.Size(395, 22);
             this.label_Message.TabIndex = 23;
@@ -306,11 +311,69 @@
             this.linkLabel_Fresh.Text = "新手教程";
             this.linkLabel_Fresh.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_Fresh_LinkClicked);
             // 
+            // button_SearchD
+            // 
+            this.button_SearchD.Enabled = false;
+            this.button_SearchD.Location = new System.Drawing.Point(101, 520);
+            this.button_SearchD.Name = "button_SearchD";
+            this.button_SearchD.Size = new System.Drawing.Size(75, 23);
+            this.button_SearchD.TabIndex = 40;
+            this.button_SearchD.Text = "搜索";
+            this.button_SearchD.UseVisualStyleBackColor = true;
+            // 
+            // textBox_AnswerD
+            // 
+            this.textBox_AnswerD.Enabled = false;
+            this.textBox_AnswerD.Font = new System.Drawing.Font("宋体", 13F);
+            this.textBox_AnswerD.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.textBox_AnswerD.Location = new System.Drawing.Point(33, 561);
+            this.textBox_AnswerD.Name = "textBox_AnswerD";
+            this.textBox_AnswerD.ReadOnly = true;
+            this.textBox_AnswerD.Size = new System.Drawing.Size(440, 32);
+            this.textBox_AnswerD.TabIndex = 39;
+            // 
+            // label_AnswerD
+            // 
+            this.label_AnswerD.AutoSize = true;
+            this.label_AnswerD.Enabled = false;
+            this.label_AnswerD.Location = new System.Drawing.Point(31, 524);
+            this.label_AnswerD.Name = "label_AnswerD";
+            this.label_AnswerD.Size = new System.Drawing.Size(45, 15);
+            this.label_AnswerD.TabIndex = 38;
+            this.label_AnswerD.Text = "选项D";
+            // 
+            // checkBox_EnableD
+            // 
+            this.checkBox_EnableD.AutoSize = true;
+            this.checkBox_EnableD.Location = new System.Drawing.Point(182, 521);
+            this.checkBox_EnableD.Name = "checkBox_EnableD";
+            this.checkBox_EnableD.Size = new System.Drawing.Size(119, 19);
+            this.checkBox_EnableD.TabIndex = 41;
+            this.checkBox_EnableD.Text = "启用第四选项";
+            this.checkBox_EnableD.UseVisualStyleBackColor = true;
+            this.checkBox_EnableD.CheckStateChanged += new System.EventHandler(this.checkBox_EnableD_CheckStateChanged);
+            // 
+            // label_AnalyzeD
+            // 
+            this.label_AnalyzeD.AutoSize = true;
+            this.label_AnalyzeD.Enabled = false;
+            this.label_AnalyzeD.Font = new System.Drawing.Font("宋体", 10F);
+            this.label_AnalyzeD.ForeColor = System.Drawing.Color.DarkGreen;
+            this.label_AnalyzeD.Location = new System.Drawing.Point(322, 520);
+            this.label_AnalyzeD.Name = "label_AnalyzeD";
+            this.label_AnalyzeD.Size = new System.Drawing.Size(0, 17);
+            this.label_AnalyzeD.TabIndex = 42;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(512, 563);
+            this.ClientSize = new System.Drawing.Size(512, 653);
+            this.Controls.Add(this.label_AnalyzeD);
+            this.Controls.Add(this.checkBox_EnableD);
+            this.Controls.Add(this.button_SearchD);
+            this.Controls.Add(this.textBox_AnswerD);
+            this.Controls.Add(this.label_AnswerD);
             this.Controls.Add(this.linkLabel_Fresh);
             this.Controls.Add(this.button_Pay);
             this.Controls.Add(this.button_SearchC);
@@ -375,6 +438,11 @@
         private System.Windows.Forms.Button button_SearchC;
         private System.Windows.Forms.Button button_Pay;
         private System.Windows.Forms.LinkLabel linkLabel_Fresh;
+        private System.Windows.Forms.Button button_SearchD;
+        private System.Windows.Forms.TextBox textBox_AnswerD;
+        private System.Windows.Forms.Label label_AnswerD;
+        private System.Windows.Forms.CheckBox checkBox_EnableD;
+        private System.Windows.Forms.Label label_AnalyzeD;
     }
 }
 

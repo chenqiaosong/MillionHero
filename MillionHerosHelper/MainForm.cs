@@ -107,10 +107,12 @@ namespace MillionHerosHelper
         }
         private void checkBox_InPutProblem_CheckedChanged(object sender, EventArgs e)
         {
-            textBox_Problem.ReadOnly = !checkBox_InPutProblem.Checked;
-            textBox_AnswerA.ReadOnly = !checkBox_InPutProblem.Checked;
-            textBox_AnswerB.ReadOnly = !checkBox_InPutProblem.Checked;
-            textBox_AnswerC.ReadOnly = !checkBox_InPutProblem.Checked;
+            bool readOnly = !checkBox_InPutProblem.Checked;
+            textBox_Problem.ReadOnly = readOnly;
+            textBox_AnswerA.ReadOnly = readOnly;
+            textBox_AnswerB.ReadOnly = readOnly;
+            textBox_AnswerC.ReadOnly = readOnly;
+            textBox_AnswerD.ReadOnly = readOnly;
         }
 
         private void linkLabel_DLNewVer_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -214,6 +216,7 @@ namespace MillionHerosHelper
             label_AnalyzeA.Text = "";
             label_AnalyzeB.Text = "";
             label_AnalyzeC.Text = "";
+            label_AnalyzeD.Text = "";
 
             solveProblemThread = new Thread(new ThreadStart(BeginSolveProblem));
             solveProblemThread.Start();
@@ -337,6 +340,11 @@ namespace MillionHerosHelper
                     notEmptyIndex--;
                 }
 
+                if (checkBox_EnableD.Checked) 
+                {
+                    textBox_AnswerD.Text = AnalyzeProblem.RemoveABC(recRes[notEmptyIndex--]);
+                }
+
                 textBox_AnswerC.Text = AnalyzeProblem.RemoveABC(recRes[notEmptyIndex--]);
                 textBox_AnswerB.Text = AnalyzeProblem.RemoveABC(recRes[notEmptyIndex--]);
                 textBox_AnswerA.Text = AnalyzeProblem.RemoveABC(recRes[notEmptyIndex--]);
@@ -376,16 +384,25 @@ namespace MillionHerosHelper
             {
                 url += SearchEngine.UrlEncode(textBox_Problem.Text);
             }
-            
-            browserForm.HighlightAndShowPage(url, new string[] { textBox_AnswerA.Text, textBox_AnswerB.Text, textBox_AnswerC.Text });
+
+            string[] answerArr;
+            if (checkBox_EnableD.Checked)
+            {
+                answerArr = new string[] { textBox_AnswerA.Text, textBox_AnswerB.Text, textBox_AnswerC.Text , textBox_AnswerD.Text};
+            }
+            else
+            {
+                answerArr = new string[] { textBox_AnswerA.Text, textBox_AnswerB.Text, textBox_AnswerC.Text };
+            }
+
+            browserForm.HighlightAndShowPage(url, answerArr);
             browserForm.Show();
             browserForm.WindowState = FormWindowState.Normal;
 
             label_Message.Text = "正在分析题目";
             //分析问题
-            string[] answerArr = new string[] { textBox_AnswerA.Text, textBox_AnswerB.Text, textBox_AnswerC.Text };
             AnalyzeResult aRes = AnalyzeProblem.Analyze(textBox_Problem.Text, answerArr);
-            char[] ans = new char[3] { 'A', 'B', 'C' };
+            char[] ans = new char[4] { 'A', 'B', 'C' , 'D'};
             label_Message.Text = "最有可能选择:" + ans[aRes.Index] + "项!" + answerArr[aRes.Index];
             if (aRes.Oppose)
             {
@@ -396,9 +413,11 @@ namespace MillionHerosHelper
             label_AnalyzeA.ForeColor = Color.DarkGreen;
             label_AnalyzeB.ForeColor = Color.DarkGreen;
             label_AnalyzeC.ForeColor = Color.DarkGreen;
+            label_AnalyzeD.ForeColor = Color.DarkGreen;
             textBox_AnswerA.ForeColor = Color.Black;
             textBox_AnswerB.ForeColor = Color.Black;
             textBox_AnswerC.ForeColor = Color.Black;
+            textBox_AnswerD.ForeColor = Color.Black;
 
             switch (aRes.Index)
             {
@@ -411,12 +430,19 @@ namespace MillionHerosHelper
                 case 2: label_AnalyzeC.ForeColor = Color.Red; 
                         textBox_AnswerC.ForeColor = Color.Red;
                         break;
+                case 3: label_AnalyzeD.ForeColor = Color.Red;
+                        textBox_AnswerD.ForeColor = Color.Red;
+                        break;
             }
 
             //显示概率
             label_AnalyzeA.Text = "概率:" + aRes.Probability[0].ToString() + "%";
             label_AnalyzeB.Text = "概率:" + aRes.Probability[1].ToString() + "%";
             label_AnalyzeC.Text = "概率:" + aRes.Probability[2].ToString() + "%";
+            if(checkBox_EnableD.Checked)
+            {
+                label_AnalyzeD.Text = "概率:" + aRes.Probability[3].ToString() + "%"; 
+            }
         }
 
         /// <summary>
@@ -440,5 +466,13 @@ namespace MillionHerosHelper
         }
         #endregion
 
+        private void checkBox_EnableD_CheckStateChanged(object sender, EventArgs e)
+        {
+            bool ckd = checkBox_EnableD.Checked;
+            label_AnswerD.Enabled = ckd;
+            label_AnalyzeD.Enabled = ckd;
+            button_SearchD.Enabled = ckd;
+            textBox_AnswerD.Enabled = ckd;
+        }
     }
 }
