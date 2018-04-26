@@ -25,7 +25,16 @@ namespace MillionHerosHelper
                     InitBaiDuOCR(Config.OCR_API_KEY, Config.OCR_SECRET_KEY);
                 }
 
-                JObject res = OCR.GeneralBasic(image);
+                JObject res;
+                if (Config.OCREnhance)
+                {
+                    res = OCR.AccurateBasic(image);
+                }
+                else
+                {
+                    res = OCR.GeneralBasic(image);
+                }
+                System.Diagnostics.Debug.WriteLine(res.ToString());
 
                 JToken[] arr = res["words_result"].ToArray();
                 StringBuilder sb = new StringBuilder();

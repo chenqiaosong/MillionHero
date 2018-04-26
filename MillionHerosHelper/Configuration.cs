@@ -18,6 +18,7 @@ namespace MillionHerosHelper
         public static bool RemoveUselessInfo { get; set; }
         public static bool ShowABC { set; get; }
         public static bool UseSoGou { set; get; }
+        public static bool OCREnhance { set; get; }
         public static HLMode HighlightMode { set; get; }
 
 
@@ -34,6 +35,7 @@ namespace MillionHerosHelper
             string _RemoveUselessInfo = INIOperation.ReadValue("config.ini", "Other", "RemoveUselessInfo", Boolean.TrueString);
             string _ShowABC = INIOperation.ReadValue("config.ini", "Other", "ShowABC", Boolean.TrueString);
             string _UseSoGou = INIOperation.ReadValue("config.ini", "Other", "UseSoGou", Boolean.FalseString);
+            string _OCREnhance = INIOperation.ReadValue("config.ini", "BaiDuOCR", "Enhance", Boolean.FalseString);
 
             string _HighlightMode = INIOperation.ReadValue("config.ini", "Other", "HighLightMode", "2");
 
@@ -54,6 +56,9 @@ namespace MillionHerosHelper
             ShowABC = _sabc;
             Boolean.TryParse(_UseSoGou, out bool _usg);
             UseSoGou = _usg;
+            Boolean.TryParse(_OCREnhance, out bool ehc);
+            OCREnhance = ehc;
+
             Int32.TryParse(_HighlightMode, out int _hlm);
             HighlightMode = (HLMode)_hlm;
 
@@ -63,6 +68,7 @@ namespace MillionHerosHelper
         {
             INIOperation.WriteValue("config.ini", "BaiDuOCR", "API_KEY", OCR_API_KEY);
             INIOperation.WriteValue("config.ini", "BaiDuOCR", "SECRET_KEY", OCR_SECRET_KEY);
+            INIOperation.WriteValue("config.ini", "BaiDuOCR", "Enhance", OCREnhance.ToString());
 
             INIOperation.WriteValue("config.ini", "CutScreenShot", "StartX", CutX.ToString());
             INIOperation.WriteValue("config.ini", "CutScreenShot", "StartY", CutY.ToString());

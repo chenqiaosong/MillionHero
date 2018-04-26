@@ -67,6 +67,7 @@
             this.radioButton_Fast = new System.Windows.Forms.RadioButton();
             this.checkBox_ShowABC = new System.Windows.Forms.CheckBox();
             this.checkBox_UseSoGou = new System.Windows.Forms.CheckBox();
+            this.checkBox_Enhance = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ScreenShot)).BeginInit();
             this.groupBox_HighLightMode.SuspendLayout();
             this.SuspendLayout();
@@ -430,11 +431,22 @@
             this.checkBox_UseSoGou.Text = "使用搜狗搜索引擎";
             this.checkBox_UseSoGou.UseVisualStyleBackColor = true;
             // 
+            // checkBox_Enhance
+            // 
+            this.checkBox_Enhance.AutoSize = true;
+            this.checkBox_Enhance.Location = new System.Drawing.Point(177, 542);
+            this.checkBox_Enhance.Name = "checkBox_Enhance";
+            this.checkBox_Enhance.Size = new System.Drawing.Size(89, 19);
+            this.checkBox_Enhance.TabIndex = 36;
+            this.checkBox_Enhance.Text = "高精度版";
+            this.checkBox_Enhance.UseVisualStyleBackColor = true;
+            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(472, 753);
+            this.Controls.Add(this.checkBox_Enhance);
             this.Controls.Add(this.checkBox_UseSoGou);
             this.Controls.Add(this.checkBox_ShowABC);
             this.Controls.Add(this.groupBox_HighLightMode);
@@ -523,5 +535,6 @@
         private System.Windows.Forms.RadioButton radioButton_NoHighLighting;
         private System.Windows.Forms.CheckBox checkBox_ShowABC;
         private System.Windows.Forms.CheckBox checkBox_UseSoGou;
+        private System.Windows.Forms.CheckBox checkBox_Enhance;
     }
 }
