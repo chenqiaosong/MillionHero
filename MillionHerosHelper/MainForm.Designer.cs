@@ -320,6 +320,7 @@
             this.button_SearchD.TabIndex = 40;
             this.button_SearchD.Text = "搜索";
             this.button_SearchD.UseVisualStyleBackColor = true;
+            this.button_SearchD.Click += new System.EventHandler(this.button_SearchD_Click);
             // 
             // textBox_AnswerD
             // 

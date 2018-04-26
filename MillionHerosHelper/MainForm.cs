@@ -135,7 +135,7 @@ namespace MillionHerosHelper
 
             if (Config.RemoveUselessInfo)//移除无用信息
             {
-                browserForm.Jump(url + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerA.Text));
+                browserForm.Jump(url + SearchEngine.UrlEncode(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerA.Text)));
             }
             else
             {
@@ -158,7 +158,7 @@ namespace MillionHerosHelper
 
             if (Config.RemoveUselessInfo)//移除无用信息
             {
-                browserForm.Jump(url + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerB.Text));
+                browserForm.Jump(url + SearchEngine.UrlEncode(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerB.Text)));
             }
             else
             {
@@ -182,11 +182,35 @@ namespace MillionHerosHelper
 
             if (Config.RemoveUselessInfo)//移除无用信息
             {
-                browserForm.Jump(url + AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerC.Text));
+                browserForm.Jump(url + SearchEngine.UrlEncode(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerC.Text)));
             }
             else
             {
                 browserForm.Jump(url + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerC.Text));
+            }
+        }
+
+        private void button_SearchD_Click(object sender, EventArgs e)
+        {
+            string url;
+
+            if (!Config.UseSoGou)
+            {
+                url = "http://www.baidu.com/s?wd=";
+            }
+            else
+            {
+                url = "https://www.sogou.com/web?query=";
+            }
+
+
+            if (Config.RemoveUselessInfo)//移除无用信息
+            {
+                browserForm.Jump(url + SearchEngine.UrlEncode(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerD.Text)));
+            }
+            else
+            {
+                browserForm.Jump(url + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerD.Text));
             }
         }
 
