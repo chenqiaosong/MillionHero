@@ -135,12 +135,15 @@ namespace MillionHerosHelper
 
             if (Config.RemoveUselessInfo)//移除无用信息
             {
-                browserForm.Jump(url + SearchEngine.UrlEncode(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerA.Text)));
+                url += SearchEngine.UrlEncode(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerA.Text));
             }
             else
             {
-                browserForm.Jump(url + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerA.Text));
+                url += SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerA.Text);
             }
+            // browserForm.Jump(url);
+            browserForm.HighlightAndShowPage(url, new string[] { textBox_AnswerA.Text, "null", "null", "null" });
+
         }
 
         private void button_SearchB_Click(object sender, EventArgs e)
@@ -158,12 +161,14 @@ namespace MillionHerosHelper
 
             if (Config.RemoveUselessInfo)//移除无用信息
             {
-                browserForm.Jump(url + SearchEngine.UrlEncode(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerB.Text)));
+                url += SearchEngine.UrlEncode(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerB.Text));
             }
             else
             {
-                browserForm.Jump(url + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerB.Text));
+                url += SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerB.Text);
             }
+            // browserForm.Jump(url);
+            browserForm.HighlightAndShowPage(url, new string[] { "null", textBox_AnswerB.Text, "null", "null" });
         }
 
         private void button_SearchC_Click(object sender, EventArgs e)
@@ -179,15 +184,16 @@ namespace MillionHerosHelper
                 url = "https://www.sogou.com/web?query=";
             }
 
-
             if (Config.RemoveUselessInfo)//移除无用信息
             {
-                browserForm.Jump(url + SearchEngine.UrlEncode(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerC.Text)));
+                url += SearchEngine.UrlEncode(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerC.Text));
             }
             else
             {
-                browserForm.Jump(url + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerC.Text));
+                url += SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerC.Text);
             }
+            // browserForm.Jump(url);
+            browserForm.HighlightAndShowPage(url, new string[] { "null", "null", textBox_AnswerC.Text, "null" });
         }
 
         private void button_SearchD_Click(object sender, EventArgs e)
@@ -203,15 +209,16 @@ namespace MillionHerosHelper
                 url = "https://www.sogou.com/web?query=";
             }
 
-
             if (Config.RemoveUselessInfo)//移除无用信息
             {
-                browserForm.Jump(url + SearchEngine.UrlEncode(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerD.Text)));
+                url += SearchEngine.UrlEncode(AnalyzeProblem.RemoveUselessInfo(textBox_Problem.Text + " " + textBox_AnswerD.Text));
             }
             else
             {
-                browserForm.Jump(url + SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerD.Text));
+                url += SearchEngine.UrlEncode(textBox_Problem.Text + " " + textBox_AnswerD.Text);
             }
+            // browserForm.Jump(url);
+            browserForm.HighlightAndShowPage(url, new string[] { "null", "null", "null" ,textBox_AnswerD.Text});
         }
 
         protected override void WndProc(ref Message m)
