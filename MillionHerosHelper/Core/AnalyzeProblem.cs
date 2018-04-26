@@ -225,6 +225,10 @@ namespace MillionHerosHelper
         public static string RemoveABC(string str)
         {
             string res = str.Trim();
+            if (res.Length == 1)
+            {
+                return res;
+            }
             res = Regex.Replace(res, @"^(A|B|C|a|b|c)", "");
             res = Regex.Replace(res, @"^(\.|:|：|，|,)", "");
             res = res.Trim();
