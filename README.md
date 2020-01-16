@@ -4,7 +4,7 @@
 一秒自动搜索，三秒极速推荐答案(仅供参考)<br>
 ![image](https://raw.githubusercontent.com/Azure99/MillionHero/master/pictures/run.gif)
 
-# 交流群419958463
+# 交流群629712201
 鉴于人数太多，开启付费入群
 # [图文使用教程](https://github.com/Azure99/MillionHero/wiki/助手图文使用教程)<br><br>
 
